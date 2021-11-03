@@ -4,14 +4,8 @@ const express = require('express');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
-const expressMiddleware = express.json();
+const jsonMiddleware = express.json();
 const app = express();
-
-app.use(staticMiddleware);
-
-app.use(errorMiddleware);
-app.use(expressMiddleware);
-
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -19,8 +13,26 @@ const db = new pg.Pool({
   }
 });
 
+app.use(staticMiddleware);
+app.use(jsonMiddleware);
+
 app.post('/api/listings', (req, res, next) => {
   const { userId, imageUrl, title, price, location, condition, description } = req.body;
+  if (!userId) {
+    throw new ClientError(400, 'Missing property: userId');
+  } else if (!imageUrl) {
+    throw new ClientError(400, 'Missing property: imageUrl');
+  } else if (!title) {
+    throw new ClientError(400, 'Missing property: title');
+  } else if (!price) {
+    throw new ClientError(400, 'Missing property: price');
+  } else if (!location) {
+    throw new ClientError(400, 'Missing property: location');
+  } else if (!condition) {
+    throw new ClientError(400, 'Missing property: condition');
+  } else if (!description) {
+    throw new ClientError(400, 'Missing property: description');
+  }
   const sql = `
     insert into "listings"
     ("userId", "imageUrl", "title", "price", "location", "condition", "description")
@@ -28,18 +40,14 @@ app.post('/api/listings', (req, res, next) => {
     returning *;
     `;
   const values = [userId, imageUrl, title, price, location, condition, description];
-  if (!req.body.userId) {
-    throw new ClientError(400, 'Missing property: userId');
-  }
   db.query(sql, values)
     .then(result => {
       res.status(201).json(result.rows);
     })
-    // .catch(err => next(err));
-    .catch(err => {
-      console.error(err);
-    });
+    .catch(err => next(err));
 });
+
+app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
