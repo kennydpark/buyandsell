@@ -1,0 +1,45 @@
+.container {
+  max-width: 575px;
+  margin: 0 auto;
+}
+
+.form-container-full {
+  margin: 0 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* .column-full, */
+.column-half {
+  width: 100%;
+}
+
+/* .file-upload {
+  height: 275px;
+  cursor: pointer;
+} */
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 900px;
+  }
+
+  .form-container-full {
+    /* margin: 0 100px; */
+  }
+
+  .column-half {
+    width: 50%;
+  }
+
+  .row-file-upload {
+    height: 100%;
+  }
+
+  /* .custom-file-upload {
+    height: 100%;
+  } */
+}

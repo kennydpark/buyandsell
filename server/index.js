@@ -4,8 +4,10 @@ const express = require('express');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
+const uploadsMiddleware = require('./uploads-middleware');
 const jsonMiddleware = express.json();
 const app = express();
+
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -16,12 +18,12 @@ const db = new pg.Pool({
 app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
-app.post('/api/listings', (req, res, next) => {
-  const { userId, imageUrl, title, price, location, condition, description } = req.body;
+app.post('/api/listings', uploadsMiddleware, (req, res, next) => {
+  const { userId, title, price, location, condition, description } = req.body;
   if (!userId) {
     throw new ClientError(400, 'Missing property: userId');
-  } else if (!imageUrl) {
-    throw new ClientError(400, 'Missing property: imageUrl');
+  } else if (!req.file) {
+    throw new ClientError(400, 'Missing property: image');
   } else if (!title) {
     throw new ClientError(400, 'Missing property: title');
   } else if (!price) {
@@ -33,13 +35,14 @@ app.post('/api/listings', (req, res, next) => {
   } else if (!description) {
     throw new ClientError(400, 'Missing property: description');
   }
+  const url = `/images/${req.file.filename}`;
   const sql = `
     insert into "listings"
     ("userId", "imageUrl", "title", "price", "location", "condition", "description")
     values ($1, $2, $3, $4, $5, $6, $7)
     returning *;
     `;
-  const values = [userId, imageUrl, title, price, location, condition, description];
+  const values = [userId, url, title, price, location, condition, description];
   db.query(sql, values)
     .then(result => {
       res.status(201).json(result.rows);
