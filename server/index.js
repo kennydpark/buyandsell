@@ -50,6 +50,18 @@ app.post('/api/listings', uploadsMiddleware, (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/listings', (req, res, next) => {
+  const sql = `
+    select *
+    from "listings"
+    `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
