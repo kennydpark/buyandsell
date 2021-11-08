@@ -4,7 +4,8 @@ export default class CreateListingFormLocation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: this.props.location
+      location: this.props.location,
+      error: ''
     };
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,7 +18,16 @@ export default class CreateListingFormLocation extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handleLocationSubmitted(this.state.location);
+    if (this.state.location === 'Location') {
+      this.setState({
+        error: 'You must specify a location.'
+      });
+    } else {
+      this.props.handleLocationSubmitted(this.state.location);
+      this.setState({
+        error: ''
+      });
+    }
   }
 
   handlePreviousClick() {
@@ -51,8 +61,11 @@ export default class CreateListingFormLocation extends React.Component {
                 <button onClick={this.handlePreviousClick} className="cancel-previous">Previous</button>
               </div>
               <div className="col-buttons next-submit">
-                <button type="submit" className="next-submit">Submit</button>
+                <button type="submit" className="next-submit">Publish</button>
               </div>
+            </div>
+            <div className="row justify-center">
+              <p className="text-no-location-error">{this.state.error}</p>
             </div>
           </form>
         </div>

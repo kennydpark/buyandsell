@@ -65,6 +65,9 @@ export default class CreateListingFormDetails extends React.Component {
       });
     } else {
       this.props.handleDetailsSubmitted(this.state);
+      this.setState({
+        error: ''
+      });
     }
   }
 

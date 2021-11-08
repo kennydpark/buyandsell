@@ -93,7 +93,8 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.text-no-image-error {
+.text-no-image-error,
+.text-no-location-error {
   color: red;
   margin-top: 0;
 }
