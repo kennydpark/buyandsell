@@ -93,6 +93,15 @@ input[type="file"] {
   cursor: pointer;
 }
 
+.text-no-image-error {
+  color: red;
+  margin-top: 0;
+}
+
+.hidden {
+  display: none;
+}
+
 .blue {
   background-color: #8ab6d6;
 }

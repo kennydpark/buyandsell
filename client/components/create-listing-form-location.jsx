@@ -1,27 +1,15 @@
 import React from 'react';
-// import CreateListingFormParent from './create-listing-form-parent';
-// import CreateListingFormDetails from './create-listing-form-details';
 
 export default class CreateListingFormLocation extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = this.props.data;
     this.state = {
-      userId: this.props.data.userId,
-      title: this.props.data.title,
-      price: this.props.data.price,
-      file: this.props.data.file,
-      condition: this.props.data.condition,
-      description: this.props.data.description,
-      location: this.props.data.location
+      location: this.props.location
     };
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePreviousClick = this.handlePreviousClick.bind(this);
   }
-
-  // detailsData() {
-  //   this.setState(this.props.data);
-  // }
 
   handleLocationChange(event) {
     this.setState({ location: event.target.value });
@@ -29,34 +17,14 @@ export default class CreateListingFormLocation extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append('userId', String(this.state.userId));
-    formData.append('image', 'no image. just a test');
-    formData.append('title', this.state.title);
-    formData.append('price', this.state.price);
-    formData.append('location', this.state.location);
-    formData.append('condition', this.state.condition);
-    formData.append('description', this.state.description);
-    fetch('/api/listings', {
-      method: 'POST',
-      body: formData
-    })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          title: '',
-          price: '',
-          condition: '',
-          description: '',
-          location: ''
-        });
-        // this.fileInputRef.current.value = null;
-      })
-      .catch(err => console.error(err));
+    this.props.handleLocationSubmitted(this.state.location);
+  }
+
+  handlePreviousClick() {
+    this.props.switchToDetails(this.state.location);
   }
 
   render() {
-    // console.log('details:', this.props.data);
     const googleMapPlaceholder = 'images/irvine-map.png';
     return (
       <div className="container">
@@ -68,7 +36,7 @@ export default class CreateListingFormLocation extends React.Component {
             <div className="row">
               <div className="column-half">
                 <div className="row row-form">
-                  <select onChange={this.handleLocationChange} defaultValue="Location" className="new-listing-form-style" required label="location" placeholder="Location">
+                  <select value={this.state.location} onChange={this.handleLocationChange} className="new-listing-form-style" required label="location" placeholder="Location">
                     <option value="Location" disabled>Location</option>
                     <option value="Irvine, CA">Irvine, CA</option>
                   </select>
@@ -80,7 +48,7 @@ export default class CreateListingFormLocation extends React.Component {
             </div>
             <div className="row">
               <div className="col-buttons cancel-previous">
-                <button onClick={this.props.switchToDetails} className="cancel-previous">Previous</button>
+                <button onClick={this.handlePreviousClick} className="cancel-previous">Previous</button>
               </div>
               <div className="col-buttons next-submit">
                 <button type="submit" className="next-submit">Submit</button>

@@ -6,55 +6,76 @@ export default class CreateListingFormParent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      details: {
+        userId: 1,
+        title: '',
+        price: '',
+        condition: 'Condition',
+        description: '',
+        file: null
+      },
       view: 'details',
-      userId: 1,
-      title: '',
-      price: '',
-      condition: '',
-      description: '',
-      file: null,
-      location: ''
+      location: 'Location'
     };
-    // this.handleDetailsSubmit = this.handleDetails.bind(this);
-    // this.handleLocationSubmit = this.handleLocationSubmit.bind(this);
+    this.handleLocationSubmitted = this.handleLocationSubmitted.bind(this);
     this.switchToDetails = this.switchToDetails.bind(this);
-    this.switchToLocation = this.switchToLocation.bind(this);
     this.handleDetailsSubmitted = this.handleDetailsSubmitted.bind(this);
   }
 
-  // handleDetailsSubmit() {
-
-  // }
-
-  // handleLocationSubmit() {
-
-  // }
-
-  switchToDetails() {
-    this.setState({ view: 'details' });
-  }
-
-  switchToLocation() {
-    this.setState({ view: 'location' });
+  switchToDetails(location) {
+    this.setState({
+      view: 'details',
+      location: location
+    });
   }
 
   handleDetailsSubmitted(details) {
     this.setState({
       view: 'location',
-      userId: 1,
-      title: details.title,
-      price: details.price,
-      condition: details.condition,
-      description: details.description,
-      file: details.file
+      details: details
     });
+  }
+
+  handleLocationSubmitted(location) {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('userId', String(this.state.details.userId));
+    formData.append('image', this.state.details.file);
+    formData.append('title', this.state.details.title);
+    formData.append('price', this.state.details.price);
+    formData.append('location', location);
+    formData.append('condition', this.state.details.condition);
+    formData.append('description', this.state.details.description);
+    fetch('/api/listings', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          details: {
+            title: '',
+            price: '',
+            condition: '',
+            description: '',
+            file: null
+          }
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
     if (this.state.view === 'details') {
-      return <CreateListingFormDetails switchToLocation={this.switchToLocation} handleDetailsSubmitted={this.handleDetailsSubmitted} />;
+      return <CreateListingFormDetails
+      switchToLocation={this.switchToLocation}
+      handleDetailsSubmitted={this.handleDetailsSubmitted}
+      details={this.state.details} />;
     } else {
-      return <CreateListingFormLocation switchToDetails={this.switchToDetails} data={this.state} />;
+      return <CreateListingFormLocation
+      switchToDetails={this.switchToDetails}
+      handleLocationSubmitted={this.handleLocationSubmitted}
+      location={this.state.location} />;
     }
   }
 }
