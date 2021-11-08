@@ -44,7 +44,7 @@ export default class CreateListingFormLocation extends React.Component {
         <div className="form-container-full text-center">
           <form onSubmit={this.handleSubmit}>
             <div className="row">
-              <div className="column-half">
+              <div className="column-full">
                 <div className="row row-form">
                   <select value={this.state.location} onChange={this.handleLocationChange} className="new-listing-form-style" required label="location" placeholder="Location">
                     <option value="Location" disabled>Location</option>
