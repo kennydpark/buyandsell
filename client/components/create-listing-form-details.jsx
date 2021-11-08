@@ -1,6 +1,8 @@
 import React from 'react';
+// import CreateListingFormParent from './create-listing-form-parent';
+// import CreateListingFormLocation from './create-listing-form-location';
 
-export default class CreateListingForm extends React.Component {
+export default class CreateListingFormDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,8 +11,6 @@ export default class CreateListingForm extends React.Component {
       price: '',
       condition: '',
       description: '',
-      location: 'Irvine, CA',
-      selectValue: 'Condition',
       file: null
     };
     this.fileInputRef = React.createRef();
@@ -29,7 +29,7 @@ export default class CreateListingForm extends React.Component {
   }
 
   handleSelectChange(event) {
-    this.setState({ selectValue: event.target.value });
+    this.setState({ condition: event.target.value });
   }
 
   handleTitleChange(event) {
@@ -58,7 +58,7 @@ export default class CreateListingForm extends React.Component {
     formData.append('title', this.state.title);
     formData.append('price', this.state.price);
     formData.append('location', this.state.location);
-    formData.append('condition', this.state.selectValue);
+    formData.append('condition', this.state.condition);
     formData.append('description', this.state.description);
     fetch('/api/listings', {
       method: 'POST',
@@ -80,22 +80,23 @@ export default class CreateListingForm extends React.Component {
   render() {
     let imagePreview;
     if (this.state.file === null) {
-      imagePreview = '../placeholder-image.png';
+      imagePreview = 'images/placeholder-image.png';
     } else {
       imagePreview = this.state.file;
     }
+
     return (
         <div className="container">
           <div className="row row-header justify-center">
             <h1 className="page-header-text">Item For Sale</h1>
           </div>
           <div className="form-container-full text-center">
-            <form onSubmit={this.handleSubmit}>
+            <form>
               <div className="row">
                 <div className="column-half">
                   <div className="row row-form row-file-upload">
                     <label className="custom-file-upload">
-                    <img src={imagePreview}/>
+                        <img src={imagePreview} className="img-style"/>
                       <input onChange={this.handleImageChange} ref={this.fileInputRef} accept=".png, .jpg, .jpeg" className="new-listing-form-style file-upload" required type="file" name="image"></input>
                     </label>
                   </div>
@@ -105,11 +106,11 @@ export default class CreateListingForm extends React.Component {
                     <input onChange={this.handleTitleChange} className="new-listing-form-style" required label="title" type="text" placeholder="Title"></input>
                   </div>
                   <div className="row row-form">
-                    <input onChange={this.handlePriceChange} className="new-listing-form-style" required label="price" type="text" placeholder="Price"></input>
+                    <div className="dollar"><input onChange={this.handlePriceChange} className="new-listing-form-style" type="number" required placeholder="Price" /></div>
                   </div>
                   <div className="row row-form">
-                  <select value={this.state.selectValue} onChange={this.handleSelectChange} className="new-listing-form-style" required label="condition" placeholder="Condition">
-                      <option value="Condition" className="first">Condition</option>
+                    <select onChange={this.handleSelectChange} defaultValue="Condition" className="new-listing-form-style" required label="condition" placeholder="Condition">
+                      <option value="Condition" disabled>Condition</option>
                       <option value="New">New</option>
                       <option value="Used - Like New">Used - Like New</option>
                       <option value="Used - Good">Used - Good</option>
@@ -122,11 +123,13 @@ export default class CreateListingForm extends React.Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-buttons cancel">
-                  <button className="cancel">Cancel</button>
+                <div className="col-buttons cancel-previous">
+                  <button className="cancel-previous">Cancel</button>
                 </div>
-                <div className="col-buttons next">
-                  <button type="submit" className="next">Next</button>
+                <div className="col-buttons next-submit">
+                  {/* <button type="submit" className="next-submit">Next</button> */}
+                  {/* <button onClick={this.props.switchToLocation} type="button" className="next-submit">Next</button> */}
+                  <button onClick={() => this.props.handleDetailsSubmitted(this.state)} type="button" className="next-submit">Next</button>
                 </div>
               </div>
             </form>

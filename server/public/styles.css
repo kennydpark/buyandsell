@@ -2,42 +2,45 @@
   font-family: Roboto, sans-serif;
 }
 
-textarea {
-  height: auto;
-}
-
 h1 {
   font-weight: 400;
 }
 
 button {
-  padding: 15px 40px;
+  padding: 15px 0;
+  width: 130px;
   border: none;
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
-}
-
-button.cancel {
-  background-color: #f1f1f1;
-  color: #8d8d8d;
   transition: 0.2s ease-out;
 }
 
-button.cancel:hover {
+button.cancel-previous {
+  background-color: #f1f1f1;
+  color: #8d8d8d;
+}
+
+button.cancel-previous:hover {
   background-color: #e6e6e6;
   transition: 0.2s ease-out;
 }
 
-button.next {
+button.next-submit {
   background-color: #2978b5;
   color: white;
+}
+
+button.next-submit:hover {
+  background-color: #236699;
   transition: 0.2s ease-out;
 }
 
-button.next:hover {
-  background-color: #236699;
-  transition: 0.2s ease-out;
+.img-style {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .page-header-text {
@@ -49,22 +52,14 @@ button.next:hover {
   margin-bottom: 15px;
 }
 
-.col-buttons.cancel {
+.col-buttons.cancel-previous {
   text-align: right;
   padding-right: 15px;
 }
 
-.col-buttons.next {
+.col-buttons.next-submit {
   text-align: left;
   padding-left: 15px;
-}
-
-/* .row-header {
-
-} */
-
-.row-form {
-  margin: 15px;
 }
 
 .row-input-title {
@@ -93,18 +88,9 @@ input[type="file"] {
   display: none;
 }
 
+.file-upload,
 .custom-file-upload {
-  border: #8ab6d6 solid 1px;
-  border-radius: 10px;
-  height: 275px;
-  width: 100%;
   cursor: pointer;
-}
-
-option.first {
-  /* color: #b0b0b0; */
-  color: red;
-  font-size: 2rem;
 }
 
 .blue {
@@ -117,4 +103,22 @@ option.first {
 
 .text-center {
   text-align: center;
+}
+
+.dollar {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.dollar input {
+  padding: 15px 25px;
+}
+
+.dollar::before {
+  position: absolute;
+  content: "$";
+  left: 12px;
+  top: 14px;
+  color: #414141a7;
 }
