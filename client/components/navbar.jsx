@@ -43,7 +43,7 @@ class Navbar extends React.Component {
                 <i className='fas fa-store navbar-browse-icon'></i>
               </div>
               <div className='navbar-column-browse-text'>
-                <h1 className='navbar-browse-all-anchor' onClick={this.handleClick}>Browse all</h1>
+                <a className='navbar-browse-all-anchor' onClick={this.handleClick}>Browse all</a>
               </div>
             </div>
             <li onClick={this.handleClick}>
@@ -52,7 +52,7 @@ class Navbar extends React.Component {
                   <i className='fas fa-plus navbar-create-icon'></i>
                 </div>
                 <div className='navbar-column-create-text'>
-                  <h1 className='navbar-create-anchor' onClick={this.handleClick}>Create new listing</h1>
+                  <a className='navbar-create-anchor' onClick={this.handleClick}>Create new listing</a>
                 </div>
               </div>
             </li>
@@ -62,7 +62,7 @@ class Navbar extends React.Component {
                   <i className='fas fa-tags navbar-listings-icon'></i>
                 </div>
                 <div className='navbar-column-listings-text'>
-                  <h1 className='navbar-listings-anchor' onClick={this.handleClick}>Your listings</h1>
+                  <a className='navbar-listings-anchor' onClick={this.handleClick}>Your listings</a>
                 </div>
               </div>
             </li>
@@ -72,7 +72,7 @@ class Navbar extends React.Component {
                   <i className='fas fa-bookmark navbar-saved-icon'></i>
                 </div>
                 <div className='navbar-column-saved-text'>
-                  <h1 className='navbar-saved-anchor' onClick={this.handleClick}>Saved items</h1>
+                  <a className='navbar-saved-anchor' onClick={this.handleClick}>Saved items</a>
                 </div>
               </div>
             </li>
@@ -82,7 +82,7 @@ class Navbar extends React.Component {
                   <i className='fas fa-sign-out-alt navbar-sign-icon'></i>
                 </div>
                 <div className='navbar-column-sign-text'>
-                  <h1 className='navbar-sign-anchor' onClick={this.handleClick}>Sign out</h1>
+                  <a className='navbar-sign-anchor' onClick={this.handleClick}>Sign out</a>
                 </div>
               </div>
             </li>

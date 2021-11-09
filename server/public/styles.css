@@ -2,7 +2,8 @@
   font-family: Roboto, sans-serif;
 }
 
-h1 {
+h1,
+a {
   font-weight: 400;
 }
 
@@ -158,7 +159,13 @@ input[type="file"] {
   margin: 0;
 }
 
-.navbar-row-browse,
+.navbar-row-browse {
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
 .navbar-row-create,
 .navbar-row-listings,
 .navbar-row-saved,
@@ -192,19 +199,21 @@ input[type="file"] {
 .navbar-column-saved-text,
 .navbar-column-sign-text {
   width: 70%;
+  height: 40px;
 }
 
 .navbar-browse-icon {
   margin-left: 10px;
-  padding-top: 30px;
+  margin-top: 12px;
 }
 
 .navbar-browse-all-anchor {
-  padding-top: 10px;
   font-weight: bolder;
   cursor: pointer;
   border-radius: 5px;
   font-size: 1.4rem;
+  position: relative;
+  top: 7px;
 }
 
 .navbar-create-icon,
@@ -222,6 +231,8 @@ input[type="file"] {
   cursor: pointer;
   border-radius: 5px;
   font-size: 1rem;
+  position: relative;
+  top: 10px;
 }
 
 .navbar-icon {
@@ -244,7 +255,8 @@ input[type="file"] {
   height: 100%;
   position: fixed;
   top: 0;
-  transition: 0.2s ease-in-out;
+  transition: 0.3s;
+  transition-timing-function: ease;
 }
 
 .navbar-shadow {
@@ -270,6 +282,6 @@ input[type="file"] {
   right: 0;
   bottom: 0;
   left: 0;
-  transition: 0.2s ease-in-out;
-}
+  transition: 0.3s;
+  transition-timing-function: ease;
 }
