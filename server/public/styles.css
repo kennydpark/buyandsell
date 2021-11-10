@@ -5,6 +5,14 @@
 h1,
 a {
   font-weight: 400;
+  color: #414141;
+}
+
+a {
+  color: #414141;
+  text-decoration: none;
+
+  /* display: block; */
 }
 
 button {
@@ -164,6 +172,9 @@ input[type="file"] {
   transition: 0.2s ease-in-out;
   cursor: pointer;
   margin-bottom: 20px;
+
+  /* NEW */
+  position: relative;
 }
 
 .navbar-row-create,
@@ -191,6 +202,7 @@ input[type="file"] {
 .navbar-column-saved-icon,
 .navbar-column-sign-icon {
   width: 25%;
+  color: #414141;
 }
 
 .navbar-column-browse-text,
@@ -212,7 +224,14 @@ input[type="file"] {
   cursor: pointer;
   border-radius: 5px;
   font-size: 1.4rem;
-  position: relative;
+
+  /* position: relative; */
+
+  /* NEW */
+  position: absolute;
+  height: 100%;
+
+  /* END NEW */
   top: 7px;
 }
 
@@ -240,6 +259,7 @@ input[type="file"] {
   cursor: pointer;
   margin-left: 10px;
   margin-top: 10px;
+  color: #414141;
 }
 
 .navbar-modal-container-full {
