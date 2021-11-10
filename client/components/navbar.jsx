@@ -41,10 +41,10 @@ class Navbar extends React.Component {
             <a onClick={this.handleClick} href="#browse-all">
               <div className='row navbar-row-browse'>
                 <div className='navbar-column-browse-icon'>
-                  <a href="#browse-all"><i className='fas fa-store navbar-browse-icon'></i></a>
+                  <i className='fas fa-store navbar-browse-icon'></i>
                 </div>
                 <div className='navbar-column-browse-text'>
-                  <a className='navbar-browse-all-anchor'>Browse all</a>
+                  <h1 className='navbar-browse-all-anchor'>buyandsell</h1>
                 </div>
               </div>
             </a>
@@ -55,7 +55,7 @@ class Navbar extends React.Component {
                     <i className='fas fa-plus navbar-create-icon'></i>
                   </div>
                   <div className='navbar-column-create-text'>
-                    <a className='navbar-create-anchor' href="#create-listing">Create new listing</a>
+                    <h1 className='navbar-create-anchor'>Create new listing</h1>
                   </div>
                 </div>
               </a>
@@ -67,7 +67,7 @@ class Navbar extends React.Component {
                     <i className='fas fa-tags navbar-listings-icon'></i>
                   </div>
                   <div className='navbar-column-listings-text'>
-                    <a className='navbar-listings-anchor' href="#your-listings">Your listings</a>
+                    <h1 className='navbar-listings-anchor'>Your listings</h1>
                   </div>
                 </div>
               </a>
@@ -79,7 +79,7 @@ class Navbar extends React.Component {
                     <i className='fas fa-bookmark navbar-saved-icon'></i>
                   </div>
                   <div className='navbar-column-saved-text'>
-                    <a className='navbar-saved-anchor' href="#saved-items">Saved items</a>
+                    <h1 className='navbar-saved-anchor'>Saved items</h1>
                   </div>
                 </div>
               </a>
@@ -91,7 +91,7 @@ class Navbar extends React.Component {
                     <i className='fas fa-sign-out-alt navbar-sign-icon'></i>
                   </div>
                   <div className='navbar-column-sign-text'>
-                    <a className='navbar-sign-anchor' href="#sign-out">Sign out</a>
+                    <h1 className='navbar-sign-anchor'>Sign out</h1>
                   </div>
                 </div>
               </a>

@@ -11,8 +11,6 @@ a {
 a {
   color: #414141;
   text-decoration: none;
-
-  /* display: block; */
 }
 
 button {
@@ -45,6 +43,8 @@ button.next-submit:hover {
   transition: 0.2s ease-out;
 }
 
+/* create listing */
+
 .img-style {
   width: 100%;
   height: 100%;
@@ -54,6 +54,7 @@ button.next-submit:hover {
 
 .page-header-text {
   margin-bottom: 15px;
+  font-family: Lobster, cursive;
 }
 
 .col-buttons {
@@ -124,34 +125,51 @@ input[type="file"] {
   text-align: center;
 }
 
-/* .dollar {
-  position: relative;
-  width: 100%;
-  display: inline-block;
-} */
+.dark-grey-color {
+  color: #414141;
+}
 
-/* .unit {
-  position: absolute;
+.div-published {
+  margin-top: 50px;
+}
+
+/* browse all listings */
+
+.browse-all-listing {
   display: block;
-  left: 12px;
-  top: 14px;
-  color: #414141a7; */
+  margin-bottom: 75px;
+  cursor: pointer;
+}
 
-/* z-index: 9; */
+.browse-all-image {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-/* .dollar input {
-  padding: 15px 25px;
-} */
+.browse-all-description {
+  height: 4.5rem;
+  overflow: hidden;
+}
 
-/* .dollar::before {
-  position: absolute;
-  content: "$";
-  left: 12px;
-  top: 14px;
-  color: #414141a7;
-} */
+.row-browse-all {
+  margin-top: 20px;
+}
 
-/* from appdrawer exercise */
+.card-price,
+.card-title,
+.card-location {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.card-location {
+  color: #7e7e7e;
+}
+
+/* navbar */
 
 .navbar-header {
   position: fixed;
@@ -171,10 +189,7 @@ input[type="file"] {
   border-radius: 10px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
-  margin-bottom: 20px;
-
-  /* NEW */
-  position: relative;
+  margin-bottom: 25px;
 }
 
 .navbar-row-create,
@@ -217,22 +232,19 @@ input[type="file"] {
 .navbar-browse-icon {
   margin-left: 10px;
   margin-top: 12px;
+  position: relative;
+  bottom: 3px;
+  font-size: 1.3rem;
 }
 
 .navbar-browse-all-anchor {
-  font-weight: bolder;
+  font-weight: 500;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 1.4rem;
-
-  /* position: relative; */
-
-  /* NEW */
-  position: absolute;
-  height: 100%;
-
-  /* END NEW */
-  top: 7px;
+  font-size: 1.8rem;
+  position: relative;
+  bottom: 19px;
+  font-family: Lobster, cursive;
 }
 
 .navbar-create-icon,
@@ -250,8 +262,6 @@ input[type="file"] {
   cursor: pointer;
   border-radius: 5px;
   font-size: 1rem;
-  position: relative;
-  top: 10px;
 }
 
 .navbar-icon {
@@ -275,8 +285,8 @@ input[type="file"] {
   height: 100%;
   position: fixed;
   top: 0;
-  transition: 0.3s;
-  transition-timing-function: ease;
+  transition: 0.4s;
+  transition-timing-function: cubic-bezier(0.05, 0.25, 0, 1);
 }
 
 .navbar-shadow {
@@ -289,6 +299,8 @@ input[type="file"] {
 
 .navbar-hidden {
   left: -100%;
+  transition: 0.7s;
+  transition-timing-function: cubic-bezier(0.05, 0.25, 0, 1);
 }
 
 .overlay-hidden {
@@ -302,6 +314,4 @@ input[type="file"] {
   right: 0;
   bottom: 0;
   left: 0;
-  transition: 0.3s;
-  transition-timing-function: ease;
 }

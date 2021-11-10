@@ -62,6 +62,29 @@ app.get('/api/listings', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/listings/:listingId', (req, res, next) => {
+  const listingId = Number(req.params.listingId);
+  const sql = `
+    delete from "listings"
+    where "listingId" = $1
+    returning *;
+    `;
+  const values = [listingId];
+  db.query(sql, values)
+    .then(result => {
+      const listing = result.rows[0];
+      if (!listing) {
+        throw new ClientError(400, `Cannot find listing with "listingId" ${listingId}`);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      throw new ClientError(500, 'An unexpected error occurred.');
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
