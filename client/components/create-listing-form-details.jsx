@@ -97,12 +97,8 @@ export default class CreateListingFormDetails extends React.Component {
                     </input>
                   </div>
                   <div className="row row-form">
-                    {/* this keeps bypassing any div element layered on top of it */}
-                    {/* <div className="dollar"> */}
                       <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
                             type="number" required placeholder="$ Price" />
-                      {/* <span className='unit'>$</span> */}
-                    {/* </div> */}
                   </div>
                   <div className="row row-form">
                     <select value={this.state.condition} onChange={this.handleSelectChange}
