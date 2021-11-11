@@ -7,7 +7,6 @@ const staticMiddleware = require('./static-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
 const jsonMiddleware = express.json();
 const app = express();
-
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
