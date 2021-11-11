@@ -24,7 +24,7 @@ export default class ListingDetails extends React.Component {
         <div className="row row-header justify-center">
           <h1 className="page-header-text">buyandsell</h1>
         </div>
-        <div className="row row-back-button">
+        <div className="row row-back-button justify-left">
           <a href="#browse-all"><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
         </div>
         <div className="details-container-full text-center">

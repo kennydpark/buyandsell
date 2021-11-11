@@ -9,7 +9,8 @@
   margin: 0 20px;
 }
 
-.details-container-full {
+.details-container-full,
+.row-back-button {
   margin: 20px;
 }
 
@@ -97,6 +98,11 @@
     width: 360px;
     height: 360px;
   }
+
+  .row-back-button {
+    max-width: 700px;
+    width: 865px;
+  }
 }
 
 @media screen and (min-width: 1070px) {
@@ -105,5 +111,10 @@
     height: 500px;
     object-fit: cover;
     border-radius: 10px;
+  }
+
+  .row-back-button {
+    max-width: 700px;
+    width: 1030px;
   }
 }
