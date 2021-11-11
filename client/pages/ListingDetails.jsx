@@ -14,10 +14,6 @@ export default class ListingDetails extends React.Component {
       .then(listing => this.setState({ listing }));
   }
 
-  goBack() {
-
-  }
-
   render() {
     if (!this.state.listing) return null;
     const {

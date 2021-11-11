@@ -9,7 +9,6 @@ a {
 }
 
 a {
-  color: #414141;
   text-decoration: none;
 }
 
@@ -43,7 +42,7 @@ button.next-submit:hover {
   transition: 0.2s ease-out;
 }
 
-/* create listing */
+/* create-listing */
 
 .img-style {
   width: 100%;
@@ -141,11 +140,11 @@ input[type="file"] {
   color: #414141;
 }
 
-.div-published {
+.div-published-body {
   margin-top: 50px;
 }
 
-/* browse all listings */
+/* browse-all */
 
 .browse-all-listing {
   display: block;
