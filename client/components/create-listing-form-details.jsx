@@ -84,19 +84,25 @@ export default class CreateListingFormDetails extends React.Component {
                   <div className="row row-form row-file-upload">
                     <label className="custom-file-upload">
                         <img src={this.state.imagePreview} className="img-style"/>
-                      <input onChange={this.handleImageChange} ref={this.fileInputRef} accept=".png, .jpg, .jpeg" className="new-listing-form-style file-upload" type="file" name="image"></input>
+                      <input onChange={this.handleImageChange} ref={this.fileInputRef} accept=".png, .jpg, .jpeg"
+                            className="new-listing-form-style file-upload" type="file" name="image">
+                      </input>
                     </label>
                   </div>
                 </div>
                 <div className="column-half">
                   <div className="row row-form row-input-title">
-                    <input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style" required label="title" type="text" placeholder="Title"></input>
+                    <input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
+                          required label="title" type="text" placeholder="Title">
+                    </input>
                   </div>
                   <div className="row row-form">
-                    <div className="dollar"><input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style" type="number" required placeholder="Price" /></div>
+                      <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
+                            type="number" required placeholder="$ Price" />
                   </div>
                   <div className="row row-form">
-                    <select value={this.state.condition} onChange={this.handleSelectChange} className="new-listing-form-style" required label="condition" placeholder="Condition">
+                    <select value={this.state.condition} onChange={this.handleSelectChange}
+                        className="new-listing-form-style" required label="condition" placeholder="Condition">
                       <option value="Condition" disabled>Condition</option>
                       <option value="New">New</option>
                       <option value="Used - Like New">Used - Like New</option>
@@ -105,7 +111,10 @@ export default class CreateListingFormDetails extends React.Component {
                     </select>
                   </div>
                   <div className="row row-form">
-                    <textarea value={this.state.description} onChange={this.handleDescriptionChange} className="new-listing-form-style" required label="description" type="text" rows="7" placeholder="Description"></textarea>
+                    <textarea value={this.state.description} onChange={this.handleDescriptionChange}
+                      className="new-listing-form-style" required label="description" type="text" rows="7"
+                      placeholder="Description">
+                    </textarea>
                   </div>
                 </div>
               </div>

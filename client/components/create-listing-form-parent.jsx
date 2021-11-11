@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateListingFormDetails from './create-listing-form-details';
 import CreateListingFormLocation from './create-listing-form-location';
+import CreateListingPublished from './create-listing-published';
 
 export default class CreateListingFormParent extends React.Component {
   constructor(props) {
@@ -59,7 +60,8 @@ export default class CreateListingFormParent extends React.Component {
             condition: '',
             description: '',
             file: null
-          }
+          },
+          view: 'published'
         });
       })
       .catch(err => console.error(err));
@@ -71,11 +73,13 @@ export default class CreateListingFormParent extends React.Component {
       switchToLocation={this.switchToLocation}
       handleDetailsSubmitted={this.handleDetailsSubmitted}
       details={this.state.details} />;
-    } else {
+    } else if (this.state.view === 'location') {
       return <CreateListingFormLocation
       switchToDetails={this.switchToDetails}
       handleLocationSubmitted={this.handleLocationSubmitted}
       location={this.state.location} />;
+    } else if (this.state.view === 'published') {
+      return <CreateListingPublished />;
     }
   }
 }

@@ -3,6 +3,11 @@
   margin: 0 auto;
 }
 
+.browse-all-container {
+  max-width: 575px;
+  margin: 0 auto;
+}
+
 .form-container-full {
   margin: 0 20px;
 }
@@ -34,12 +39,12 @@
     max-width: 900px;
   }
 
-  .row-header {
-    margin-bottom: 30px;
+  .browse-all-container {
+    max-width: 1100px;
   }
 
-  .form-container-full {
-    /* margin: 0 100px; */
+  .row-header {
+    margin-bottom: 30px;
   }
 
   .column-half {
@@ -57,5 +62,9 @@
 
   .custom-file-upload {
     height: 100%;
+  }
+
+  .browse-all-listing {
+    margin: 0 33px;
   }
 }
