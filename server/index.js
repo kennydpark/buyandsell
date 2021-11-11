@@ -64,6 +64,9 @@ app.get('/api/listings', (req, res, next) => {
 
 app.delete('/api/listings/:listingId', (req, res, next) => {
   const listingId = Number(req.params.listingId);
+  if (!Number.isInteger(listingId) || listingId <= 0) {
+    throw new ClientError(400, '"listingId" must be a positive integer.');
+  }
   const sql = `
     delete from "listings"
     where "listingId" = $1
@@ -74,7 +77,7 @@ app.delete('/api/listings/:listingId', (req, res, next) => {
     .then(result => {
       const listing = result.rows[0];
       if (!listing) {
-        throw new ClientError(400, `Cannot find listing with "listingId" ${listingId}`);
+        throw new ClientError(400, `Cannot find listing with "listingId." ${listingId}`);
       } else {
         res.sendStatus(204);
       }

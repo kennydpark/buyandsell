@@ -65,7 +65,6 @@ export default class CreateListingFormParent extends React.Component {
         });
       })
       .catch(err => console.error(err));
-
   }
 
   render() {
@@ -80,8 +79,7 @@ export default class CreateListingFormParent extends React.Component {
       handleLocationSubmitted={this.handleLocationSubmitted}
       location={this.state.location} />;
     } else if (this.state.view === 'published') {
-      return <CreateListingPublished
-      location={this.state.location} />;
+      return <CreateListingPublished />;
     }
   }
 }
