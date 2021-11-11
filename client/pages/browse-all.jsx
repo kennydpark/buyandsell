@@ -37,8 +37,7 @@ export default class BrowseAll extends React.Component {
 }
 
 function Listing(props) {
-  // eslint-disable-next-line no-unused-vars
-  const { listingId, title, price, imageUrl, condition, description, location } = props.listing;
+  const { listingId, title, price, imageUrl, location } = props.listing;
   const href = `#listings?listingId=${listingId}`;
   return (
     <a

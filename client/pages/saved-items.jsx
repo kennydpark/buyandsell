@@ -1,5 +1,4 @@
 import React from 'react';
-// import { toDollars } from '../lib';
 
 export default class SavedItems extends React.Component {
   constructor(props) {
@@ -23,15 +22,7 @@ export default class SavedItems extends React.Component {
         <div className="row row-header justify-center">
           <h1 className="page-header-text">Saved Items</h1>
         </div>
-        {/* <hr /> */}
         <div className="row">
-          {/* {
-            this.state.listings.map(listing => (
-              <div key={listing.listingId} className="">
-                <Listing product={listing} />
-              </div>
-            ))
-          } */}
         </div>
       </div>
     );
