@@ -64,7 +64,7 @@ app.get('/api/listings', (req, res, next) => {
 app.get('/api/listings/:listingId', (req, res, next) => {
   const listingId = parseInt(req.params.listingId, 10);
   if (!listingId) {
-    throw new ClientError(400, 'listingId must be a positive integer');
+    throw new ClientError(400, 'listingId must be a positive integer.');
   }
   const sql = `
     select *
@@ -75,7 +75,7 @@ app.get('/api/listings/:listingId', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       if (!result.rows[0]) {
-        throw new ClientError(404, `Cannot find listing with listingId ${listingId}`);
+        throw new ClientError(404, `Cannot find listing with listingId ${listingId}.`);
       }
       res.json(result.rows[0]);
     })
