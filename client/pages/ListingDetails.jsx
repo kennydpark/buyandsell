@@ -1,16 +1,4 @@
 import React from 'react';
-// import { toDollars } from '../lib';
-
-const styles = {
-  image: {
-    width: '100%',
-    height: '350px',
-    objectFit: 'contain'
-  },
-  longDescription: {
-    whiteSpace: 'pre-wrap'
-  }
-};
 
 export default class ListingDetails extends React.Component {
   constructor(props) {
@@ -29,40 +17,45 @@ export default class ListingDetails extends React.Component {
   render() {
     if (!this.state.listing) return null;
     const {
-      imageUrl, title, price, condition, description
+      imageUrl, title, price, location, condition, description
     } = this.state.listing;
     return (
-      <div className="container">
-        <div className="card shadow-sm">
-          <div className="card-body">
-            <div className="row">
-              <div className="col">
-                {/* this anchor should go back to the catalog at '#' */}
-                <a href="#" className="btn text-secondary">
-                  &lt; Back to browse-all
-                </a>
+      <div className="details-container">
+          <div className="row row-header justify-center">
+            <h1 className="page-header-text">buyandsell</h1>
+          </div>
+          <div className="details-container-full text-center">
+              <div className="row justify-center margin-auto">
+                <div className="details-column-half">
+                  <div className="row justify-center margin-auto">
+                    <img src={imageUrl} className="details-listing-image" />
+                  </div>
+                </div>
+                <div className="details-column-half details-column-body">
+                  <div className="row row-details-body">
+                    <p className="details-card-title details-text text-start dark-grey-color">{title}</p>
+                  </div>
+                  <div className="row">
+                    <p className="details-card-price details-text dark-grey-color">${price}</p>
+                  </div>
+                  <div className="row">
+                    <p className="details-card-location details-text dark-grey-color">{location}</p>
+                  </div>
+                  <div className="row row-condition margin-auto dark-grey-color">
+                    <div className="column">
+                      <p className="details-card-condition-label details-text">Condition</p>
+                    </div>
+                    <div className="column">
+                      <p className="details-card-condition details-text">{condition}</p>
+                    </div>
+                  </div>
+                  <div className="row text-start">
+                    <p className="details-card-description dark-grey-color">{description}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="row mb-4">
-              <div className="col-12 col-sm-6 col-md-5">
-                <img src={imageUrl} alt={title} style={styles.image} />
-              </div>
-              <div className="col-12 col-sm-6 col-md-7">
-                <h2>{title}</h2>
-                <h5 className="text-secondary">${price}</h5>
-                <p>{description}</p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <p style={styles.longDescription}>
-                  {condition}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
-      </div>
     );
   }
 }

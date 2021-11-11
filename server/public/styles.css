@@ -121,8 +121,20 @@ input[type="file"] {
   justify-content: center;
 }
 
+.justify-left {
+  justify-content: left;
+}
+
+.justify-right {
+  justify-content: right;
+}
+
 .text-center {
   text-align: center;
+}
+
+.text-start {
+  text-align: start;
 }
 
 .dark-grey-color {
@@ -157,7 +169,12 @@ input[type="file"] {
   margin-top: 20px;
 }
 
-.card-price,
+.card-price {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .card-title,
 .card-location {
   margin: 10px 0;
@@ -166,6 +183,39 @@ input[type="file"] {
 }
 
 .card-location {
+  color: #7e7e7e;
+}
+
+/* details-listing */
+
+.details-card-title {
+  font-weight: 600;
+  font-size: 22px;
+  padding-top: 10px;
+}
+
+.row-condition {
+  margin: 10px 0;
+}
+
+.details-card-condition-label {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.details-card-condition {
+  padding-left: 80px;
+}
+
+.details-text {
+  margin: 5px 0;
+}
+
+.details-card-price {
+  font-weight: 600;
+}
+
+.details-card-location {
   color: #7e7e7e;
 }
 
