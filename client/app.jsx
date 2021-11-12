@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './components/navbar';
 import Home from './pages/home';
 import BrowseAll from './pages/browse-all';
-import ListingDetails from './pages/ListingDetails';
+import ListingDetails from './pages/listing-details';
 import YourListings from './pages/your-listings';
 import SavedItems from './pages/saved-items';
 import { parseRoute } from './lib';
