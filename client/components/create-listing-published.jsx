@@ -14,7 +14,7 @@ export default class CreateListingPublished extends React.Component {
         <div className="row row-header justify-center">
           <h1 className="page-header-text">Item For Sale</h1>
         </div>
-        <div className="form-container-full div-published text-center">
+        <div className="form-container-full div-published-body text-center">
           <p className="dark-grey-color">Your listing has been successfully published!</p>
         </div>
       </div>

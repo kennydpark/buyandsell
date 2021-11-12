@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/navbar';
 import Home from './pages/home';
 import BrowseAll from './pages/browse-all';
+import ListingDetails from './pages/listing-details';
 import YourListings from './pages/your-listings';
 import SavedItems from './pages/saved-items';
 import { parseRoute } from './lib';
@@ -31,6 +32,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'browse-all') {
       return <BrowseAll />;
+    } else if (route.path === 'listings') {
+      const listingId = route.params.get('listingId');
+      return <ListingDetails listingId={listingId} />;
     } else if (route.path === 'create-listing') {
       return <CreateListing />;
     } else if (route.path === 'your-listings') {
