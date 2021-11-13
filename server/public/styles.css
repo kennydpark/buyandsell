@@ -399,3 +399,30 @@ input[type="file"] {
   bottom: 0;
   left: 0;
 }
+
+/* email-form */
+
+.email-modal-container {
+  margin: auto;
+}
+
+.email-overlay {
+  background-color: rgb(0 0 0 / 70%);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
+.email-modal-window {
+  width: 340px;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.row-input-name {
+  margin-top: 20px;
+}
