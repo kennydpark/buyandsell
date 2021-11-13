@@ -4,7 +4,7 @@ class EmailForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: true,
+      active: false,
       name: '',
       buyerEmail: '',
       phone: '',
@@ -56,21 +56,22 @@ class EmailForm extends React.Component {
   }
 
   render() {
-    // let modal;
-    // let full;
+    let modal;
+    let window;
     // let overlay;
     if (this.state.active === false) {
-      // modal = 'email-modal-container navbar-hidden';
-      // full = 'navbar-modal-container-full';
+      modal = 'email-modal-container';
+      window = 'navbar-modal-container-full';
       // overlay = '';
     } else {
-      // modal = 'email-modal-container navbar-shadow';
-      // full = 'navbar-modal-container-full';
-      // overlay = 'navbar-overlay';
+      modal = 'email-modal-container email-overlay';
+      window = 'email-modal-window';
+      // overlay = 'email-overlay';
     }
+    const href = `#listings?listingId=${this.props.listingId}`;
     return (
-      <div className="email-modal-container email-overlay">
-        <div className="email-modal-window">
+      <div className={modal}>
+        <div className={window}>
           <form>
             <div className="row row-form row-input-name">
               <input onChange={this.handleNameChange} className="new-listing-form-style"
@@ -94,7 +95,7 @@ class EmailForm extends React.Component {
             </div>
             <div className="row">
               <div className="col-buttons cancel-previous">
-                <a href="#browse-all" className="create-listing-cancel-button">Cancel</a>
+                <a href={href} className="create-listing-cancel-button">Cancel</a>
               </div>
               <div className="col-buttons next-submit">
                 <button type="submit" className="next-submit">Submit</button>

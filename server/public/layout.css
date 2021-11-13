@@ -55,9 +55,11 @@
   width: 300px;
 }
 
-.details-column-body {
-  /* border: #444 1px solid;
-  border-radius: 10px; */
+.email-modal-window {
+  width: 340px;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -115,6 +117,13 @@
 
   .column-contact-seller {
     text-align: left;
+  }
+
+  .email-modal-window {
+    width: 420px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
   }
 }
 

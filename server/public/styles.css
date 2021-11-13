@@ -416,13 +416,6 @@ input[type="file"] {
   display: flex;
 }
 
-.email-modal-window {
-  width: 340px;
-  margin: auto;
-  background-color: white;
-  border-radius: 10px;
-}
-
 .row-input-name {
   margin-top: 20px;
 }
