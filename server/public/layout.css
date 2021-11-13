@@ -55,6 +55,11 @@
   width: 300px;
 }
 
+.details-column-body {
+  /* border: #444 1px solid;
+  border-radius: 10px; */
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
@@ -99,9 +104,17 @@
     height: 360px;
   }
 
+  .details-card-price {
+    font-size: 18px;
+  }
+
   .row-back-button {
     max-width: 700px;
     width: 865px;
+  }
+
+  .column-contact-seller {
+    text-align: left;
   }
 }
 
