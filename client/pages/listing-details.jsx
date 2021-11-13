@@ -6,7 +6,7 @@ export default class ListingDetails extends React.Component {
     super(props);
     this.state = {
       listing: null,
-      email: null,
+      sellerEmail: null,
       formActive: false
     };
     this.handleContactButton = this.handleContactButton.bind(this);
@@ -24,7 +24,7 @@ export default class ListingDetails extends React.Component {
       method: 'GET'
     })
       .then(res => res.json())
-      .then(email => this.setState({ email: email.email }))
+      .then(email => this.setState({ sellerEmail: email.email }))
       .catch(err => console.error(err));
     this.setState({
       formActive: true
@@ -46,6 +46,7 @@ export default class ListingDetails extends React.Component {
       <>
         < EmailForm formActive={this.state.formActive}
         listingId={this.props.listingId}
+        sellerEmail={this.state.sellerEmail}
         handleCancelButton={this.handleCancelButton} />
         <div className="details-container">
           <div className="row row-header justify-center">

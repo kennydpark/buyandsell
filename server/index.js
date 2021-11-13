@@ -43,7 +43,7 @@ app.post('/api/email', (req, res, next) => {
     .send(req.body)
     .then(() => {
       res.status(201).json({
-        test: 'test'
+        status: 'success!'
       });
     })
     .catch(error => {
