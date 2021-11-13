@@ -17,6 +17,30 @@ const db = new pg.Pool({
 app.use(staticMiddleware);
 app.use(jsonMiddleware);
 
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+app.post('/api/email', (req, res, next) => {
+  // const { userId, to, from, subject, text, html } = req.body;
+  // const msg = {
+  //   to: 'kennyparc@gmail.com', // Change to your recipient
+  //   from: 'buyandsell0821@gmail.com', // Change to your verified sender
+  //   subject: 'Sending with SendGrid is Fun',
+  //   text: 'and easy to do anywhere, even with Node.js',
+  //   html: '<strong>and easy to do anywhere, even with Node.js</strong>'
+  // };
+  // const msg = JSON.parse(req.body);
+  sgMail
+    .send(req.body)
+    .then(() => {
+      res.status(201).json({
+        test: 'test'
+      });
+    })
+    .catch(error => {
+      console.error(error);
+    });
+});
+
 app.post('/api/listings', uploadsMiddleware, (req, res, next) => {
   const { userId, title, price, location, condition, description } = req.body;
   if (!userId) {
@@ -109,27 +133,6 @@ app.delete('/api/listings/:listingId', (req, res, next) => {
 });
 
 app.use(errorMiddleware);
-
-// using Twilio SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-// javascript;
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-const msg = {
-  to: 'kennyparc@gmail.com', // Change to your recipient
-  from: 'buyandsell0821@gmail.com', // Change to your verified sender
-  subject: 'Sending with SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>and easy to do anywhere, even with Node.js</strong>'
-};
-sgMail
-  .send(msg)
-  .then(() => {
-    // console.log('Email sent');
-  })
-  .catch(error => {
-    console.error(error);
-  });
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
