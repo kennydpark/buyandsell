@@ -20,7 +20,7 @@ app.use(jsonMiddleware);
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 app.post('/api/email', (req, res, next) => {
-  // const { userId, to, from, subject, text, html } = req.body;
+  const { to, from, subject, text } = req.body;
   // const msg = {
   //   to: 'kennyparc@gmail.com', // Change to your recipient
   //   from: 'buyandsell0821@gmail.com', // Change to your verified sender
@@ -29,6 +29,16 @@ app.post('/api/email', (req, res, next) => {
   //   html: '<strong>and easy to do anywhere, even with Node.js</strong>'
   // };
   // const msg = JSON.parse(req.body);
+  if (!to) {
+    throw new ClientError(400, 'Missing property: to');
+  } else if (!from) {
+    throw new ClientError(400, 'Missing property: from');
+  } else if (!subject) {
+    throw new ClientError(400, 'Missing property: subject');
+  } else if (!text) {
+    throw new ClientError(400, 'Missing property: text');
+  }
+
   sgMail
     .send(req.body)
     .then(() => {
@@ -58,6 +68,7 @@ app.post('/api/listings', uploadsMiddleware, (req, res, next) => {
   } else if (!description) {
     throw new ClientError(400, 'Missing property: description');
   }
+
   const url = `/images/${req.file.filename}`;
   const sql = `
     insert into "listings"
