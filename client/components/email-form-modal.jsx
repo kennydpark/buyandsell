@@ -4,31 +4,15 @@ class EmailForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
       name: '',
       buyerEmail: '',
       phone: '',
       message: ''
     };
-    this.handleClick = this.handleClick.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleBuyerEmailChange = this.handleBuyerEmailChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
-  }
-
-  // componentDidMount() {
-  //   this.setState({
-  //     active: this.props.active
-  //   });
-  // }
-
-  handleClick() {
-    if (this.state.active === false) {
-      this.setState({ active: true });
-    } else {
-      this.setState({ active: false });
-    }
   }
 
   handleNameChange(event) {
@@ -59,8 +43,8 @@ class EmailForm extends React.Component {
     let modal;
     let window;
     // let overlay;
-    if (this.state.active === false) {
-      modal = 'email-modal-container';
+    if (this.props.formActive === false) {
+      modal = 'email-modal-container hidden';
       window = 'navbar-modal-container-full';
       // overlay = '';
     } else {
@@ -95,7 +79,7 @@ class EmailForm extends React.Component {
             </div>
             <div className="row">
               <div className="col-buttons cancel-previous">
-                <a href={href} className="create-listing-cancel-button">Cancel</a>
+                <a href={href} onClick={this.props.handleCancelButton} className="create-listing-cancel-button">Cancel</a>
               </div>
               <div className="col-buttons next-submit">
                 <button type="submit" className="next-submit">Submit</button>
