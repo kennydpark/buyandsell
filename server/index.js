@@ -20,7 +20,7 @@ app.use(jsonMiddleware);
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 app.post('/api/email', (req, res, next) => {
-  const { to, from, subject, text } = req.body;
+  const { to, from, subject, text, html } = req.body;
   // const msg = {
   //   to: 'kennyparc@gmail.com', // Change to your recipient
   //   from: 'buyandsell0821@gmail.com', // Change to your verified sender
@@ -37,6 +37,8 @@ app.post('/api/email', (req, res, next) => {
     throw new ClientError(400, 'Missing property: subject');
   } else if (!text) {
     throw new ClientError(400, 'Missing property: text');
+  } else if (!html) {
+    throw new ClientError(400, 'Missing property: html');
   }
 
   sgMail

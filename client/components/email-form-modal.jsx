@@ -45,8 +45,9 @@ class EmailForm extends React.Component {
     const data = {
       to: this.props.sellerEmail,
       from: 'buyandsell0821@gmail.com',
-      subject: `buyandsell - ${this.state.name} is interested in your listing!`,
-      text: `${this.state.name} has reached out to you for [insert listing title]: ${this.state.message}. Contact information: Email: ${this.state.buyerEmail}. Phone number: ${this.state.phone}.`
+      subject: `buyandsell - ${this.state.name} is interested in '${this.props.listingInfo.title}'!`,
+      text: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}': ${this.state.message}. Contact information: Email: ${this.state.buyerEmail}. Phone number: ${this.state.phone} ${this.props.listingInfo.title} ${this.props.listingInfo.price} Condition: ${this.props.listingInfo.condition} Description: ${this.props.listingInfo.description} ${this.props.listingInfo.location}`,
+      html: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}': <br><strong>${this.state.message}</strong>. <br><br><em>Contact information:</em> <br>Email: ${this.state.buyerEmail}<br> Phone number: ${this.state.phone} <br><br><br>${this.props.listingInfo.title} <br> $${this.props.listingInfo.price} <br> Condition: ${this.props.listingInfo.condition} <br> Description: ${this.props.listingInfo.description} <br> ${this.props.listingInfo.location}`
     };
     fetch('/api/email', {
       method: 'POST',
