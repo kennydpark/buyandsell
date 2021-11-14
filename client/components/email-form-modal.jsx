@@ -14,6 +14,7 @@ class EmailForm extends React.Component {
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleSubmitted = this.handleSubmitted.bind(this);
+    this.close = this.close.bind(this);
   }
 
   handleNameChange(event) {
@@ -46,7 +47,16 @@ class EmailForm extends React.Component {
       to: this.props.sellerEmail,
       from: 'buyandsell0821@gmail.com',
       subject: `buyandsell - ${this.state.name} is interested in '${this.props.listingInfo.title}'!`,
-      html: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}': <br><strong>${this.state.message}</strong>. <br><br><em>Contact information:</em> <br>Email: ${this.state.buyerEmail}<br> Phone number: ${this.state.phone} <br><br><br>${this.props.listingInfo.title} <br> $${this.props.listingInfo.price} <br> Condition: ${this.props.listingInfo.condition} <br> Description: ${this.props.listingInfo.description} <br> ${this.props.listingInfo.location} <br><br><br> <em>Do not reply to this email.</em>`
+      html: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}':
+      <br><strong>${this.state.message}</strong>.
+      <br><br><em>Contact information:</em>
+      <br>Email: ${this.state.buyerEmail}<br> Phone number: ${this.state.phone}
+      <br><br><br>${this.props.listingInfo.title}
+      <br> $${this.props.listingInfo.price}
+      <br> Condition: ${this.props.listingInfo.condition}
+      <br> Description: ${this.props.listingInfo.description}
+      <br> ${this.props.listingInfo.location}
+      <br><br><br> <em>Do not reply to this email.</em>`
     };
     fetch('/api/email', {
       method: 'POST',
@@ -57,15 +67,19 @@ class EmailForm extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        this.setState({
-          name: '',
-          buyerEmail: '',
-          phone: '',
-          message: ''
-        });
+        this.close();
       })
       .catch(err => console.error(err));
-    location.reload();
+  }
+
+  close() {
+    this.setState({
+      name: '',
+      buyerEmail: '',
+      phone: '',
+      message: ''
+    });
+    this.props.handleCancelButton();
   }
 
   render() {
@@ -105,7 +119,7 @@ class EmailForm extends React.Component {
             </div>
             <div className="row">
               <div className="col-buttons cancel-previous">
-                <a href={href} onClick={this.props.handleCancelButton} className="create-listing-cancel-button">Cancel</a>
+                <a href={href} onClick={this.close} className="create-listing-cancel-button">Cancel</a>
               </div>
               <div className="col-buttons next-submit">
                 <button type="submit" className="next-submit">Submit</button>
