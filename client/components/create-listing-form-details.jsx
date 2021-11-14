@@ -98,7 +98,7 @@ export default class CreateListingFormDetails extends React.Component {
                   </div>
                   <div className="row row-form">
                       <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
-                            type="number" required placeholder="$ Price" />
+                    type="number" min="0" max="999999" required placeholder="$ Price" />
                   </div>
                   <div className="row row-form">
                     <select value={this.state.condition} onChange={this.handleSelectChange}
@@ -120,7 +120,7 @@ export default class CreateListingFormDetails extends React.Component {
               </div>
               <div className="row">
                 <div className="col-buttons cancel-previous">
-                  <button className="cancel-previous">Cancel</button>
+                  <a href="#browse-all" className="create-listing-cancel-button">Cancel</a>
                 </div>
                 <div className="col-buttons next-submit">
                   <button type="submit" className="next-submit">Next</button>

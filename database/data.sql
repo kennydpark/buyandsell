@@ -1,2 +1,2 @@
 insert into "users" ("email", "password")
-values ('kennyparc@gmail.com', '123');
+values ('buyandsell0821@gmail.com', '123');

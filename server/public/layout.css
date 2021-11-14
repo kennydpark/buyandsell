@@ -55,6 +55,13 @@
   width: 300px;
 }
 
+.email-modal-window {
+  width: 340px;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
@@ -99,9 +106,24 @@
     height: 360px;
   }
 
+  .details-card-price {
+    font-size: 18px;
+  }
+
   .row-back-button {
     max-width: 700px;
     width: 865px;
+  }
+
+  .column-contact-seller {
+    text-align: left;
+  }
+
+  .email-modal-window {
+    width: 420px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
   }
 }
 

@@ -25,7 +25,7 @@ class Navbar extends React.Component {
     if (this.state.active === false) {
       modal = 'navbar-modal-container navbar-hidden';
       full = 'navbar-modal-container-full';
-      overlay = 'navbar-overlay overlay-hidden';
+      overlay = '';
     } else {
       modal = 'navbar-modal-container navbar-view navbar-shadow';
       full = 'navbar-modal-container-full';
