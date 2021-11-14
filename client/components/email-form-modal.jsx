@@ -46,8 +46,7 @@ class EmailForm extends React.Component {
       to: this.props.sellerEmail,
       from: 'buyandsell0821@gmail.com',
       subject: `buyandsell - ${this.state.name} is interested in '${this.props.listingInfo.title}'!`,
-      text: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}': ${this.state.message}. Contact information: Email: ${this.state.buyerEmail}. Phone number: ${this.state.phone} ${this.props.listingInfo.title} ${this.props.listingInfo.price} Condition: ${this.props.listingInfo.condition} Description: ${this.props.listingInfo.description} ${this.props.listingInfo.location}`,
-      html: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}': <br><strong>${this.state.message}</strong>. <br><br><em>Contact information:</em> <br>Email: ${this.state.buyerEmail}<br> Phone number: ${this.state.phone} <br><br><br>${this.props.listingInfo.title} <br> $${this.props.listingInfo.price} <br> Condition: ${this.props.listingInfo.condition} <br> Description: ${this.props.listingInfo.description} <br> ${this.props.listingInfo.location}`
+      html: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}': <br><strong>${this.state.message}</strong>. <br><br><em>Contact information:</em> <br>Email: ${this.state.buyerEmail}<br> Phone number: ${this.state.phone} <br><br><br>${this.props.listingInfo.title} <br> $${this.props.listingInfo.price} <br> Condition: ${this.props.listingInfo.condition} <br> Description: ${this.props.listingInfo.description} <br> ${this.props.listingInfo.location} <br><br><br> <em>Do not reply to this email.</em>`
     };
     fetch('/api/email', {
       method: 'POST',
@@ -66,20 +65,18 @@ class EmailForm extends React.Component {
         });
       })
       .catch(err => console.error(err));
+    location.reload();
   }
 
   render() {
     let modal;
     let window;
-    // let overlay;
     if (this.props.formActive === false) {
       modal = 'email-modal-container hidden';
       window = 'navbar-modal-container-full';
-      // overlay = '';
     } else {
       modal = 'email-modal-container email-overlay';
       window = 'email-modal-window email-modal-shadow';
-      // overlay = 'email-overlay';
     }
     const href = `#listings?listingId=${this.props.listingId}`;
     return (
@@ -97,7 +94,7 @@ class EmailForm extends React.Component {
             </div>
             <div className="row row-form row-input-title">
               <input onChange={this.handlePhoneChange} className="new-listing-form-style"
-                required label="phone" type="tel" maxLength="14" placeholder="Phone Number">
+               label="phone" type="tel" maxLength="14" placeholder="Phone Number">
               </input>
             </div>
             <div className="row row-form">

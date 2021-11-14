@@ -7,7 +7,8 @@ export default class ListingDetails extends React.Component {
     this.state = {
       listing: null,
       sellerEmail: null,
-      formActive: false
+      formActive: false,
+      sentActive: true
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
@@ -49,6 +50,8 @@ export default class ListingDetails extends React.Component {
         listingInfo={this.state.listing}
         sellerEmail={this.state.sellerEmail}
         handleCancelButton={this.handleCancelButton} />
+        {/* < EmailSent sentActive={this.state.sentActive}
+        handleCancelButton={this.handleCancelButton} /> */}
         <div className="details-container">
           <div className="row row-header justify-center">
             <h1 className="page-header-text">buyandsell</h1>
