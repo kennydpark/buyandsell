@@ -20,23 +20,13 @@ app.use(jsonMiddleware);
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 app.post('/api/email', (req, res, next) => {
-  const { to, from, subject, text, html } = req.body;
-  // const msg = {
-  //   to: 'kennyparc@gmail.com', // Change to your recipient
-  //   from: 'buyandsell0821@gmail.com', // Change to your verified sender
-  //   subject: 'Sending with SendGrid is Fun',
-  //   text: 'and easy to do anywhere, even with Node.js',
-  //   html: '<strong>and easy to do anywhere, even with Node.js</strong>'
-  // };
-  // const msg = JSON.parse(req.body);
+  const { to, from, subject, html } = req.body;
   if (!to) {
     throw new ClientError(400, 'Missing property: to');
   } else if (!from) {
     throw new ClientError(400, 'Missing property: from');
   } else if (!subject) {
     throw new ClientError(400, 'Missing property: subject');
-  } else if (!text) {
-    throw new ClientError(400, 'Missing property: text');
   } else if (!html) {
     throw new ClientError(400, 'Missing property: html');
   }
