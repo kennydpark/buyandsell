@@ -22,16 +22,6 @@ button {
   transition: 0.2s ease-out;
 }
 
-/* button.cancel-previous {
-  background-color: #f1f1f1;
-  color: #8d8d8d;
-}
-
-button.cancel-previous:hover {
-  background-color: #e6e6e6;
-  transition: 0.2s ease-out;
-} */
-
 button.next-submit,
 button.contact-seller {
   background-color: #2978b5;
@@ -126,6 +116,25 @@ input[type="file"] {
 
 .create-listing-cancel-button:hover {
   background-color: #e6e6e6;
+  transition: 0.2s ease-out;
+}
+
+.sent-okay-button {
+  text-align: center;
+  display: inline-block;
+  background-color: #236699;
+  color: white;
+  padding: 15px 0;
+  width: 130px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+}
+
+.sent-okay-button:hover {
+  background-color: #236699;
   transition: 0.2s ease-out;
 }
 
@@ -385,10 +394,6 @@ input[type="file"] {
   transition-timing-function: cubic-bezier(0.75, 0, 0.6, 1);
 }
 
-/* .overlay-hidden {
-  display: none;
-} */
-
 .navbar-overlay {
   transition: 0.7s;
   transition-timing-function: cubic-bezier(0.21, 0.92, 0, 1);
@@ -418,4 +423,8 @@ input[type="file"] {
 
 .row-input-name {
   margin-top: 20px;
+}
+
+.email-modal-shadow {
+  box-shadow: 0 0 5px;
 }
