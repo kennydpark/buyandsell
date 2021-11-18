@@ -1,6 +1,8 @@
 require('dotenv/config');
 const pg = require('pg');
+const argon2 = require('argon2');
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
@@ -16,6 +18,61 @@ const db = new pg.Pool({
 
 app.use(staticMiddleware);
 app.use(jsonMiddleware);
+
+app.post('/api/auth/sign-up', (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new ClientError(400, 'username and password are required fields');
+  }
+  argon2
+    .hash(password)
+    .then(hashedPassword => {
+      const sql = `
+        insert into "users" ("email", "password")
+        values ($1, $2)
+        returning "userId", "email", "createdAt"
+      `;
+      const params = [email, hashedPassword];
+      return db.query(sql, params);
+    })
+    .then(result => {
+      const [user] = result.rows;
+      res.status(201).json(user);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/auth/sign-in', (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new ClientError(401, 'invalid login');
+  }
+  const sql = `
+    select *
+      from "users"
+     where "email" = $1
+  `;
+  const params = [email];
+  db.query(sql, params)
+    .then(result => {
+      const [user] = result.rows;
+      if (!user) {
+        throw new ClientError(401, 'invalid login');
+      }
+      const { userId, hashedPassword } = user;
+      return argon2
+        .verify(hashedPassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            throw new ClientError(401, 'invalid login');
+          }
+          const payload = { userId, email };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          res.json({ token, user: payload });
+        });
+    })
+    .catch(err => next(err));
+});
 
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -60,8 +117,7 @@ app.post('/api/listings', uploadsMiddleware, (req, res, next) => {
   } else if (!description) {
     throw new ClientError(400, 'Missing property: description');
   }
-
-  const url = `/images/${req.file.filename}`;
+  const url = req.file.location;
   const sql = `
     insert into "listings"
     ("userId", "imageUrl", "title", "price", "location", "condition", "description")
