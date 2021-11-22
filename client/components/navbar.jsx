@@ -85,7 +85,7 @@ class Navbar extends React.Component {
               </a>
             </li>
             <li>
-              <a onClick={this.handleClick} href="#sign-out">
+              <a onClick={this.handleClick} href="">
                 <div className='row navbar-row-sign'>
                   <div className='navbar-column-sign-icon'>
                     <i className='fas fa-sign-out-alt navbar-sign-icon'></i>

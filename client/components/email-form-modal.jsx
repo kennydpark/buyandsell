@@ -13,7 +13,7 @@ class EmailForm extends React.Component {
     this.handleBuyerEmailChange = this.handleBuyerEmailChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
-    this.handleSubmitted = this.handleSubmitted.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.close = this.close.bind(this);
   }
 
@@ -41,22 +41,22 @@ class EmailForm extends React.Component {
     });
   }
 
-  handleSubmitted(event) {
+  handleSubmit(event) {
     event.preventDefault();
     const data = {
       to: this.props.sellerEmail,
       from: 'buyandsell0821@gmail.com',
       subject: `buyandsell - ${this.state.name} is interested in '${this.props.listingInfo.title}'!`,
       html: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}':
-      <br><strong>${this.state.message}</strong>.
-      <br><br><em>Contact information:</em>
-      <br>Email: ${this.state.buyerEmail}<br> Phone number: ${this.state.phone}
-      <br><br><br>${this.props.listingInfo.title}
-      <br> $${this.props.listingInfo.price}
-      <br> Condition: ${this.props.listingInfo.condition}
-      <br> Description: ${this.props.listingInfo.description}
-      <br> ${this.props.listingInfo.location}
-      <br><br><br> <em>Do not reply to this email.</em>`
+        <br><strong>${this.state.message}</strong>.
+        <br><br><em>Contact information:</em>
+        <br>Email: ${this.state.buyerEmail}<br> Phone number: ${this.state.phone}
+        <br><br><br>${this.props.listingInfo.title}
+        <br> $${this.props.listingInfo.price}
+        <br> Condition: ${this.props.listingInfo.condition}
+        <br> Description: ${this.props.listingInfo.description}
+        <br> ${this.props.listingInfo.location}
+        <br><br><br> <em>Do not reply to this email.</em>`
     };
     fetch('/api/email', {
       method: 'POST',
@@ -96,7 +96,7 @@ class EmailForm extends React.Component {
     return (
       <div className={modal}>
         <div className={window}>
-          <form onSubmit={this.handleSubmitted}>
+          <form onSubmit={this.handleSubmit}>
             <div className="row row-form row-input-name">
               <input onChange={this.handleNameChange} className="new-listing-form-style"
                 required label="name" type="text" placeholder="Name">
