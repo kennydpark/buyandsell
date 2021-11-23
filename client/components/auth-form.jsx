@@ -57,7 +57,6 @@ export default class AuthForm extends React.Component {
         <div className="front-input-row text-center">
           <input
             required
-            // autoFocus
             id="email"
             type="text"
             name="email"
