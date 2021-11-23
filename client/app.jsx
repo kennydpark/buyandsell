@@ -3,7 +3,7 @@ import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
 import decodeToken from './lib/decode-token';
 import Auth from './pages/auth';
-import Home from './pages/home';
+import FrontPage from './pages/front-page';
 import NotFound from './pages/not-found';
 import Navbar from './components/navbar';
 import PageContainer from './components/page-container';
@@ -51,7 +51,7 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     if (route.path === '') {
-      return <Home />;
+      return <FrontPage />;
     }
     if (route.path === 'browse-all') {
       return <BrowseAll />;
