@@ -53,6 +53,10 @@ button.contact-seller:hover {
   margin-top: 80px;
 }
 
+.front-input-row {
+  margin: 20px 0;
+}
+
 .sign-in-form-style {
   padding: 10px;
   width: 300px;
@@ -132,10 +136,6 @@ button.contact-seller:hover {
 
 .row-input-title {
   margin-top: 0;
-}
-
-.front-input-row {
-  margin: 15px 0;
 }
 
 .new-listing-form-style {
