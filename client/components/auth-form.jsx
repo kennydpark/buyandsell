@@ -43,12 +43,15 @@ export default class AuthForm extends React.Component {
     const alternateActionHref = action === 'sign-up'
       ? '#sign-in'
       : '#sign-up';
-    const alternatActionText = action === 'sign-up'
+    const alternateActionText = action === 'sign-up'
       ? 'Sign in'
       : 'Sign up';
     const submitButtonText = action === 'sign-up'
       ? 'Sign up'
       : 'Sign in';
+    const alternateActionQuestion = action === 'sign-up'
+      ? 'Already have an account?'
+      : 'Don\'t have an account?';
     return (
       <form className="w-100" onSubmit={handleSubmit}>
         <div className="form text-center">
@@ -89,7 +92,9 @@ export default class AuthForm extends React.Component {
           </button>
         </div>
         <div className="row justify-center">
-          <p className="dark-grey-color">Already have an account?</p><span className="front-login-span"><a href={alternateActionHref} className="front-login-anchor">{alternatActionText}</a></span>
+          <p className="dark-grey-color">{ alternateActionQuestion }</p>
+          <span className="front-login-span"><a href={alternateActionHref} className="front-login-anchor">{alternateActionText}</a>
+          </span>
         </div>
       </form>
     );

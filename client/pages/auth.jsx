@@ -37,7 +37,7 @@ export default class AuthPage extends React.Component {
       <div className="welcome-container-full">
         <div className="front-body text-center">
           <div className="row row-front-title justify-center margin-auto">
-            <h1 className="welcome-message text-center">{welcomeMessage}</h1>
+            <h1 className="welcome-message text-center">{ welcomeMessage }</h1>
           </div>
           <div className="">
             <AuthForm
@@ -45,9 +45,6 @@ export default class AuthPage extends React.Component {
               action={route.path}
               onSignIn={handleSignIn} />
           </div>
-          {/* <div className="row justify-center">
-            <p className="dark-grey-color">Already have an account?</p><span className="front-login-span"><a href="#sign-in" className="front-login-anchor">Login</a></span>
-          </div> */}
         </div>
       </div>
     );

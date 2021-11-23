@@ -22,13 +22,13 @@ app.use(jsonMiddleware);
 app.post('/api/auth/sign-up', (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    throw new ClientError(400, 'username and password are required fields');
+    throw new ClientError(400, 'email and password are required fields');
   }
   argon2
     .hash(password)
     .then(hashedPassword => {
       const sql = `
-        insert into "users" ("email", "password")
+        insert into "users" ("email", "hashedPassword")
         values ($1, $2)
         returning "userId", "email", "createdAt"
       `;
@@ -48,7 +48,8 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     throw new ClientError(401, 'invalid login');
   }
   const sql = `
-    select *
+    select "userId",
+           "hashedPassword
       from "users"
      where "email" = $1
   `;
