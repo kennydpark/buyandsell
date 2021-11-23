@@ -40,12 +40,9 @@ button.contact-seller:hover {
 
 /* front-page */
 
-.front-body {
-  /* margin-top: 30%; */
-}
-
 .row-front-title {
   padding-top: 30%;
+  margin-bottom: 50px;
 }
 
 .front-page-title {
@@ -54,6 +51,28 @@ button.contact-seller:hover {
 
 .row-get-started {
   margin-top: 80px;
+}
+
+.front-input-row {
+  margin: 20px 0;
+}
+
+.sign-in-form-style {
+  padding: 10px;
+  width: 300px;
+  resize: none;
+  border: 0;
+  outline: 0;
+  border-bottom: #8ab6d6 solid 1px;
+  color: #444;
+  font-size: 0.9rem;
+  transition: 0.2s ease-out;
+}
+
+.sign-in-form-style:focus {
+  outline: none;
+  border-bottom: #8ab6d6 solid 3px;
+  transition: 0.2s ease-out;
 }
 
 .front-button {
@@ -75,13 +94,14 @@ button.contact-seller:hover {
 .front-login-span {
   display: block;
   vertical-align: middle;
+  height: 20px;
+  margin-top: 16px;
 }
 
 .front-login-anchor {
   display: flex;
   color: #2978b5;
   font-weight: 600;
-  padding-top: 16px;
   padding-left: 5px;
 }
 
@@ -224,6 +244,10 @@ input[type="file"] {
 }
 
 .div-published-body {
+  margin-top: 50px;
+}
+
+.front-margin-top {
   margin-top: 50px;
 }
 
