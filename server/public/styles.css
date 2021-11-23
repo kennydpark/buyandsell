@@ -46,6 +46,7 @@ button.contact-seller:hover {
 
 .row-front-title {
   padding-top: 30%;
+  width: 400px;
 }
 
 .front-page-title {
@@ -133,6 +134,24 @@ button.contact-seller:hover {
   outline: none;
   border: #8ab6d6 solid 1px;
   box-shadow: 0 0 0 2px #8ab6d6;
+  transition: 0.2s ease-out;
+}
+
+.sign-in-form-style {
+  padding: 15px 10px;
+  width: 300px;
+  resize: none;
+  border: 0;
+  outline: 0;
+  border-bottom: #8ab6d6 solid 1px;
+  color: #444;
+  font-size: 0.9rem;
+  transition: 0.2s ease-out;
+}
+
+.sign-in-form-style:focus {
+  outline: none;
+  border-bottom: #8ab6d6 solid 3px;
   transition: 0.2s ease-out;
 }
 
@@ -224,6 +243,10 @@ input[type="file"] {
 }
 
 .div-published-body {
+  margin-top: 50px;
+}
+
+.front-margin-top {
   margin-top: 50px;
 }
 

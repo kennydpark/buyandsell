@@ -9,6 +9,16 @@
   margin: 0 20px;
 }
 
+.welcome-container-full {
+  margin: 0 30px;
+}
+
+.welcome-message {
+  font-size: 2rem;
+  width: 300px;
+  margin: 0;
+}
+
 .details-container-full,
 .row-back-button {
   margin: 20px;

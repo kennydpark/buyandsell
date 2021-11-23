@@ -1,19 +1,28 @@
 import React from 'react';
-import Navbar from './components/navbar';
+import AppContext from './lib/app-context';
+import parseRoute from './lib/parse-route';
+import decodeToken from './lib/decode-token';
+import Auth from './pages/auth';
 import Home from './pages/home';
+import NotFound from './pages/not-found';
+import Navbar from './components/navbar';
+import PageContainer from './components/page-container';
 import BrowseAll from './pages/browse-all';
 import ListingDetails from './pages/listing-details';
 import YourListings from './pages/your-listings';
 import SavedItems from './pages/saved-items';
-import { parseRoute } from './lib';
 import CreateListing from './pages/create-listing';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: null,
+      isAuthorizing: true,
       route: parseRoute(window.location.hash)
     };
+    this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +32,20 @@ export default class App extends React.Component {
         route: hashChangeParse
       });
     });
+    const token = window.localStorage.getItem('react-context-jwt');
+    const user = token ? decodeToken(token) : null;
+    this.setState({ user, isAuthorizing: false });
+  }
+
+  handleSignIn(result) {
+    const { user, token } = result;
+    window.localStorage.setItem('react-context-jwt', token);
+    this.setState({ user });
+  }
+
+  handleSignOut() {
+    window.localStorage.removeItem('react-context-jwt');
+    this.setState({ user: null });
   }
 
   renderPage() {
@@ -41,15 +64,26 @@ export default class App extends React.Component {
       return <YourListings />;
     } else if (route.path === 'saved-items') {
       return <SavedItems />;
+    } else if (route.path === 'sign-in' || route.path === 'sign-up') {
+      return <Auth />;
     }
+    return <NotFound />;
   }
 
   render() {
+    if (this.state.isAuthorizing) return null;
+    const { user, route } = this.state;
+    const { handleSignIn, handleSignOut } = this;
+    const contextValue = { user, route, handleSignIn, handleSignOut };
     return (
-      <>
-        <Navbar />
-        { this.renderPage() }
-      </>
+      <AppContext.Provider value={contextValue}>
+        <>
+          <Navbar />
+          <PageContainer>
+            { this.renderPage() }
+          </PageContainer>
+        </>
+      </AppContext.Provider>
     );
   }
 }
