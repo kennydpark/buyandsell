@@ -81,7 +81,8 @@ export default class AuthForm extends React.Component {
         </div>
         <div className="row justify-center">
           <p className="dark-grey-color">{ alternateActionQuestion }</p>
-          <span className="front-login-span"><a href={alternateActionHref} className="front-login-anchor">{alternateActionText}</a>
+          <span className="front-login-span">
+            <a href={alternateActionHref} className="front-login-anchor">{alternateActionText}</a>
           </span>
         </div>
       </form>

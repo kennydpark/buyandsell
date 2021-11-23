@@ -16,7 +16,10 @@ export default class FrontPage extends React.Component {
           <a href="#sign-up" className="front-button">Get Started</a>
         </div>
         <div className="row justify-center">
-          <p className="dark-grey-color">Already have an account?</p><span className="front-login-span"><a href="#sign-in" className="front-login-anchor">Login</a></span>
+          <p className="dark-grey-color">Already have an account?</p>
+          <span className="front-login-span">
+            <a href="#sign-in" className="front-login-anchor">Login</a>
+          </span>
         </div>
       </div>
     );
