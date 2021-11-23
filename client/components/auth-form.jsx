@@ -53,14 +53,11 @@ export default class AuthForm extends React.Component {
       ? 'Already have an account?'
       : 'Don\'t have an account?';
     return (
-      <form className="w-100" onSubmit={handleSubmit}>
-        <div className="form text-center">
-          {/* <label htmlFor="email" className="form-label">
-            Email
-          </label> */}
+      <form onSubmit={handleSubmit}>
+        <div className="front-input-row text-center">
           <input
             required
-            autoFocus
+            // autoFocus
             id="email"
             type="text"
             name="email"
@@ -68,10 +65,7 @@ export default class AuthForm extends React.Component {
             onChange={handleChange}
             className="sign-in-form-style" />
         </div>
-        <div className="form text-center">
-          {/* <label htmlFor="password" className="form-label">
-            Password
-          </label> */}
+        <div className="front-input-row text-center">
           <input
             required
             id="password"
@@ -82,11 +76,6 @@ export default class AuthForm extends React.Component {
             className="sign-in-form-style" />
         </div>
         <div className="front-margin-top text-center">
-          {/* <small>
-            <a className="text-muted" href={alternateActionHref}>
-              {alternatActionText}
-            </a>
-          </small> */}
           <button type="submit" className="front-button">
             {submitButtonText}
           </button>
