@@ -15,7 +15,7 @@ export default class AuthPage extends React.Component {
       : 'Create an account';
 
     return (
-        <div className="front-body text-center">
+        <div className="text-center">
           <div className="row row-front-title justify-center margin-auto">
             <h1 className="welcome-message text-center">{ welcomeMessage }</h1>
           </div>
