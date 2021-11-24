@@ -11,7 +11,8 @@ import BrowseAll from './pages/browse-all';
 import ListingDetails from './pages/listing-details';
 import YourListings from './pages/your-listings';
 import SavedItems from './pages/saved-items';
-import CreateListing from './pages/create-listing';
+// import CreateListing from './pages/create-listing';
+import CreateListingFormParent from './components/create-listing-form-parent';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -59,7 +60,8 @@ export default class App extends React.Component {
       const listingId = route.params.get('listingId');
       return <ListingDetails listingId={listingId} />;
     } else if (route.path === 'create-listing') {
-      return <CreateListing />;
+      // return <CreateListing />;
+      return <CreateListingFormParent userId={this.state.user.userId}/>;
     } else if (route.path === 'your-listings') {
       return <YourListings />;
     } else if (route.path === 'saved-items') {
@@ -78,7 +80,7 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <>
-          <Navbar />
+          <Navbar user={this.state.user}/>
           <PageContainer>
             { this.renderPage() }
           </PageContainer>

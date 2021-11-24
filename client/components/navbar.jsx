@@ -5,10 +5,17 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false
+      active: false,
+      user: this.props.user
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleClickSignOut = this.handleClickSignOut.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      user: this.props.user
+    });
   }
 
   handleClick() {
@@ -34,7 +41,12 @@ class Navbar extends React.Component {
     let full;
     let overlay;
     const { user } = this.context;
-    const icon = 'fas fa-bars navbar-icon';
+    let icon;
+    if (!this.state.user) {
+      icon = 'hidden';
+    } else {
+      icon = 'fas fa-bars navbar-icon';
+    }
     if (this.state.active === false) {
       modal = 'navbar-modal-container navbar-hidden';
       full = 'navbar-modal-container-full';
