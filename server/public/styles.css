@@ -1,5 +1,6 @@
 * {
   font-family: Roboto, sans-serif;
+  box-sizing: border-box;
 }
 
 .lobster-font {
@@ -42,7 +43,7 @@ button.contact-seller:hover {
 
 .row-front-title {
   padding-top: 30%;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 .front-page-title {
@@ -103,6 +104,10 @@ button.contact-seller:hover {
   color: #2978b5;
   font-weight: 600;
   padding-left: 5px;
+}
+
+.row-invalid-sign {
+  padding: 0 10px;
 }
 
 /* create-listing */
@@ -166,7 +171,8 @@ input[type="file"] {
 }
 
 .text-no-image-error,
-.text-no-location-error {
+.text-no-location-error,
+.text-invalid-sign-in-error {
   color: red;
   margin-top: 0;
 }
@@ -215,6 +221,10 @@ input[type="file"] {
   display: none;
 }
 
+.white {
+  color: white;
+}
+
 .blue {
   background-color: #8ab6d6;
 }
@@ -248,7 +258,7 @@ input[type="file"] {
 }
 
 .front-margin-top {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 /* browse-all */
@@ -502,4 +512,25 @@ input[type="file"] {
 
 .email-modal-shadow {
   box-shadow: 0 0 5px;
+}
+
+/* not-found */
+
+.return-home-row {
+  margin-top: 30px;
+}
+
+.return-home-button {
+  background-color: #2978b5;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+}
+
+.return-home-button:hover {
+  background-color: #236699;
+  transition: 0.2s ease-out;
 }
