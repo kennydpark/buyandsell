@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class Navbar extends React.Component {
       active: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickSignOut = this.handleClickSignOut.bind(this);
   }
 
   handleClick() {
@@ -17,10 +19,21 @@ class Navbar extends React.Component {
     }
   }
 
+  handleClickSignOut() {
+    if (this.state.active === false) {
+      this.setState({ active: true });
+    } else {
+      this.setState({ active: false });
+    }
+    const { handleSignOut } = this.context;
+    handleSignOut();
+  }
+
   render() {
     let modal;
     let full;
     let overlay;
+    const { user } = this.context;
     const icon = 'fas fa-bars navbar-icon';
     if (this.state.active === false) {
       modal = 'navbar-modal-container navbar-hidden';
@@ -85,16 +98,30 @@ class Navbar extends React.Component {
               </a>
             </li>
             <li>
-              <a onClick={this.handleClick} href="">
-                <div className='row navbar-row-sign'>
-                  <div className='navbar-column-sign-icon'>
-                    <i className='fas fa-sign-out-alt navbar-sign-icon'></i>
+              { user !== null &&
+                <a onClick={this.handleClickSignOut}>
+                  <div className='row navbar-row-sign'>
+                    <div className='navbar-column-sign-icon'>
+                      <i className='fas fa-sign-out-alt navbar-sign-icon'></i>
+                    </div>
+                    <div className='navbar-column-sign-text'>
+                      <h1 className='navbar-sign-anchor'>Sign out</h1>
+                    </div>
                   </div>
-                  <div className='navbar-column-sign-text'>
-                    <h1 className='navbar-sign-anchor'>Sign out</h1>
+                </a>
+              }
+              { user === null &&
+                <a onClick={this.handleClick} href="#sign-in">
+                  <div className='row navbar-row-sign'>
+                    <div className='navbar-column-sign-icon'>
+                      <i className='fas fa-sign-in-alt navbar-sign-icon'></i>
+                    </div>
+                    <div className='navbar-column-sign-text'>
+                      <h1 className='navbar-sign-anchor'>Sign in</h1>
+                    </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              }
             </li>
           </ul>
         </div>
@@ -105,3 +132,4 @@ class Navbar extends React.Component {
 }
 
 export default Navbar;
+Navbar.contextType = AppContext;
