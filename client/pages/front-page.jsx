@@ -1,7 +1,10 @@
 import React from 'react';
+import Redirect from '../components/redirect';
 
 export default class FrontPage extends React.Component {
   render() {
+    if (this.props.user) return <Redirect to="browse-all" />;
+
     return (
       <div className="container">
         <div className="row row-front-title justify-center">
@@ -13,7 +16,7 @@ export default class FrontPage extends React.Component {
         <div className="row justify-center">
           <p className="dark-grey-color">Already have an account?</p>
           <span className="front-login-span">
-            <a href="#sign-in" className="front-login-anchor">Login</a>
+            <a href="#sign-in" className="front-login-anchor">Sign in</a>
           </span>
         </div>
       </div>
