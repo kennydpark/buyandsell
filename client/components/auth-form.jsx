@@ -58,7 +58,7 @@ export default class AuthForm extends React.Component {
           <input
             required
             id="email"
-            type="text"
+            type="email"
             name="email"
             placeholder="Email"
             onChange={handleChange}
