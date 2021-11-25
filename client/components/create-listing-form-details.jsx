@@ -28,6 +28,14 @@ export default class CreateListingFormDetails extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.user) {
+      this.setState({
+        userId: this.props.user.userId
+      });
+    }
+  }
+
   handleImageChange(event) {
     this.setState({
       imagePreview: URL.createObjectURL(event.target.files[0]),
@@ -110,7 +118,7 @@ export default class CreateListingFormDetails extends React.Component {
                       <option value="Used - Fair">Used - Fair</option>
                     </select>
                   </div>
-                  <div className="row row-form">
+                  <div className="row row-form row-description">
                     <textarea value={this.state.description} onChange={this.handleDescriptionChange}
                       className="new-listing-form-style" required label="description" type="text" rows="7"
                       placeholder="Description">

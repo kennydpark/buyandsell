@@ -1,4 +1,5 @@
 import React from 'react';
+import Redirect from '../components/redirect';
 
 export default class BrowseAll extends React.Component {
   constructor(props) {
@@ -9,14 +10,19 @@ export default class BrowseAll extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/listings', {
-      method: 'GET'
-    })
-      .then(res => res.json())
-      .then(listings => this.setState({ listings }));
+    if (this.props.user) {
+      fetch('/api/listings', {
+        method: 'GET'
+      })
+        .then(res => res.json())
+        .then(listings => this.setState({ listings }));
+    }
   }
 
   render() {
+
+    if (!this.props.user) return <Redirect to="" />;
+
     return (
       <div className="browse-all-container">
         <div className="row justify-center">

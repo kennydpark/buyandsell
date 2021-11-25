@@ -1,5 +1,6 @@
 import React from 'react';
 import EmailForm from '../components/email-form-modal';
+import Redirect from '../components/redirect';
 
 export default class ListingDetails extends React.Component {
   constructor(props) {
@@ -38,6 +39,8 @@ export default class ListingDetails extends React.Component {
   }
 
   render() {
+    if (!this.props.user) return <Redirect to="" />;
+
     if (!this.state.listing) return null;
     const {
       imageUrl, title, price, location, condition, description
@@ -59,7 +62,7 @@ export default class ListingDetails extends React.Component {
           <div className="details-container-full text-center">
             <div className="row justify-center margin-auto">
               <div className="details-column-half">
-                <div className="row justify-center margin-auto">
+                <div className="row image-container justify-center margin-auto">
                   <img src={imageUrl} className="details-listing-image" />
                 </div>
               </div>
@@ -81,7 +84,7 @@ export default class ListingDetails extends React.Component {
                     <p className="details-card-condition details-text">{condition}</p>
                   </div>
                 </div>
-                <div className="row text-start">
+                <div className="row details-description-container text-start">
                   <p className="details-card-description dark-grey-color">{description}</p>
                 </div>
               </div>

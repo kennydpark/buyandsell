@@ -2,13 +2,14 @@ import React from 'react';
 import CreateListingFormDetails from './create-listing-form-details';
 import CreateListingFormLocation from './create-listing-form-location';
 import CreateListingPublished from './create-listing-published';
+import Redirect from './redirect';
 
 export default class CreateListingFormParent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       details: {
-        userId: 1,
+        userId: null,
         title: '',
         price: '',
         condition: 'Condition',
@@ -68,11 +69,15 @@ export default class CreateListingFormParent extends React.Component {
   }
 
   render() {
+
+    if (!this.props.user) return <Redirect to="" />;
+
     if (this.state.view === 'details') {
       return <CreateListingFormDetails
       switchToLocation={this.switchToLocation}
       handleDetailsSubmitted={this.handleDetailsSubmitted}
-      details={this.state.details} />;
+      details={this.state.details}
+      user={this.props.user} />;
     } else if (this.state.view === 'location') {
       return <CreateListingFormLocation
       switchToDetails={this.switchToDetails}
