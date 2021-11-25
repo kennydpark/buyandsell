@@ -68,6 +68,10 @@
   border-radius: 10px;
 }
 
+.details-description-container {
+  word-break: break-all;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
@@ -134,11 +138,19 @@
 }
 
 @media screen and (min-width: 1070px) {
+  .container {
+    max-width: 1300px;
+  }
+
   .details-listing-image {
     width: 500px;
     height: 500px;
     object-fit: cover;
     border-radius: 10px;
+  }
+
+  .details-column-body {
+    padding-left: 20px;
   }
 
   .row-back-button {
