@@ -72,7 +72,7 @@ export default class AuthForm extends React.Component {
       : 'Don\'t have an account?';
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={ this.handleSubmit }>
         <div className="front-input-row text-center">
           <input
             required
@@ -80,7 +80,7 @@ export default class AuthForm extends React.Component {
             type="email"
             name="email"
             placeholder="Email"
-            onChange={this.handleEmailChange}
+            onChange={ this.handleEmailChange }
             className="sign-in-form-style" />
         </div>
         <div className="front-input-row text-center">
@@ -90,21 +90,21 @@ export default class AuthForm extends React.Component {
             type="password"
             name="password"
             placeholder="Password"
-            onChange={this.handlePasswordChange}
+            onChange={ this.handlePasswordChange }
             className="sign-in-form-style" />
         </div>
         <div className="row row-invalid-sign justify-center">
-          <p className="text-invalid-sign-in-error">{this.state.error}</p>
+          <p className="text-invalid-sign-in-error">{ this.state.error }</p>
         </div>
         <div className="front-margin-top text-center">
           <button type="submit" className="front-button">
-            {submitButtonText}
+            { submitButtonText }
           </button>
         </div>
         <div className="row justify-center">
           <p className="dark-grey-color">{ alternateActionQuestion }</p>
           <span className="front-login-span">
-            <a href={alternateActionHref} className="front-login-anchor">{alternateActionText}</a>
+            <a href={ alternateActionHref } className="front-login-anchor">{ alternateActionText }</a>
           </span>
         </div>
       </form>
