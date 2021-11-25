@@ -28,6 +28,14 @@ export default class CreateListingFormDetails extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.user) {
+      this.setState({
+        userId: this.props.user.userId
+      });
+    }
+  }
+
   handleImageChange(event) {
     this.setState({
       imagePreview: URL.createObjectURL(event.target.files[0]),

@@ -58,7 +58,7 @@ export default class CreateListingFormLocation extends React.Component {
             </div>
             <div className="row">
               <div className="col-buttons cancel-previous">
-                <button onClick={this.handlePreviousClick} className="cancel-previous">Previous</button>
+                <button onClick={this.handlePreviousClick} className="create-listing-cancel-button">Previous</button>
               </div>
               <div className="col-buttons next-submit">
                 <button type="submit" className="next-submit">Publish</button>

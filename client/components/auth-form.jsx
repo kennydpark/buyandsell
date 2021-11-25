@@ -8,11 +8,9 @@ export default class AuthForm extends React.Component {
       password: '',
       error: null
     };
-    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    // this.handleError = this.handleError.bind(this);
   }
 
   handleEmailChange(event) {
@@ -58,11 +56,6 @@ export default class AuthForm extends React.Component {
       });
   }
 
-  // handleError(text) {
-  //   const error = text;
-  //   return error;
-  // }
-
   render() {
     const { action } = this.props;
     const alternateActionHref = action === 'sign-up'
@@ -77,9 +70,7 @@ export default class AuthForm extends React.Component {
     const alternateActionQuestion = action === 'sign-up'
       ? 'Already have an account?'
       : 'Don\'t have an account?';
-    // const error = 'The username or password you entered is incorrect.';
-    // let error = '';
-    // error = this.handleError();
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="front-input-row text-center">
