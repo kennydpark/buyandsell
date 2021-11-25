@@ -15,6 +15,11 @@
   margin: 0;
 }
 
+.row-front-title {
+  padding-top: 30%;
+  margin-bottom: 60px;
+}
+
 .details-container-full,
 .row-back-button {
   margin: 20px;
@@ -75,6 +80,11 @@
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
+  }
+
+  .row-front-title {
+    padding-top: 30%;
+    margin-bottom: 60px;
   }
 
   .browse-all-container {
@@ -140,6 +150,11 @@
 @media screen and (min-width: 1070px) {
   .container {
     max-width: 1300px;
+  }
+
+  .row-front-title {
+    padding-top: 25%;
+    margin-bottom: 60px;
   }
 
   .details-listing-image {

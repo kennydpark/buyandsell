@@ -16,7 +16,7 @@ export default class AuthPage extends React.Component {
 
     return (
         <div className="text-center">
-          <div className="row row-front-title justify-center margin-auto">
+          <div className="row row-front-title justify-center">
             <h1 className="welcome-message text-center">{ welcomeMessage }</h1>
           </div>
           <div>
