@@ -149,12 +149,30 @@
 
 @media screen and (min-width: 1070px) {
   .container {
-    max-width: 1300px;
+    /* max-width: 1300px; */
+    max-width: 1100px;
   }
 
   .row-front-title {
     padding-top: 25%;
     margin-bottom: 60px;
+  }
+
+  .form-container-full {
+    max-width: 1060px;
+    margin: 0 50px;
+  }
+
+  .row-file-upload {
+    height: 400px;
+
+    /* width: 400px; */
+    align-items: right;
+    cursor: pointer;
+  }
+
+  .custom-file-upload {
+    height: 100%;
   }
 
   .details-listing-image {
@@ -166,6 +184,10 @@
 
   .details-column-body {
     padding-left: 20px;
+  }
+
+  .row-description {
+    height: 206px;
   }
 
   .row-back-button {
