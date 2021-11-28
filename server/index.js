@@ -5,6 +5,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
+const authorizationMiddleware = require('./authorization-middleware');
 const staticMiddleware = require('./static-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
 const jsonMiddleware = express.json();
@@ -219,6 +220,23 @@ app.delete('/api/listings/:listingId', (req, res, next) => {
       console.error(err);
       throw new ClientError(500, 'An unexpected error occurred.');
     });
+});
+
+app.use(authorizationMiddleware);
+
+app.get('/api/user/listings', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+    select *
+    from "listings"
+    where "userId" = $1
+  `;
+  const params = [userId];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);
