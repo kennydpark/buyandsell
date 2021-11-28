@@ -41,13 +41,17 @@ export default class AuthForm extends React.Component {
     fetch(`/api/auth/${action}`, req)
       .then(res => res.json())
       .then(result => {
-        if (action === 'sign-up') {
+        if (result.error) {
+          this.setState({
+            error: 'The email you entered is already in use.'
+          });
+        } else if (action === 'sign-up') {
           window.location.hash = 'sign-in';
         } else if (result.user && result.token) {
           this.props.onSignIn(result);
         } else {
           this.setState({
-            error: 'The username or password you entered is incorrect.'
+            error: 'The email or password you entered is incorrect.'
           });
         }
       })

@@ -48,7 +48,7 @@ class EmailForm extends React.Component {
       from: 'buyandsell0821@gmail.com',
       subject: `buyandsell - ${this.state.name} is interested in '${this.props.listingInfo.title}'!`,
       html: `${this.state.name} has reached out to you for your listing, '${this.props.listingInfo.title}':
-        <br><strong>${this.state.message}</strong>.
+        <br><strong>${this.state.message}</strong>
         <br><br><em>Contact information:</em>
         <br>Email: ${this.state.buyerEmail}<br> Phone number: ${this.state.phone}
         <br><br><br>${this.props.listingInfo.title}

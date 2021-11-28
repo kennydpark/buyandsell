@@ -29,7 +29,10 @@ app.post('/api/auth/sign-up', (req, res, next) => {
     .then(hashedPassword => {
       const sql = `
         insert into "users" ("email", "hashedPassword")
-        values ($1, $2)
+        select $1, $2
+        where not exists (
+          select $1 from "users" where "email" = $1
+        )
         returning "userId", "email", "createdAt"
       `;
       const params = [email, hashedPassword];
@@ -37,7 +40,11 @@ app.post('/api/auth/sign-up', (req, res, next) => {
     })
     .then(result => {
       const [user] = result.rows;
-      res.status(201).json(user);
+      if (user) {
+        res.status(201).json(user);
+      } else {
+        throw new ClientError(400, 'The email you entered is already in use.');
+      }
     })
     .catch(err => next(err));
 });
