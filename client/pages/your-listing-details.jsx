@@ -1,62 +1,42 @@
 import React from 'react';
-import EmailForm from '../components/email-form-modal';
 import Redirect from '../components/redirect';
 
-export default class ListingDetails extends React.Component {
+export default class YourListingDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listing: null,
-      sellerEmail: null,
-      formActive: false
+      listing: null
     };
-    this.handleContactButton = this.handleContactButton.bind(this);
-    this.handleCancelButton = this.handleCancelButton.bind(this);
   }
 
   componentDidMount() {
-    fetch(`/api/listings/${this.props.listingId}`)
-      .then(res => res.json())
-      .then(listing => this.setState({ listing }));
-  }
-
-  handleContactButton() {
-    fetch(`/api/listings/email/${this.props.listingId}`, {
-      method: 'GET'
-    })
-      .then(res => res.json())
-      .then(email => this.setState({ sellerEmail: email.email }))
-      .catch(err => console.error(err));
-    this.setState({
-      formActive: true
-    });
-  }
-
-  handleCancelButton() {
-    this.setState({
-      formActive: false
-    });
+    if (this.props.user && this.props.token) {
+      fetch(`/api/user/listings/${this.props.listingId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': this.props.token
+        }
+      })
+        .then(res => res.json())
+        .then(listing => this.setState({ listing }));
+    }
   }
 
   render() {
-    if (!this.props.user) return <Redirect to="" />;
+    if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
     const {
       imageUrl, title, price, location, condition, description
     } = this.state.listing;
     return (
       <>
-        < EmailForm formActive={this.state.formActive}
-        listingId={this.props.listingId}
-        listingInfo={this.state.listing}
-        sellerEmail={this.state.sellerEmail}
-        handleCancelButton={this.handleCancelButton} />
         <div className="details-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">buyandsell</h1>
+            <h1 className="page-header-text">Your Listings</h1>
           </div>
           <div className="row row-back-button justify-left">
-            <a href="#browse-all"><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
+            <a href="#your-listings"><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
           </div>
           <div className="details-container-full text-center">
             <div className="row justify-center margin-auto">
@@ -86,12 +66,6 @@ export default class ListingDetails extends React.Component {
                 <div className="row details-description-container text-start">
                   <p className="details-card-description dark-grey-color">{description}</p>
                 </div>
-              </div>
-            </div>
-            <div className="row row-contact-seller justify-center">
-              <div className="column-half"></div>
-              <div className="column-half column-contact-seller">
-                <button onClick={this.handleContactButton} className="contact-seller">Contact Seller</button>
               </div>
             </div>
           </div>

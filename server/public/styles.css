@@ -191,25 +191,6 @@ input[type="file"] {
   transition: 0.2s ease-out;
 }
 
-.sent-okay-button {
-  text-align: center;
-  display: inline-block;
-  background-color: #236699;
-  color: white;
-  padding: 15px 0;
-  width: 130px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.2s ease-out;
-}
-
-.sent-okay-button:hover {
-  background-color: #236699;
-  transition: 0.2s ease-out;
-}
-
 /* utility */
 
 .hidden {
@@ -256,7 +237,7 @@ input[type="file"] {
   margin-top: 30px;
 }
 
-/* browse-all */
+/* browse-all, your-listings */
 
 .browse-all-listing {
   display: block;
@@ -528,4 +509,33 @@ input[type="file"] {
 .return-home-button:hover {
   background-color: #236699;
   transition: 0.2s ease-out;
+}
+
+/* no-listings */
+
+.create-new-listing-button {
+  text-align: center;
+  display: inline-block;
+  background-color: #2978b5;
+  color: white;
+  padding: 15px 0;
+  width: 190px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+}
+
+.create-new-listing-button:hover {
+  background-color: #236699;
+  transition: 0.2s ease-out;
+}
+
+.row-create-new-listing-button {
+  margin-top: 20%;
+}
+
+.create-new-icon {
+  margin-right: 9px;
 }

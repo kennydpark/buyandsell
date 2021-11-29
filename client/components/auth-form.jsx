@@ -41,7 +41,7 @@ export default class AuthForm extends React.Component {
     fetch(`/api/auth/${action}`, req)
       .then(res => res.json())
       .then(result => {
-        if (result.error) {
+        if (result.error === 'The email you entered is already in use.') {
           this.setState({
             error: 'The email you entered is already in use.'
           });
@@ -108,7 +108,9 @@ export default class AuthForm extends React.Component {
         <div className="row justify-center">
           <p className="dark-grey-color">{ alternateActionQuestion }</p>
           <span className="front-login-span">
-            <a href={ alternateActionHref } className="front-login-anchor">{ alternateActionText }</a>
+            <a href={ alternateActionHref }
+               className="front-login-anchor">{ alternateActionText }
+            </a>
           </span>
         </div>
       </form>

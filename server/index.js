@@ -5,6 +5,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
+const authorizationMiddleware = require('./authorization-middleware');
 const staticMiddleware = require('./static-middleware');
 const uploadsMiddleware = require('./uploads-middleware');
 const jsonMiddleware = express.json();
@@ -219,6 +220,44 @@ app.delete('/api/listings/:listingId', (req, res, next) => {
       console.error(err);
       throw new ClientError(500, 'An unexpected error occurred.');
     });
+});
+
+app.use(authorizationMiddleware);
+
+app.get('/api/user/listings', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+    select *
+    from "listings"
+    where "userId" = $1
+  `;
+  const params = [userId];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/user/listings/:listingId', (req, res, next) => {
+  const listingId = parseInt(req.params.listingId, 10);
+  if (!listingId) {
+    throw new ClientError(400, 'listingId must be a positive integer.');
+  }
+  const sql = `
+    select *
+    from "listings"
+    where "listingId" = $1
+  `;
+  const params = [listingId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `Cannot find listing with listingId ${listingId}.`);
+      }
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);
