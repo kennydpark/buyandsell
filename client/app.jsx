@@ -56,17 +56,21 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     if (route.path === '') {
-      return <FrontPage user={this.state.user}/>;
+      return <FrontPage user={this.state.user} />;
     }
     if (route.path === 'browse-all') {
-      return <BrowseAll user={this.state.user}/>;
+      return <BrowseAll user={this.state.user} />;
     } else if (route.path === 'listing-details') {
       const listingId = route.params.get('listingId');
-      return <ListingDetails listingId={listingId} user={this.state.user}/>;
+      return <ListingDetails
+        listingId={listingId}
+        user={this.state.user} />;
     } else if (route.path === 'create-listing') {
-      return <CreateListingFormParent user={this.state.user}/>;
+      return <CreateListingFormParent user={this.state.user} />;
     } else if (route.path === 'your-listings') {
-      return <YourListings user={this.state.user} token={this.state.token}/>;
+      return <YourListings
+        user={this.state.user}
+        token={this.state.token} />;
     } else if (route.path === 'your-listing-details') {
       const listingId = route.params.get('listingId');
       return <YourListingDetails
@@ -89,7 +93,7 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <>
-          <Navbar user={this.state.user}/>
+          <Navbar user={this.state.user} />
           <PageContainer>
             { this.renderPage() }
           </PageContainer>

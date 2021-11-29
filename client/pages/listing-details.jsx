@@ -40,7 +40,6 @@ export default class ListingDetails extends React.Component {
 
   render() {
     if (!this.props.user) return <Redirect to="" />;
-
     if (!this.state.listing) return null;
     const {
       imageUrl, title, price, location, condition, description
