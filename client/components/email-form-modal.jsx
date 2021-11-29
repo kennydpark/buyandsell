@@ -92,7 +92,7 @@ class EmailForm extends React.Component {
       modal = 'email-modal-container email-overlay';
       window = 'email-modal-window email-modal-shadow';
     }
-    const href = `#listings?listingId=${this.props.listingId}`;
+    const href = `#listing-details?listingId=${this.props.listingId}`;
     return (
       <div className={modal}>
         <div className={window}>
