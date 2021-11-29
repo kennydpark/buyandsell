@@ -6,24 +6,24 @@ export default class YourListings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listings: [],
-      token: this.props.token
+      listings: []
     };
   }
 
   componentDidMount() {
-    this.setState({ token: this.props.token });
-    fetch('/api/user/listings', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': this.state.token
-      }
-    })
-      .then(res => res.json())
-      .then(listings => {
-        this.setState({ listings });
-      });
+    if (this.props.user && this.props.token) {
+      fetch('/api/user/listings', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': this.props.token
+        }
+      })
+        .then(res => res.json())
+        .then(listings => {
+          this.setState({ listings });
+        });
+    }
   }
 
   render() {

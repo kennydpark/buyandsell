@@ -5,26 +5,26 @@ export default class YourListingDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listing: null,
-      token: this.props.token
+      listing: null
     };
   }
 
   componentDidMount() {
-    this.setState({ token: this.props.token });
-    fetch(`/api/user/listings/${this.props.listingId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': this.state.token
-      }
-    })
-      .then(res => res.json())
-      .then(listing => this.setState({ listing }));
+    if (this.props.user && this.props.token) {
+      fetch(`/api/user/listings/${this.props.listingId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': this.props.token
+        }
+      })
+        .then(res => res.json())
+        .then(listing => this.setState({ listing }));
+    }
   }
 
   render() {
-    if (!this.props.user) return <Redirect to="" />;
+    if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
     const {
       imageUrl, title, price, location, condition, description
