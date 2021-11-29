@@ -18,6 +18,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       user: null,
+      token: null,
       isAuthorizing: true,
       route: parseRoute(window.location.hash)
     };
@@ -34,18 +35,21 @@ export default class App extends React.Component {
     });
     const token = window.localStorage.getItem('react-context-jwt');
     const user = token ? decodeToken(token) : null;
-    this.setState({ user, isAuthorizing: false });
+    this.setState({ user, token, isAuthorizing: false });
   }
 
   handleSignIn(result) {
     const { user, token } = result;
     window.localStorage.setItem('react-context-jwt', token);
-    this.setState({ user });
+    this.setState({ user, token });
   }
 
   handleSignOut() {
     window.localStorage.removeItem('react-context-jwt');
-    this.setState({ user: null });
+    this.setState({
+      user: null,
+      token: null
+    });
   }
 
   renderPage() {
@@ -61,7 +65,7 @@ export default class App extends React.Component {
     } else if (route.path === 'create-listing') {
       return <CreateListingFormParent user={this.state.user}/>;
     } else if (route.path === 'your-listings') {
-      return <YourListings />;
+      return <YourListings user={this.state.user} token={this.state.token}/>;
     } else if (route.path === 'saved-items') {
       return <SavedItems />;
     } else if (route.path === 'sign-in' || route.path === 'sign-up') {
