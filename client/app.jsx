@@ -10,6 +10,7 @@ import PageContainer from './components/page-container';
 import BrowseAll from './pages/browse-all';
 import ListingDetails from './pages/listing-details';
 import YourListings from './pages/your-listings';
+import YourListingDetails from './pages/your-listing-details';
 import SavedItems from './pages/saved-items';
 import CreateListingFormParent from './components/create-listing-form-parent';
 
@@ -59,13 +60,19 @@ export default class App extends React.Component {
     }
     if (route.path === 'browse-all') {
       return <BrowseAll user={this.state.user}/>;
-    } else if (route.path === 'listings') {
+    } else if (route.path === 'listing-details') {
       const listingId = route.params.get('listingId');
       return <ListingDetails listingId={listingId} user={this.state.user}/>;
     } else if (route.path === 'create-listing') {
       return <CreateListingFormParent user={this.state.user}/>;
     } else if (route.path === 'your-listings') {
       return <YourListings user={this.state.user} token={this.state.token}/>;
+    } else if (route.path === 'your-listing-details') {
+      const listingId = route.params.get('listingId');
+      return <YourListingDetails
+        user={this.state.user}
+        token={this.state.token}
+        listingId={listingId} />;
     } else if (route.path === 'saved-items') {
       return <SavedItems />;
     } else if (route.path === 'sign-in' || route.path === 'sign-up') {

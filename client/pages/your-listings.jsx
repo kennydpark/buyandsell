@@ -48,7 +48,7 @@ export default class YourListings extends React.Component {
 
 function Listing(props) {
   const { listingId, title, price, imageUrl, location } = props.listing;
-  const href = `#listings?listingId=${listingId}`;
+  const href = `#your-listing-details?listingId=${listingId}`;
   return (
     <a
       href={href}
