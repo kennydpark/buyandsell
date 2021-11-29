@@ -41,7 +41,7 @@ export default class AuthForm extends React.Component {
     fetch(`/api/auth/${action}`, req)
       .then(res => res.json())
       .then(result => {
-        if (result.error) {
+        if (result.error === 'The email you entered is already in use.') {
           this.setState({
             error: 'The email you entered is already in use.'
           });
