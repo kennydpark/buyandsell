@@ -191,27 +191,6 @@ input[type="file"] {
   transition: 0.2s ease-out;
 }
 
-/* CHECK IF THIS IS BEING USED AT ALL */
-
-.sent-okay-button {
-  text-align: center;
-  display: inline-block;
-  background-color: #236699;
-  color: white;
-  padding: 15px 0;
-  width: 130px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.2s ease-out;
-}
-
-.sent-okay-button:hover {
-  background-color: #236699;
-  transition: 0.2s ease-out;
-}
-
 /* utility */
 
 .hidden {
@@ -258,7 +237,7 @@ input[type="file"] {
   margin-top: 30px;
 }
 
-/* browse-all */
+/* browse-all, your-listings */
 
 .browse-all-listing {
   display: block;
