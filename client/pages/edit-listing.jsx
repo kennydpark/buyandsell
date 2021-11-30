@@ -124,10 +124,10 @@ export default class EditListing extends React.Component {
     return (
       <>
         < DeleteConfirm formActive={this.state.formActive}
-          listing={this.state.listing}
-          handleCancelButton={this.handleCancelButton}
-          user={this.props.user}
-          token={this.props.token} />
+            listing={this.state.listing}
+            handleCancelButton={this.handleCancelButton}
+            user={this.props.user}
+            token={this.props.token} />
         <div className="container">
           <div className="row row-header justify-center">
             <h1 className="page-header-text">Edit listing</h1>
