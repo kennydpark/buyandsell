@@ -392,10 +392,6 @@ input[type="file"] {
   background-color: rgb(230 0 0);
 }
 
-/* .delete-button:active {
-  transform: translateY(0.2rem);
-} */
-
 .row-delete-confirm {
   padding: 0 5px;
   margin-top: 10px;
