@@ -1,5 +1,6 @@
 import React from 'react';
 import Redirect from '../components/redirect';
+import NotFound from './not-found';
 
 export default class YourListingDetails extends React.Component {
   constructor(props) {
@@ -26,6 +27,9 @@ export default class YourListingDetails extends React.Component {
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
+    if (this.state.listing.error) {
+      return <NotFound />;
+    }
     const {
       imageUrl, title, price, location, condition, description
     } = this.state.listing;
