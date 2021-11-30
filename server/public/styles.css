@@ -214,6 +214,10 @@ input[type="file"] {
   background-color: #8ab6d6;
 }
 
+.margin-auto {
+  margin: auto;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -322,10 +326,12 @@ input[type="file"] {
 
 .back-icon {
   font-size: 30px;
+  transition: 0.2s ease-in-out;
 }
 
 .back-icon:hover {
   color: black;
+  transition: 0.2s ease-in-out;
 }
 
 .back-icon:active {
@@ -353,14 +359,56 @@ input[type="file"] {
   padding-top: 10px;
   margin-top: 5px;
   color: #2978b5;
+  transition: 0.2s ease-in-out;
 }
 
 .edit-icon:hover {
   color: #236699;
+  transition: 0.2s ease-in-out;
 }
 
 .edit-icon:active {
   transform: translateY(0.2rem);
+}
+
+/* edit-listing */
+
+.delete-button {
+  text-align: center;
+  display: inline-block;
+  background-color: red;
+  color: white;
+  padding: 15px 0;
+  width: 130px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+}
+
+.delete-button:hover {
+  transition: 0.2s ease-out;
+  background-color: rgb(230 0 0);
+}
+
+/* .delete-button:active {
+  transform: translateY(0.2rem);
+} */
+
+.row-delete-confirm {
+  padding: 0 5px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.delete-confirm-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.row-delete-confirm-buttons {
+  margin-bottom: 10px;
 }
 
 /* navbar */
@@ -464,10 +512,12 @@ input[type="file"] {
   margin-left: 10px;
   margin-top: 10px;
   color: #444;
+  transition: 0.2s ease-in-out;
 }
 
 .navbar-icon:hover {
   color: black;
+  transition: 0.2s ease-in-out;
 }
 
 .navbar-modal-container-full {

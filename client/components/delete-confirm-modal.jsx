@@ -1,9 +1,11 @@
 import React from 'react';
+import Redirect from '../components/redirect';
 
 class DeleteConfirm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      deleted: false
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleBuyerEmailChange = this.handleBuyerEmailChange.bind(this);
@@ -11,6 +13,7 @@ class DeleteConfirm extends React.Component {
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.close = this.close.bind(this);
+    this.deleted = this.deleted.bind(this);
   }
 
   handleNameChange(event) {
@@ -39,22 +42,33 @@ class DeleteConfirm extends React.Component {
 
   handleDelete() {
     event.preventDefault();
-    fetch(`/api/user/listings/${this.props.listingId}`, {
+    fetch(`/api/user/listings/${this.props.listing.listingId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         'X-Access-Token': this.props.token
       }
     })
-      .then(res => res.json());
+      .then(res => {
+        this.deleted();
+      })
     // .then(res => console.log(res));
+      .catch(err => console.error(err));
   }
 
   close() {
     this.props.handleCancelButton();
   }
 
+  deleted() {
+    this.setState({ deleted: true });
+    this.props.handleCancelButton();
+  }
+
   render() {
+    if (this.state.deleted === true) {
+      return <Redirect to="your-listings" />;
+    }
     let modal;
     let window;
     if (this.props.formActive === false) {
@@ -76,7 +90,7 @@ class DeleteConfirm extends React.Component {
               <a onClick={this.close} className="create-listing-cancel-button">Cancel</a>
             </div>
             <div className="col-buttons next-submit">
-              <button type="submit" className="delete-button">Confirm</button>
+              <button onClick={this.handleDelete} className="delete-button">Confirm</button>
             </div>
           </div>
         </div>

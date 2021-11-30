@@ -30,9 +30,8 @@ export default class YourListingDetails extends React.Component {
     if (this.state.listing.error) {
       return <NotFound />;
     }
-    const {
-      imageUrl, title, price, location, condition, description
-    } = this.state.listing;
+    const { listingId, imageUrl, title, price, location, condition, description } = this.state.listing;
+    const href = `#edit-listing?listingId=${listingId}`;
     return (
       <>
         <div className="details-container">
@@ -55,7 +54,7 @@ export default class YourListingDetails extends React.Component {
                     <p className="details-card-title details-text text-start">{title}</p>
                   </div>
                   <div className="col-edit-icon">
-                    <a href=""><i className="fas fa-pen edit-icon dark-grey-color"></i></a>
+                    <a href={href}><i className="fas fa-pen edit-icon dark-grey-color"></i></a>
                   </div>
                 </div>
                 <div className="row">
@@ -83,3 +82,20 @@ export default class YourListingDetails extends React.Component {
     );
   }
 }
+
+// function Listing(props) {
+//   const { listingId, title, price, imageUrl, location } = props.listing;
+//   const href = `#your-listing-details?edit-listingId=${listingId}`;
+//   return (
+//     <a
+//       href={href}
+//       className="browse-all-listing">
+//       <img src={imageUrl} className="browse-all-image" />
+//       <div className="card-body">
+//         <p className="card-price">${price}</p>
+//         <p className="card-title">{title}</p>
+//         <p className="card-location">{location}</p>
+//       </div>
+//     </a>
+//   );
+// }
