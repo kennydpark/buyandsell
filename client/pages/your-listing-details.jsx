@@ -51,7 +51,12 @@ export default class YourListingDetails extends React.Component {
               </div>
               <div className="details-column-half details-column-body">
                 <div className="row row-details-body">
-                  <p className="details-card-title details-text text-start dark-grey-color">{title}</p>
+                  <div className="col-title">
+                    <p className="details-card-title details-text text-start">{title}</p>
+                  </div>
+                  <div className="col-edit-icon">
+                    <a href=""><i className="fas fa-pen edit-icon dark-grey-color"></i></a>
+                  </div>
                 </div>
                 <div className="row">
                   <p className="details-card-price details-text dark-grey-color">${price}</p>

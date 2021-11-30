@@ -39,6 +39,11 @@ button.contact-seller:hover {
   transition: 0.2s ease-out;
 }
 
+button.next-submit:active,
+button.contact-seller:active {
+  transform: translateY(0.2rem);
+}
+
 /* front-page */
 
 .front-page-title {
@@ -191,6 +196,10 @@ input[type="file"] {
   transition: 0.2s ease-out;
 }
 
+.create-listing-cancel-button:active {
+  transform: translateY(0.2rem);
+}
+
 /* utility */
 
 .hidden {
@@ -315,10 +324,43 @@ input[type="file"] {
   font-size: 30px;
 }
 
-/* email-form */
+.back-icon:hover {
+  color: black;
+}
 
-.row-contact-seller {
-  margin-top: 20px;
+.back-icon:active {
+  transform: translateY(0.2rem);
+}
+
+/* your-listing-details */
+
+.row-details-body {
+  flex-basis: calc(100% / 2);
+}
+
+.col-title {
+  width: 80%;
+}
+
+.col-edit-icon {
+  width: 20%;
+  margin: 0;
+  text-align: end;
+}
+
+.edit-icon {
+  font-size: 1.5rem;
+  padding-top: 10px;
+  margin-top: 5px;
+  color: #2978b5;
+}
+
+.edit-icon:hover {
+  color: #236699;
+}
+
+.edit-icon:active {
+  transform: translateY(0.2rem);
 }
 
 /* navbar */
@@ -424,6 +466,10 @@ input[type="file"] {
   color: #444;
 }
 
+.navbar-icon:hover {
+  color: black;
+}
+
 .navbar-modal-container-full {
   width: 100%;
   height: 100%;
@@ -467,6 +513,10 @@ input[type="file"] {
 }
 
 /* email-form */
+
+.row-contact-seller {
+  margin-top: 20px;
+}
 
 .email-modal-container {
   margin: auto;
