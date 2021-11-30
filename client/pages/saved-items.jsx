@@ -1,4 +1,5 @@
 import React from 'react';
+import Redirect from '../components/redirect';
 
 export default class SavedItems extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class SavedItems extends React.Component {
   }
 
   render() {
+    if (!this.props.user || !this.props.token) return <Redirect to="" />;
     return (
       <div className="container">
         <div className="row row-header justify-center">

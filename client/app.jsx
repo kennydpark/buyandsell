@@ -59,14 +59,19 @@ export default class App extends React.Component {
       return <FrontPage user={this.state.user} />;
     }
     if (route.path === 'browse-all') {
-      return <BrowseAll user={this.state.user} />;
+      return <BrowseAll
+        user={this.state.user}
+        token={this.state.token} />;
     } else if (route.path === 'listing-details') {
       const listingId = route.params.get('listingId');
       return <ListingDetails
-        listingId={listingId}
-        user={this.state.user} />;
+        user={this.state.user}
+        token={this.state.token}
+        listingId = {listingId} />;
     } else if (route.path === 'create-listing') {
-      return <CreateListingFormParent user={this.state.user} />;
+      return <CreateListingFormParent
+        user={this.state.user}
+        token={this.state.token} />;
     } else if (route.path === 'your-listings') {
       return <YourListings
         user={this.state.user}
@@ -78,7 +83,9 @@ export default class App extends React.Component {
         token={this.state.token}
         listingId={listingId} />;
     } else if (route.path === 'saved-items') {
-      return <SavedItems />;
+      return <SavedItems
+        user={this.state.user}
+        token={this.state.token} />;
     } else if (route.path === 'sign-in' || route.path === 'sign-up') {
       return <Auth />;
     }
