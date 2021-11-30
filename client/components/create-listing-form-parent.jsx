@@ -9,7 +9,6 @@ export default class CreateListingFormParent extends React.Component {
     super(props);
     this.state = {
       details: {
-        // userId: null,
         title: '',
         price: '',
         condition: 'Condition',

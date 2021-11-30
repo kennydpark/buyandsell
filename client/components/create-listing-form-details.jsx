@@ -10,7 +10,6 @@ export default class CreateListingFormDetails extends React.Component {
       imagePreview = URL.createObjectURL(this.props.details.file);
     }
     this.state = {
-      // userId: this.props.details.userId,
       title: this.props.details.title,
       price: this.props.details.price,
       condition: this.props.details.condition,
@@ -27,14 +26,6 @@ export default class CreateListingFormDetails extends React.Component {
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  // componentDidMount() {
-  //   if (this.props.user) {
-  //     this.setState({
-  //       userId: this.props.user.userId
-  //     });
-  //   }
-  // }
 
   handleImageChange(event) {
     this.setState({
