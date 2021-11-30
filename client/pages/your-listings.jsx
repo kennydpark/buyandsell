@@ -27,7 +27,7 @@ export default class YourListings extends React.Component {
   }
 
   render() {
-    if (!this.props.user) return <Redirect to="" />;
+    if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (this.state.listings.length === 0) {
       return <NoListings />;
     } else {
