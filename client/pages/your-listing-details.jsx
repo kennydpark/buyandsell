@@ -82,20 +82,3 @@ export default class YourListingDetails extends React.Component {
     );
   }
 }
-
-// function Listing(props) {
-//   const { listingId, title, price, imageUrl, location } = props.listing;
-//   const href = `#your-listing-details?edit-listingId=${listingId}`;
-//   return (
-//     <a
-//       href={href}
-//       className="browse-all-listing">
-//       <img src={imageUrl} className="browse-all-image" />
-//       <div className="card-body">
-//         <p className="card-price">${price}</p>
-//         <p className="card-title">{title}</p>
-//         <p className="card-location">{location}</p>
-//       </div>
-//     </a>
-//   );
-// }

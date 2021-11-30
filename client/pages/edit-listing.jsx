@@ -6,16 +6,9 @@ import DeleteConfirm from '../components/delete-confirm-modal';
 export default class EditListing extends React.Component {
   constructor(props) {
     super(props);
-    // let imagePreview;
-    // if (this.props.details.file === null) {
-    //   imagePreview = this.state.listing.imageUrl;
-    // } else {
-    //   imagePreview = URL.createObjectURL(this.props.details.file);
-    // }
     this.state = {
       listing: null,
       file: null,
-      // imagePreview: imagePreview,
       title: '',
       price: '',
       condition: '',
@@ -107,7 +100,6 @@ export default class EditListing extends React.Component {
       }
     })
       .then(res => res.json());
-    // .then(res => console.log(res));
   }
 
   handleCancelButton() {
@@ -128,9 +120,6 @@ export default class EditListing extends React.Component {
     } else {
       image = URL.createObjectURL(this.state.file);
     }
-    // const {
-    //   imageUrl, title, price, location, condition, description
-    // } = this.state.listing;
     const href = `#your-listing-details?listingId=${this.props.listingId}`;
     return (
       <>
