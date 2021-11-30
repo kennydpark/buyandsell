@@ -7,37 +7,9 @@ class DeleteConfirm extends React.Component {
     this.state = {
       deleted: false
     };
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleBuyerEmailChange = this.handleBuyerEmailChange.bind(this);
-    this.handlePhoneChange = this.handlePhoneChange.bind(this);
-    this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.close = this.close.bind(this);
     this.deleted = this.deleted.bind(this);
-  }
-
-  handleNameChange(event) {
-    this.setState({
-      name: event.target.value
-    });
-  }
-
-  handleBuyerEmailChange(event) {
-    this.setState({
-      buyerEmail: event.target.value
-    });
-  }
-
-  handlePhoneChange(event) {
-    this.setState({
-      phone: event.target.value
-    });
-  }
-
-  handleMessageChange(event) {
-    this.setState({
-      message: event.target.value
-    });
   }
 
   handleDelete() {
@@ -52,7 +24,6 @@ class DeleteConfirm extends React.Component {
       .then(res => {
         this.deleted();
       })
-    // .then(res => console.log(res));
       .catch(err => console.error(err));
   }
 
@@ -78,7 +49,6 @@ class DeleteConfirm extends React.Component {
       modal = 'email-modal-container email-overlay';
       window = 'email-modal-window email-modal-shadow';
     }
-    // const href = `#edit-listing?listingId=${this.props.listing.listingId}`;
     return (
       <div className={modal}>
         <div className={window}>
