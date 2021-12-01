@@ -257,12 +257,26 @@ app.delete('/api/user/listings/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.patch('/api/user/listings/:listingId', (req, res, next) => {
+app.patch('/api/user/listings/:listingId', uploadsMiddleware, (req, res, next) => {
   const listingId = Number(req.params.listingId);
-  const { title, price, condition, description } = req.body;
-  const url = req.file.location;
+  const { title, price, condition, image, description } = req.body;
   if (!Number.isInteger(listingId) || listingId <= 0) {
     throw new ClientError(400, '"listingId" must be a positive integer.');
+  }
+  if (!title) {
+    throw new ClientError(400, 'Missing property: title');
+  } else if (!price) {
+    throw new ClientError(400, 'Missing property: price');
+  } else if (!condition) {
+    throw new ClientError(400, 'Missing property: condition');
+  } else if (!description) {
+    throw new ClientError(400, 'Missing property: description');
+  }
+  let url;
+  if (req.file) {
+    url = req.file.location;
+  } else {
+    url = image;
   }
   const sql = `
     update "listings"
