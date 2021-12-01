@@ -21,7 +21,7 @@ export default class EditListing extends React.Component {
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
@@ -70,17 +70,24 @@ export default class EditListing extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSave(event) {
     event.preventDefault();
-    if (this.state.file === null) {
-      this.setState({
-        error: 'You must upload an image file.'
-      });
-    } else {
-      this.props.handleDetailsSubmitted(this.state);
-      this.setState({
-        error: ''
-      });
+    const formData = new FormData();
+    formData.append('image', this.state.file);
+    formData.append('title', this.state.title);
+    formData.append('price', this.state.price);
+    formData.append('condition', this.state.condition);
+    formData.append('description', this.state.description);
+    if (this.props.user && this.props.token) {
+      fetch(`/api/user/listings/${this.props.listingId}`, {
+        method: 'PATCH',
+        headers: {
+          'X-Access-Type': this.props.token
+        },
+        body: formData
+      })
+        .then(res => res.json())
+        .catch(err => console.error(err));
     }
   }
 
@@ -181,7 +188,7 @@ export default class EditListing extends React.Component {
                   <a onClick={this.handleConfirm} className="delete-button">Delete</a>
                 </div>
                 <div className="col-buttons next-submit">
-                  <button type="submit" className="next-submit">Save</button>
+                  <button onClick={this.handleSave} className="next-submit">Save</button>
                 </div>
               </div>
               <div className="row justify-center">
