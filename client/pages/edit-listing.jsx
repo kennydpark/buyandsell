@@ -15,7 +15,8 @@ export default class EditListing extends React.Component {
       price: '',
       condition: '',
       description: '',
-      formActive: false
+      formActive: false,
+      updated: false
     };
     this.fileInputRef = React.createRef();
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -42,6 +43,7 @@ export default class EditListing extends React.Component {
         .then(listing => this.setState({
           listing,
           file: listing.imageUrl,
+          imagePreview: listing.imageUrl,
           title: listing.title,
           price: listing.price,
           condition: listing.condition,
@@ -54,6 +56,7 @@ export default class EditListing extends React.Component {
     this.setState({
       imagePreview: URL.createObjectURL(event.target.files[0]),
       file: event.target.files[0]
+      // file: URL.createObjectURL(event.target.files[0])
     });
   }
 
@@ -91,12 +94,13 @@ export default class EditListing extends React.Component {
       fetch(`/api/user/listings/${this.props.listingId}`, {
         method: 'PATCH',
         headers: {
-          // 'Content-Type': 'application/json',
           'X-Access-Token': this.props.token
         },
         body: formData
       })
-        .then(res => res.json())
+        .then(res => {
+          this.setState({ updated: true });
+        })
         .catch(err => console.error(err));
     }
   }
@@ -131,12 +135,10 @@ export default class EditListing extends React.Component {
     if (this.state.listing.error) {
       return <NotFound />;
     }
-    // let image;
-    // if (this.state.file === null) {
-    //   image = this.state.listing.imageUrl;
-    // } else {
-    //   image = URL.createObjectURL(this.state.file);
-    // }
+    const postUpdate = `your-listing-details?listingId=${this.props.listingId}`;
+    if (this.state.updated === true) {
+      return <Redirect to={postUpdate} />;
+    }
     const href = `#your-listing-details?listingId=${this.props.listingId}`;
     return (
       <>
@@ -158,7 +160,7 @@ export default class EditListing extends React.Component {
                 <div className="column-half">
                   <div className="row row-form row-file-upload">
                     <label className="custom-file-upload">
-                      <img src={this.state.file} className="img-style" />
+                      <img src={this.state.imagePreview} className="img-style" />
                       <input onChange={this.handleImageChange} ref={this.fileInputRef} accept=".png, .jpg, .jpeg"
                         className="new-listing-form-style file-upload" type="file" name="image">
                       </input>
