@@ -254,10 +254,7 @@ app.delete('/api/user/listings/:listingId', (req, res, next) => {
         res.sendStatus(204);
       }
     })
-    .catch(err => {
-      console.error(err);
-      throw new ClientError(500, 'An unexpected error occurred.');
-    });
+    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);
