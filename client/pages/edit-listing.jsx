@@ -6,7 +6,6 @@ import DeleteConfirm from '../components/delete-confirm-modal';
 export default class EditListing extends React.Component {
   constructor(props) {
     super(props);
-    // const imagePreview = URL.createObjectURL(this.state.file);
     this.state = {
       listing: null,
       file: null,
@@ -56,7 +55,6 @@ export default class EditListing extends React.Component {
     this.setState({
       imagePreview: URL.createObjectURL(event.target.files[0]),
       file: event.target.files[0]
-      // file: URL.createObjectURL(event.target.files[0])
     });
   }
 
