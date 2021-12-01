@@ -63,21 +63,15 @@ export default class EditListing extends React.Component {
   }
 
   handleTitleChange(event) {
-    this.setState({
-      title: event.target.value
-    });
+    this.setState({ title: event.target.value });
   }
 
   handlePriceChange(event) {
-    this.setState({
-      price: event.target.value
-    });
+    this.setState({ price: event.target.value });
   }
 
   handleDescriptionChange(event) {
-    this.setState({
-      description: event.target.value
-    });
+    this.setState({ description: event.target.value });
   }
 
   handleSave(event) {
@@ -104,9 +98,7 @@ export default class EditListing extends React.Component {
   }
 
   handleConfirm() {
-    this.setState({
-      formActive: true
-    });
+    this.setState({ formActive: true });
   }
 
   handleDelete() {
@@ -122,9 +114,7 @@ export default class EditListing extends React.Component {
   }
 
   handleCancelButton() {
-    this.setState({
-      formActive: false
-    });
+    this.setState({ formActive: false });
   }
 
   render() {
