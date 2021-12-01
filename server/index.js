@@ -241,9 +241,10 @@ app.delete('/api/user/listings/:listingId', (req, res, next) => {
   const sql = `
     delete from "listings"
     where "listingId" = $1
+    and "userId" = $2
     returning *;
     `;
-  const values = [listingId];
+  const values = [listingId, req.user.userId];
   db.query(sql, values)
     .then(result => {
       const listing = result.rows[0];
