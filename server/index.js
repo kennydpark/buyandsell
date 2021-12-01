@@ -249,7 +249,38 @@ app.delete('/api/user/listings/:listingId', (req, res, next) => {
     .then(result => {
       const listing = result.rows[0];
       if (!listing) {
-        throw new ClientError(400, `Cannot find listing with "listingId: " ${listingId}`);
+        throw new ClientError(400, `Cannot find listing with listingId: ${listingId}`);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch(err => next(err));
+});
+
+app.patch('/api/user/listings/:listingId', (req, res, next) => {
+  const listingId = Number(req.params.listingId);
+  const { title, price, condition, description } = req.body;
+  const url = req.file.location;
+  if (!Number.isInteger(listingId) || listingId <= 0) {
+    throw new ClientError(400, '"listingId" must be a positive integer.');
+  }
+  const sql = `
+    update "listings"
+    set "imageUrl" = $3,
+        "title" = $4,
+        "price" = $5,
+        "condition" = $6,
+        "description" = $7
+    where "listingId" = $1
+      and "userId" = $2
+    returning *;
+    `;
+  const values = [listingId, req.user.userId, url, title, price, condition, description];
+  db.query(sql, values)
+    .then(result => {
+      const listing = result.rows[0];
+      if (!listing) {
+        throw new ClientError(400, `Cannot find listing with listingId: ${listingId}`);
       } else {
         res.sendStatus(204);
       }
