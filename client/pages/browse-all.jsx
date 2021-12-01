@@ -20,9 +20,7 @@ export default class BrowseAll extends React.Component {
   }
 
   render() {
-
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-
     return (
       <div className="browse-all-container">
         <div className="row justify-center">

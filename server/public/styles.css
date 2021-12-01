@@ -39,6 +39,11 @@ button.contact-seller:hover {
   transition: 0.2s ease-out;
 }
 
+button.next-submit:active,
+button.contact-seller:active {
+  transform: translateY(0.2rem);
+}
+
 /* front-page */
 
 .front-page-title {
@@ -191,6 +196,10 @@ input[type="file"] {
   transition: 0.2s ease-out;
 }
 
+.create-listing-cancel-button:active {
+  transform: translateY(0.2rem);
+}
+
 /* utility */
 
 .hidden {
@@ -203,6 +212,10 @@ input[type="file"] {
 
 .blue {
   background-color: #8ab6d6;
+}
+
+.margin-auto {
+  margin: auto;
 }
 
 .justify-center {
@@ -313,12 +326,85 @@ input[type="file"] {
 
 .back-icon {
   font-size: 30px;
+  transition: 0.2s ease-in-out;
 }
 
-/* email-form */
+.back-icon:hover {
+  color: black;
+  transition: 0.2s ease-in-out;
+}
 
-.row-contact-seller {
-  margin-top: 20px;
+.back-icon:active {
+  transform: translateY(0.2rem);
+}
+
+/* your-listing-details */
+
+.row-details-body {
+  flex-basis: calc(100% / 2);
+}
+
+.col-title {
+  width: 80%;
+}
+
+.col-edit-icon {
+  width: 20%;
+  margin: 0;
+  text-align: end;
+}
+
+.edit-icon {
+  font-size: 1.5rem;
+  padding-top: 10px;
+  margin-top: 5px;
+  color: #2978b5;
+  transition: 0.2s ease-in-out;
+}
+
+.edit-icon:hover {
+  color: #236699;
+  transition: 0.2s ease-in-out;
+}
+
+.edit-icon:active {
+  transform: translateY(0.2rem);
+}
+
+/* edit-listing */
+
+.delete-button {
+  text-align: center;
+  display: inline-block;
+  background-color: red;
+  color: white;
+  padding: 15px 0;
+  width: 130px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+}
+
+.delete-button:hover {
+  transition: 0.2s ease-out;
+  background-color: rgb(230 0 0);
+}
+
+.row-delete-confirm {
+  padding: 0 5px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.delete-confirm-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.row-delete-confirm-buttons {
+  margin-bottom: 10px;
 }
 
 /* navbar */
@@ -422,6 +508,12 @@ input[type="file"] {
   margin-left: 10px;
   margin-top: 10px;
   color: #444;
+  transition: 0.2s ease-in-out;
+}
+
+.navbar-icon:hover {
+  color: black;
+  transition: 0.2s ease-in-out;
 }
 
 .navbar-modal-container-full {
@@ -467,6 +559,10 @@ input[type="file"] {
 }
 
 /* email-form */
+
+.row-contact-seller {
+  margin-top: 20px;
+}
 
 .email-modal-container {
   margin: auto;

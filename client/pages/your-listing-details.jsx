@@ -1,5 +1,6 @@
 import React from 'react';
 import Redirect from '../components/redirect';
+import NotFound from './not-found';
 
 export default class YourListingDetails extends React.Component {
   constructor(props) {
@@ -26,9 +27,11 @@ export default class YourListingDetails extends React.Component {
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
-    const {
-      imageUrl, title, price, location, condition, description
-    } = this.state.listing;
+    if (this.state.listing.error) {
+      return <NotFound />;
+    }
+    const { listingId, imageUrl, title, price, location, condition, description } = this.state.listing;
+    const href = `#edit-listing?listingId=${listingId}`;
     return (
       <>
         <div className="details-container">
@@ -47,7 +50,12 @@ export default class YourListingDetails extends React.Component {
               </div>
               <div className="details-column-half details-column-body">
                 <div className="row row-details-body">
-                  <p className="details-card-title details-text text-start dark-grey-color">{title}</p>
+                  <div className="col-title">
+                    <p className="details-card-title details-text text-start">{title}</p>
+                  </div>
+                  <div className="col-edit-icon">
+                    <a href={href}><i className="fas fa-pen edit-icon dark-grey-color"></i></a>
+                  </div>
                 </div>
                 <div className="row">
                   <p className="details-card-price details-text dark-grey-color">${price}</p>
