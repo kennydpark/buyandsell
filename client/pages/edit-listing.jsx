@@ -6,9 +6,11 @@ import DeleteConfirm from '../components/delete-confirm-modal';
 export default class EditListing extends React.Component {
   constructor(props) {
     super(props);
+    // const imagePreview = URL.createObjectURL(this.state.file);
     this.state = {
       listing: null,
       file: null,
+      imagePreview: null,
       title: '',
       price: '',
       condition: '',
@@ -37,7 +39,14 @@ export default class EditListing extends React.Component {
         }
       })
         .then(res => res.json())
-        .then(listing => this.setState({ listing }));
+        .then(listing => this.setState({
+          listing,
+          file: listing.imageUrl,
+          title: listing.title,
+          price: listing.price,
+          condition: listing.condition,
+          description: listing.description
+        }));
     }
   }
 
@@ -82,7 +91,8 @@ export default class EditListing extends React.Component {
       fetch(`/api/user/listings/${this.props.listingId}`, {
         method: 'PATCH',
         headers: {
-          'X-Access-Type': this.props.token
+          // 'Content-Type': 'application/json',
+          'X-Access-Token': this.props.token
         },
         body: formData
       })
@@ -121,12 +131,12 @@ export default class EditListing extends React.Component {
     if (this.state.listing.error) {
       return <NotFound />;
     }
-    let image;
-    if (this.state.file === null) {
-      image = this.state.listing.imageUrl;
-    } else {
-      image = URL.createObjectURL(this.state.file);
-    }
+    // let image;
+    // if (this.state.file === null) {
+    //   image = this.state.listing.imageUrl;
+    // } else {
+    //   image = URL.createObjectURL(this.state.file);
+    // }
     const href = `#your-listing-details?listingId=${this.props.listingId}`;
     return (
       <>
@@ -148,7 +158,7 @@ export default class EditListing extends React.Component {
                 <div className="column-half">
                   <div className="row row-form row-file-upload">
                     <label className="custom-file-upload">
-                      <img src={image} className="img-style" />
+                      <img src={this.state.file} className="img-style" />
                       <input onChange={this.handleImageChange} ref={this.fileInputRef} accept=".png, .jpg, .jpeg"
                         className="new-listing-form-style file-upload" type="file" name="image">
                       </input>
@@ -157,16 +167,16 @@ export default class EditListing extends React.Component {
                 </div>
                 <div className="column-half">
                   <div className="row row-form row-input-title">
-                    <input value={this.state.listing.title} onChange={this.handleTitleChange} className="new-listing-form-style"
+                    <input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
                       required label="title" type="text">
                     </input>
                   </div>
                   <div className="row row-form">
-                    <input value={this.state.listing.price} onChange={this.handlePriceChange} className="new-listing-form-style"
+                    <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
                       type="number" min="0" max="999999" required placeholder="$ Price" />
                   </div>
                   <div className="row row-form">
-                    <select value={this.state.listing.condition} onChange={this.handleSelectChange}
+                    <select value={this.state.condition} onChange={this.handleSelectChange}
                       className="new-listing-form-style" required label="condition" placeholder="Condition">
                       <option value="Condition" disabled>Condition</option>
                       <option value="New">New</option>
@@ -176,7 +186,7 @@ export default class EditListing extends React.Component {
                     </select>
                   </div>
                   <div className="row row-form row-description">
-                    <textarea value={this.state.listing.description} onChange={this.handleDescriptionChange}
+                    <textarea value={this.state.description} onChange={this.handleDescriptionChange}
                       className="new-listing-form-style" required label="description" type="text" rows="7"
                       placeholder="Description">
                     </textarea>
