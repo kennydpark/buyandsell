@@ -44,6 +44,12 @@ export default class ListingDetails extends React.Component {
     const {
       imageUrl, title, price, location, condition, description
     } = this.state.listing;
+    let contactView;
+    if (this.state.listing.userId === this.props.user.userId) {
+      contactView = 'hidden';
+    } else {
+      contactView = 'row row-contact-seller justify-center';
+    }
     return (
       <>
         < EmailForm formActive={this.state.formActive}
@@ -88,8 +94,7 @@ export default class ListingDetails extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="row row-contact-seller justify-center">
-              <div className="column-half"></div>
+            <div className={contactView}>
               <div className="column-half column-contact-seller">
                 <button onClick={this.handleContactButton} className="contact-seller">Contact Seller</button>
               </div>
