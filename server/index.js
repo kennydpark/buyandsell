@@ -322,6 +322,22 @@ app.post('/api/user/saved/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/user/saved', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+    select *
+      from "listings"
+      join "savedItems" using ("listingId")
+      where "savedItems"."userId" = $1
+    `;
+  const params = [userId];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
