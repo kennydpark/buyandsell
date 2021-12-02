@@ -340,7 +340,7 @@ app.get('/api/user/saved', (req, res, next) => {
 
 app.get('/api/user/saved/:listingId', (req, res, next) => {
   const listingId = parseInt(req.params.listingId, 10);
-  // const { userId } = req.user;
+  const { userId } = req.user;
   if (!listingId) {
     throw new ClientError(400, 'listingId must be a positive integer.');
   }
@@ -348,8 +348,9 @@ app.get('/api/user/saved/:listingId', (req, res, next) => {
     select *
       from "savedItems"
       where "listingId" = $1
+      and "userId" = $2
     `;
-  const params = [listingId];
+  const params = [listingId, userId];
   db.query(sql, params)
     .then(result => {
       res.json(result.rows);
