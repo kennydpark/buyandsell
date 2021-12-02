@@ -338,6 +338,30 @@ app.get('/api/user/saved', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/user/saved/listing/:listingId', (req, res, next) => {
+  const listingId = parseInt(req.params.listingId, 10);
+  const { userId } = req.user;
+  if (!listingId) {
+    throw new ClientError(400, 'listingId must be a positive integer.');
+  }
+  const sql = `
+    select *
+      from "listings"
+      join "savedItems" using ("listingId")
+      where "listings"."listingId" = $1
+        and "savedItems"."userId" = $2
+    `;
+  const params = [listingId, userId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(400, `Cannot find listing with listingId: ${listingId}`);
+      }
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/user/saved/:listingId', (req, res, next) => {
   const listingId = parseInt(req.params.listingId, 10);
   const { userId } = req.user;

@@ -49,7 +49,7 @@ export default class SavedItems extends React.Component {
 
 function Listing(props) {
   const { listingId, title, price, imageUrl, location } = props.listing;
-  const href = `#saved-items?listingId=${listingId}`;
+  const href = `#saved-item-details?listingId=${listingId}`;
   return (
     <a
       href={href}
