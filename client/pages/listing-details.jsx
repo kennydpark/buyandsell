@@ -29,7 +29,7 @@ export default class ListingDetails extends React.Component {
     })
       .then(res => res.json())
       .then(listing => {
-        if (listing.error) {
+        if (listing.length === 0) {
           this.setState({ saved: false });
         } else {
           this.setState({ saved: true });
@@ -56,17 +56,31 @@ export default class ListingDetails extends React.Component {
   }
 
   handleSaveButton() {
-    fetch(`/api/user/saved/${this.props.listingId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': this.props.token
-      }
-    })
-      .then(res => {
-        this.setState({ saved: true });
+    if (this.state.saved === false) {
+      fetch(`/api/user/saved/${this.props.listingId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': this.props.token
+        }
       })
-      .catch(err => console.error(err));
+        .then(res => {
+          this.setState({ saved: true });
+        })
+        .catch(err => console.error(err));
+    } else {
+      fetch(`/api/user/saved/${this.props.listingId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': this.props.token
+        }
+      })
+        .then(res => {
+          this.setState({ saved: false });
+        })
+        .catch(err => console.error(err));
+    }
   }
 
   render() {

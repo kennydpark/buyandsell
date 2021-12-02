@@ -352,11 +352,7 @@ app.get('/api/user/saved/:listingId', (req, res, next) => {
   const params = [listingId];
   db.query(sql, params)
     .then(result => {
-      if (!result.rows[0]) {
-        throw new ClientError(400, `Cannot find listing with listingId: ${listingId}`);
-      } else {
-        res.json(result.rows);
-      }
+      res.json(result.rows);
     })
     .catch(err => next(err));
 });
