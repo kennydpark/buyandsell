@@ -20,6 +20,21 @@ export default class ListingDetails extends React.Component {
     fetch(`/api/listings/${this.props.listingId}`)
       .then(res => res.json())
       .then(listing => this.setState({ listing }));
+    fetch(`/api/user/saved/${this.props.listingId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.props.token
+      }
+    })
+      .then(res => res.json())
+      .then(listing => {
+        if (listing.error) {
+          this.setState({ saved: false });
+        } else {
+          this.setState({ saved: true });
+        }
+      });
   }
 
   handleContactButton() {
@@ -66,7 +81,12 @@ export default class ListingDetails extends React.Component {
     } else {
       contactView = 'row row-contact-seller justify-center';
     }
-    const bookmark = 'far fa-bookmark bookmark-icon'; // fas fa-bookmark
+    let bookmark;
+    if (this.state.saved === false) {
+      bookmark = 'far fa-bookmark bookmark-icon';
+    } else {
+      bookmark = 'fas fa-bookmark bookmark-icon';
+    }
     return (
       <>
         < EmailForm formActive={this.state.formActive}
