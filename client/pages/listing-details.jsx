@@ -8,10 +8,12 @@ export default class ListingDetails extends React.Component {
     this.state = {
       listing: null,
       sellerEmail: null,
-      formActive: false
+      formActive: false,
+      saved: false
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
+    this.handleSaveButton = this.handleSaveButton.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +40,20 @@ export default class ListingDetails extends React.Component {
     });
   }
 
+  handleSaveButton() {
+    fetch(`/api/user/saved/${this.props.listingId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.props.token
+      }
+    })
+      .then(res => {
+        this.setState({ saved: true });
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
@@ -50,6 +66,7 @@ export default class ListingDetails extends React.Component {
     } else {
       contactView = 'row row-contact-seller justify-center';
     }
+    const bookmark = 'far fa-bookmark bookmark-icon'; // fas fa-bookmark
     return (
       <>
         < EmailForm formActive={this.state.formActive}
@@ -77,7 +94,7 @@ export default class ListingDetails extends React.Component {
                     <p className="details-card-title details-text text-start dark-grey-color">{title}</p>
                   </div>
                   <div className="col-bookmark-icon">
-                    <a><i className="far fa-bookmark bookmark-icon"></i></a>
+                    <a onClick={this.handleSaveButton}><i className={bookmark}></i></a>
                   </div>
                 </div>
                 <div className="row">

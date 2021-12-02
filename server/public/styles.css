@@ -355,7 +355,7 @@ input[type="file"] {
 }
 
 .edit-icon {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   padding-top: 10px;
   margin-top: 5px;
   color: #2978b5;
@@ -368,6 +368,7 @@ input[type="file"] {
   margin-top: 9px;
   color: #2978b5;
   transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .edit-icon:hover,
