@@ -9,11 +9,13 @@ export default class EditListing extends React.Component {
     this.state = {
       listing: null,
       file: null,
+      imagePreview: null,
       title: '',
       price: '',
       condition: '',
       description: '',
-      formActive: false
+      formActive: false,
+      updated: false
     };
     this.fileInputRef = React.createRef();
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -21,24 +23,30 @@ export default class EditListing extends React.Component {
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.user && this.props.token) {
-      fetch(`/api/user/listings/${this.props.listingId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': this.props.token
-        }
-      })
-        .then(res => res.json())
-        .then(listing => this.setState({ listing }));
-    }
+    fetch(`/api/user/listings/${this.props.listingId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.props.token
+      }
+    })
+      .then(res => res.json())
+      .then(listing => this.setState({
+        listing,
+        file: listing.imageUrl,
+        imagePreview: listing.imageUrl,
+        title: listing.title,
+        price: listing.price,
+        condition: listing.condition,
+        description: listing.description
+      }));
   }
 
   handleImageChange(event) {
@@ -53,41 +61,41 @@ export default class EditListing extends React.Component {
   }
 
   handleTitleChange(event) {
-    this.setState({
-      title: event.target.value
-    });
+    this.setState({ title: event.target.value });
   }
 
   handlePriceChange(event) {
-    this.setState({
-      price: event.target.value
-    });
+    this.setState({ price: event.target.value });
   }
 
   handleDescriptionChange(event) {
-    this.setState({
-      description: event.target.value
-    });
+    this.setState({ description: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSave(event) {
     event.preventDefault();
-    if (this.state.file === null) {
-      this.setState({
-        error: 'You must upload an image file.'
-      });
-    } else {
-      this.props.handleDetailsSubmitted(this.state);
-      this.setState({
-        error: ''
-      });
-    }
+    const formData = new FormData();
+    formData.append('image', this.state.file);
+    formData.append('title', this.state.title);
+    formData.append('price', this.state.price);
+    formData.append('condition', this.state.condition);
+    formData.append('description', this.state.description);
+    fetch(`/api/user/listings/${this.props.listingId}`, {
+      method: 'PATCH',
+      headers: {
+        'X-Access-Token': this.props.token
+      },
+      body: formData
+    })
+      .then(res => {
+        this.setState({ updated: true });
+      })
+      .catch(err => console.error(err));
+
   }
 
   handleConfirm() {
-    this.setState({
-      formActive: true
-    });
+    this.setState({ formActive: true });
   }
 
   handleDelete() {
@@ -103,9 +111,7 @@ export default class EditListing extends React.Component {
   }
 
   handleCancelButton() {
-    this.setState({
-      formActive: false
-    });
+    this.setState({ formActive: false });
   }
 
   render() {
@@ -114,11 +120,9 @@ export default class EditListing extends React.Component {
     if (this.state.listing.error) {
       return <NotFound />;
     }
-    let image;
-    if (this.state.file === null) {
-      image = this.state.listing.imageUrl;
-    } else {
-      image = URL.createObjectURL(this.state.file);
+    const postUpdate = `your-listing-details?listingId=${this.props.listingId}`;
+    if (this.state.updated === true) {
+      return <Redirect to={postUpdate} />;
     }
     const href = `#your-listing-details?listingId=${this.props.listingId}`;
     return (
@@ -141,7 +145,7 @@ export default class EditListing extends React.Component {
                 <div className="column-half">
                   <div className="row row-form row-file-upload">
                     <label className="custom-file-upload">
-                      <img src={image} className="img-style" />
+                      <img src={this.state.imagePreview} className="img-style" />
                       <input onChange={this.handleImageChange} ref={this.fileInputRef} accept=".png, .jpg, .jpeg"
                         className="new-listing-form-style file-upload" type="file" name="image">
                       </input>
@@ -150,16 +154,16 @@ export default class EditListing extends React.Component {
                 </div>
                 <div className="column-half">
                   <div className="row row-form row-input-title">
-                    <input value={this.state.listing.title} onChange={this.handleTitleChange} className="new-listing-form-style"
+                    <input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
                       required label="title" type="text">
                     </input>
                   </div>
                   <div className="row row-form">
-                    <input value={this.state.listing.price} onChange={this.handlePriceChange} className="new-listing-form-style"
+                    <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
                       type="number" min="0" max="999999" required placeholder="$ Price" />
                   </div>
                   <div className="row row-form">
-                    <select value={this.state.listing.condition} onChange={this.handleSelectChange}
+                    <select value={this.state.condition} onChange={this.handleSelectChange}
                       className="new-listing-form-style" required label="condition" placeholder="Condition">
                       <option value="Condition" disabled>Condition</option>
                       <option value="New">New</option>
@@ -169,7 +173,7 @@ export default class EditListing extends React.Component {
                     </select>
                   </div>
                   <div className="row row-form row-description">
-                    <textarea value={this.state.listing.description} onChange={this.handleDescriptionChange}
+                    <textarea value={this.state.description} onChange={this.handleDescriptionChange}
                       className="new-listing-form-style" required label="description" type="text" rows="7"
                       placeholder="Description">
                     </textarea>
@@ -181,7 +185,7 @@ export default class EditListing extends React.Component {
                   <a onClick={this.handleConfirm} className="delete-button">Delete</a>
                 </div>
                 <div className="col-buttons next-submit">
-                  <button type="submit" className="next-submit">Save</button>
+                  <button onClick={this.handleSave} className="next-submit">Save</button>
                 </div>
               </div>
               <div className="row justify-center">

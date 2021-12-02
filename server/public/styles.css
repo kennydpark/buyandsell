@@ -39,9 +39,8 @@ button.contact-seller:hover {
   transition: 0.2s ease-out;
 }
 
-button.next-submit:active,
-button.contact-seller:active {
-  transform: translateY(0.2rem);
+button.next-submit:active {
+  transform: scale(0.97);
 }
 
 /* front-page */
@@ -197,7 +196,7 @@ input[type="file"] {
 }
 
 .create-listing-cancel-button:active {
-  transform: translateY(0.2rem);
+  transform: scale(0.97);
 }
 
 /* utility */
@@ -335,7 +334,7 @@ input[type="file"] {
 }
 
 .back-icon:active {
-  transform: translateY(0.2rem);
+  transform: scale(0.97);
 }
 
 /* your-listing-details */
@@ -368,7 +367,7 @@ input[type="file"] {
 }
 
 .edit-icon:active {
-  transform: translateY(0.2rem);
+  transform: scale(0.97);
 }
 
 /* edit-listing */

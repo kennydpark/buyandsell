@@ -11,19 +11,17 @@ export default class YourListings extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.user && this.props.token) {
-      fetch('/api/user/listings', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': this.props.token
-        }
-      })
-        .then(res => res.json())
-        .then(listings => {
-          this.setState({ listings });
-        });
-    }
+    fetch('/api/user/listings', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.props.token
+      }
+    })
+      .then(res => res.json())
+      .then(listings => {
+        this.setState({ listings });
+      });
   }
 
   render() {

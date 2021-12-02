@@ -46,29 +46,28 @@ export default class CreateListingFormParent extends React.Component {
     formData.append('location', location);
     formData.append('condition', this.state.details.condition);
     formData.append('description', this.state.details.description);
-    if (this.props.user && this.props.token) {
-      fetch('/api/listings', {
-        method: 'POST',
-        headers: {
-          'X-Access-Token': this.props.token
-        },
-        body: formData
+    fetch('/api/listings', {
+      method: 'POST',
+      headers: {
+        'X-Access-Token': this.props.token
+      },
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          details: {
+            title: '',
+            price: '',
+            condition: '',
+            description: '',
+            file: null
+          },
+          view: 'published'
+        });
       })
-        .then(response => response.json())
-        .then(data => {
-          this.setState({
-            details: {
-              title: '',
-              price: '',
-              condition: '',
-              description: '',
-              file: null
-            },
-            view: 'published'
-          });
-        })
-        .catch(err => console.error(err));
-    }
+      .catch(err => console.error(err));
+
   }
 
   render() {
