@@ -302,6 +302,26 @@ app.patch('/api/user/listings/:listingId', uploadsMiddleware, (req, res, next) =
     .catch(err => next(err));
 });
 
+app.post('/api/user/saved/:listingId', (req, res, next) => {
+  const listingId = parseInt(req.params.listingId, 10);
+  const { userId } = req.user;
+  if (!listingId) {
+    throw new ClientError(400, 'listingId must be a positive integer.');
+  }
+  const sql = `
+    insert into "savedItems"
+    ("listingId", "userId")
+    values ($1, $2)
+    returning *;
+    `;
+  const values = [listingId, userId];
+  db.query(sql, values)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
