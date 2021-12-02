@@ -341,6 +341,7 @@ input[type="file"] {
 
 .row-details-body {
   flex-basis: calc(100% / 2);
+  background-color: white;
 }
 
 .col-title {
@@ -380,6 +381,40 @@ input[type="file"] {
 .edit-icon:active,
 .bookmark-icon:active {
   transform: scale(0.97);
+}
+
+.image-container {
+  position: relative;
+  z-index: -1;
+}
+
+/* .saved-prompt {
+  color: white;
+  background-color: rgb(0 0 0 / 75%);
+  width: 100%;
+  padding: 8px 0;
+  font-size: 1.2rem;
+  position: absolute;
+  border-radius: 0 0 10px 10px;
+  transition: 0.2s;
+} */
+
+.saved-view {
+  bottom: -19px;
+  transition: 0.2s ease-in-out;
+}
+
+.saved-hidden {
+  bottom: -59px;
+
+  /* display: none; */
+  background-color: rgb(255 255 255 / 0%);
+  color: rgb(255 255 255 / 0%);
+  transition: 0.2s ease-in-out;
+}
+
+.column-contact-empty {
+  background-color: white;
 }
 
 /* edit-listing */

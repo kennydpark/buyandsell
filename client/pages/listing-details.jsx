@@ -9,11 +9,13 @@ export default class ListingDetails extends React.Component {
       listing: null,
       sellerEmail: null,
       formActive: false,
-      saved: false
+      saved: false,
+      savedPrompt: 'saved-hidden saved-prompt'
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
+    this.saved = this.saved.bind(this);
   }
 
   componentDidMount() {
@@ -65,9 +67,10 @@ export default class ListingDetails extends React.Component {
         }
       })
         .then(res => {
-          this.setState({ saved: true });
+          this.setState({ saved: true, savedPrompt: 'saved-view saved-prompt' });
         })
         .catch(err => console.error(err));
+      this.saved();
     } else {
       fetch(`/api/user/saved/${this.props.listingId}`, {
         method: 'DELETE',
@@ -81,6 +84,12 @@ export default class ListingDetails extends React.Component {
         })
         .catch(err => console.error(err));
     }
+  }
+
+  saved() {
+    this.intervalID = setTimeout(() => {
+      this.setState({ savedPrompt: 'saved-hidden saved-prompt' });
+    }, 2000);
   }
 
   render() {
@@ -120,6 +129,7 @@ export default class ListingDetails extends React.Component {
               <div className="details-column-half">
                 <div className="row image-container justify-center margin-auto">
                   <img src={imageUrl} className="details-listing-image" />
+                  <p className={this.state.savedPrompt}>Saved</p>
                 </div>
               </div>
               <div className="details-column-half details-column-body">
@@ -151,7 +161,7 @@ export default class ListingDetails extends React.Component {
               </div>
             </div>
             <div className={contactView}>
-              <div className="column-half"></div>
+              <div className="column-half column-contact-empty"></div>
               <div className="column-half column-contact-seller">
                 <button onClick={this.handleContactButton} className="contact-seller">Contact Seller</button>
               </div>
