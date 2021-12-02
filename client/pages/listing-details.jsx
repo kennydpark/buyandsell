@@ -73,7 +73,12 @@ export default class ListingDetails extends React.Component {
               </div>
               <div className="details-column-half details-column-body">
                 <div className="row row-details-body">
-                  <p className="details-card-title details-text text-start dark-grey-color">{title}</p>
+                  <div className="col-title">
+                    <p className="details-card-title details-text text-start dark-grey-color">{title}</p>
+                  </div>
+                  <div className="col-bookmark-icon">
+                    <a><i className="far fa-bookmark bookmark-icon"></i></a>
+                  </div>
                 </div>
                 <div className="row">
                   <p className="details-card-price details-text dark-grey-color">${price}</p>
@@ -95,6 +100,7 @@ export default class ListingDetails extends React.Component {
               </div>
             </div>
             <div className={contactView}>
+              <div className="column-half"></div>
               <div className="column-half column-contact-seller">
                 <button onClick={this.handleContactButton} className="contact-seller">Contact Seller</button>
               </div>
