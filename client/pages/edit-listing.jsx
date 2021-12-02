@@ -30,25 +30,23 @@ export default class EditListing extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.user && this.props.token) {
-      fetch(`/api/user/listings/${this.props.listingId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': this.props.token
-        }
-      })
-        .then(res => res.json())
-        .then(listing => this.setState({
-          listing,
-          file: listing.imageUrl,
-          imagePreview: listing.imageUrl,
-          title: listing.title,
-          price: listing.price,
-          condition: listing.condition,
-          description: listing.description
-        }));
-    }
+    fetch(`/api/user/listings/${this.props.listingId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.props.token
+      }
+    })
+      .then(res => res.json())
+      .then(listing => this.setState({
+        listing,
+        file: listing.imageUrl,
+        imagePreview: listing.imageUrl,
+        title: listing.title,
+        price: listing.price,
+        condition: listing.condition,
+        description: listing.description
+      }));
   }
 
   handleImageChange(event) {
@@ -82,19 +80,18 @@ export default class EditListing extends React.Component {
     formData.append('price', this.state.price);
     formData.append('condition', this.state.condition);
     formData.append('description', this.state.description);
-    if (this.props.user && this.props.token) {
-      fetch(`/api/user/listings/${this.props.listingId}`, {
-        method: 'PATCH',
-        headers: {
-          'X-Access-Token': this.props.token
-        },
-        body: formData
+    fetch(`/api/user/listings/${this.props.listingId}`, {
+      method: 'PATCH',
+      headers: {
+        'X-Access-Token': this.props.token
+      },
+      body: formData
+    })
+      .then(res => {
+        this.setState({ updated: true });
       })
-        .then(res => {
-          this.setState({ updated: true });
-        })
-        .catch(err => console.error(err));
-    }
+      .catch(err => console.error(err));
+
   }
 
   handleConfirm() {
