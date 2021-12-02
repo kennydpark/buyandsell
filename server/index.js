@@ -338,6 +338,29 @@ app.get('/api/user/saved', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/user/saved/:listingId', (req, res, next) => {
+  const listingId = parseInt(req.params.listingId, 10);
+  if (!listingId) {
+    throw new ClientError(400, 'listingId must be a positive integer.');
+  }
+  const sql = `
+    delete from "savedItems"
+    where "listingId" = $1
+    and "userId" = $2
+    returning *;
+    `;
+  const values = [listingId, req.user.userId];
+  db.query(sql, values)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(400, `Cannot find listing with listingId: ${listingId}`);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
