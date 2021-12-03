@@ -329,6 +329,7 @@ app.get('/api/user/saved', (req, res, next) => {
       from "listings"
       join "savedItems" using ("listingId")
       where "savedItems"."userId" = $1
+      order by "savedItems"."createdAt"
     `;
   const params = [userId];
   db.query(sql, params)
