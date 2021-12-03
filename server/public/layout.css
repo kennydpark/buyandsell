@@ -157,32 +157,6 @@
     border-radius: 10px;
   }
 
-  /* .image-container {
-    position: relative;
-    z-index: -1;
-  }
-
-  .saved-prompt {
-    color: white;
-    background-color: rgb(0 0 0 / 75%);
-    width: 100%;
-    padding: 8px 0;
-    font-size: 1.2rem;
-    position: fixed;
-    border-radius: 0 0 10px 10px;
-    transition: 0.2s ease-in-out;
-  }
-
-  .saved-view {
-    right: 100px;
-  }
-
-  .saved-hidden {
-    bottom: -59px;
-    transition: 0.6s;
-    transition-timing-function: cubic-bezier(0.9, 0, 0.65, 1);
-  } */
-
   .saved-prompt {
     color: white;
     background-color: rgb(0 0 0 / 75%);
