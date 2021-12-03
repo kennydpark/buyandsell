@@ -10,7 +10,7 @@ export default class ListingDetails extends React.Component {
       sellerEmail: null,
       formActive: false,
       saved: false,
-      savedPrompt: 'saved-hidden saved-prompt'
+      savedPrompt: 'saved-prompt saved-hidden'
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
@@ -22,6 +22,7 @@ export default class ListingDetails extends React.Component {
     fetch(`/api/listings/${this.props.listingId}`)
       .then(res => res.json())
       .then(listing => this.setState({ listing }));
+
     fetch(`/api/user/saved/${this.props.listingId}`, {
       method: 'GET',
       headers: {
@@ -67,7 +68,7 @@ export default class ListingDetails extends React.Component {
         }
       })
         .then(res => {
-          this.setState({ saved: true, savedPrompt: 'saved-view saved-prompt' });
+          this.setState({ saved: true, savedPrompt: 'saved-prompt saved-view' });
         })
         .catch(err => console.error(err));
       this.saved();
@@ -88,7 +89,7 @@ export default class ListingDetails extends React.Component {
 
   saved() {
     this.intervalID = setTimeout(() => {
-      this.setState({ savedPrompt: 'saved-hidden saved-prompt' });
+      this.setState({ savedPrompt: 'saved-prompt saved-hidden' });
     }, 2000);
   }
 
@@ -98,17 +99,21 @@ export default class ListingDetails extends React.Component {
     const {
       imageUrl, title, price, location, condition, description
     } = this.state.listing;
-    let contactView;
-    if (this.state.listing.userId === this.props.user.userId) {
-      contactView = 'hidden';
-    } else {
-      contactView = 'row row-contact-seller justify-center';
-    }
     let bookmark;
     if (this.state.saved === false) {
       bookmark = 'far fa-bookmark bookmark-icon';
     } else {
       bookmark = 'fas fa-bookmark bookmark-icon';
+    }
+    let contactView;
+    let notice;
+    if (this.state.listing.userId === this.props.user.userId) {
+      contactView = 'hidden';
+      bookmark = 'hidden';
+      notice = 'row justify-center italic dark-grey-color';
+    } else {
+      contactView = 'row row-contact-seller justify-center';
+      notice = 'hidden';
     }
     return (
       <>
@@ -165,6 +170,9 @@ export default class ListingDetails extends React.Component {
               <div className="column-half column-contact-seller">
                 <button onClick={this.handleContactButton} className="contact-seller">Contact Seller</button>
               </div>
+            </div>
+            <div className={notice}>
+              <p>You are the seller of this listing.</p>
             </div>
           </div>
         </div>
