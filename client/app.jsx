@@ -68,7 +68,8 @@ export default class App extends React.Component {
       return <ListingDetails
         user={this.state.user}
         token={this.state.token}
-        listingId = {listingId} />;
+        listingId = {listingId}
+        route={this.state.route} />;
     } else if (route.path === 'create-listing') {
       return <CreateListingFormParent
         user={this.state.user}
@@ -87,6 +88,13 @@ export default class App extends React.Component {
       return <SavedItems
         user={this.state.user}
         token={this.state.token} />;
+    } else if (route.path === 'saved-item-details') {
+      const listingId = route.params.get('listingId');
+      return <ListingDetails
+        user={this.state.user}
+        token={this.state.token}
+        listingId={listingId}
+        route={this.state.route} />;
     } else if (route.path === 'edit-listing') {
       const listingId = route.params.get('listingId');
       return <EditListing

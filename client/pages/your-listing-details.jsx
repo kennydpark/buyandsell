@@ -52,7 +52,7 @@ export default class YourListingDetails extends React.Component {
                     <p className="details-card-title details-text text-start">{title}</p>
                   </div>
                   <div className="col-edit-icon">
-                    <a href={href}><i className="fas fa-pen edit-icon dark-grey-color"></i></a>
+                    <a href={href}><i className="fas fa-pen edit-icon"></i></a>
                   </div>
                 </div>
                 <div className="row">

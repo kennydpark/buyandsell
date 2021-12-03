@@ -205,6 +205,10 @@ input[type="file"] {
   display: none;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .white {
   color: white;
 }
@@ -324,7 +328,7 @@ input[type="file"] {
 }
 
 .back-icon {
-  font-size: 30px;
+  font-size: 32px;
   transition: 0.2s ease-in-out;
 }
 
@@ -337,37 +341,71 @@ input[type="file"] {
   transform: scale(0.97);
 }
 
-/* your-listing-details */
+/* your-listing-details, bookmark-icon */
 
 .row-details-body {
   flex-basis: calc(100% / 2);
+  background-color: white;
 }
 
 .col-title {
   width: 80%;
 }
 
-.col-edit-icon {
+.col-edit-icon,
+.col-bookmark-icon {
   width: 20%;
   margin: 0;
   text-align: end;
 }
 
 .edit-icon {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   padding-top: 10px;
   margin-top: 5px;
   color: #2978b5;
   transition: 0.2s ease-in-out;
 }
 
-.edit-icon:hover {
+.bookmark-icon {
+  font-size: 1.9rem;
+  padding-top: 9px;
+  margin-top: 9px;
+  color: #2978b5;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.edit-icon:hover,
+.bookmark-icon:hover {
   color: #236699;
   transition: 0.2s ease-in-out;
 }
 
-.edit-icon:active {
+.edit-icon:active,
+.bookmark-icon:active {
   transform: scale(0.97);
+}
+
+.image-container {
+  position: relative;
+  z-index: -1;
+}
+
+.saved-view {
+  bottom: -19px;
+  transition: 0.2s ease-in-out;
+}
+
+.saved-hidden {
+  bottom: -59px;
+  background-color: rgb(255 255 255 / 0%);
+  color: rgb(255 255 255 / 0%);
+  transition: 0.2s ease-in-out;
+}
+
+.column-contact-empty {
+  background-color: white;
 }
 
 /* edit-listing */
