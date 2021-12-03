@@ -41,6 +41,7 @@
 .row-file-upload {
   border: #8ab6d6 solid 1px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .custom-file-upload {
@@ -93,11 +94,6 @@
     max-width: 900px;
   }
 
-  .row-front-title {
-    padding-top: 30%;
-    margin-bottom: 60px;
-  }
-
   .browse-all-container {
     max-width: 1100px;
   }
@@ -121,7 +117,6 @@
 
   .row-file-upload {
     height: 344px;
-    cursor: pointer;
   }
 
   .custom-file-upload {
@@ -152,20 +147,10 @@
 
   .email-modal-window {
     width: 420px;
-    margin: auto;
-    background-color: white;
-    border-radius: 10px;
   }
 
   .saved-prompt {
-    color: white;
-    background-color: rgb(0 0 0 / 75%);
     width: 360px;
-    padding: 8px 0;
-    font-size: 1.2rem;
-    position: absolute;
-    border-radius: 0 0 10px 10px;
-    transition: 0.2s;
   }
 }
 
@@ -176,7 +161,6 @@
 
   .row-front-title {
     padding-top: 25%;
-    margin-bottom: 60px;
   }
 
   .form-container-full {
@@ -187,7 +171,6 @@
   .row-file-upload {
     height: 400px;
     align-items: right;
-    cursor: pointer;
   }
 
   .custom-file-upload {
@@ -197,8 +180,6 @@
   .details-listing-image {
     width: 500px;
     height: 500px;
-    object-fit: cover;
-    border-radius: 10px;
   }
 
   .details-column-body {
@@ -215,13 +196,6 @@
   }
 
   .saved-prompt {
-    color: white;
-    background-color: rgb(0 0 0 / 75%);
     width: 500px;
-    padding: 8px 0;
-    font-size: 1.2rem;
-    position: absolute;
-    border-radius: 0 0 10px 10px;
-    transition: 0.2s;
   }
 }
