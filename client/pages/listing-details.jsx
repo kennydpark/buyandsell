@@ -10,12 +10,13 @@ export default class ListingDetails extends React.Component {
       sellerEmail: null,
       formActive: false,
       saved: false,
-      savedPrompt: 'saved-prompt saved-hidden'
+      savedPrompt: 'saved-prompt saved-hidden',
+      savedPromptText: 'Saved'
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
-    this.saved = this.saved.bind(this);
+    this.prompt = this.prompt.bind(this);
   }
 
   componentDidMount() {
@@ -68,10 +69,14 @@ export default class ListingDetails extends React.Component {
         }
       })
         .then(res => {
-          this.setState({ saved: true, savedPrompt: 'saved-prompt saved-view' });
+          this.setState({
+            saved: true,
+            savedPrompt: 'saved-prompt saved-view',
+            savedPromptText: 'Saved'
+          });
         })
         .catch(err => console.error(err));
-      this.saved();
+      this.prompt();
     } else {
       fetch(`/api/user/saved/${this.props.listingId}`, {
         method: 'DELETE',
@@ -81,13 +86,18 @@ export default class ListingDetails extends React.Component {
         }
       })
         .then(res => {
-          this.setState({ saved: false });
+          this.setState({
+            saved: false,
+            savedPrompt: 'saved-prompt saved-view',
+            savedPromptText: 'Removed'
+          });
         })
         .catch(err => console.error(err));
+      this.prompt();
     }
   }
 
-  saved() {
+  prompt() {
     this.intervalID = setTimeout(() => {
       this.setState({ savedPrompt: 'saved-prompt saved-hidden' });
     }, 2000);
@@ -110,7 +120,7 @@ export default class ListingDetails extends React.Component {
     if (this.state.listing.userId === this.props.user.userId) {
       contactView = 'hidden';
       bookmark = 'hidden';
-      notice = 'row justify-center italic dark-grey-color';
+      notice = 'row justify-center italic dark-grey-color front-margin-top';
     } else {
       contactView = 'row row-contact-seller justify-center';
       notice = 'hidden';
@@ -134,7 +144,7 @@ export default class ListingDetails extends React.Component {
               <div className="details-column-half">
                 <div className="row image-container justify-center margin-auto">
                   <img src={imageUrl} className="details-listing-image" />
-                  <p className={this.state.savedPrompt}>Saved</p>
+                  <p className={this.state.savedPrompt}>{this.state.savedPromptText}</p>
                 </div>
               </div>
               <div className="details-column-half details-column-body">
