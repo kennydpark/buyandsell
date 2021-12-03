@@ -365,26 +365,6 @@ app.get('/api/user/saved/listing/:listingId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// app.get('/api/user/saved/:listingId', (req, res, next) => {
-//   const listingId = parseInt(req.params.listingId, 10);
-//   const { userId } = req.user;
-//   if (!listingId) {
-//     throw new ClientError(400, 'listingId must be a positive integer.');
-//   }
-//   const sql = `
-//     select *
-//       from "savedItems"
-//       where "listingId" = $1
-//       and "userId" = $2
-//     `;
-//   const params = [listingId, userId];
-//   db.query(sql, params)
-//     .then(result => {
-//       res.json(result.rows);
-//     })
-//     .catch(err => next(err));
-// });
-
 app.delete('/api/user/saved/:listingId', (req, res, next) => {
   const listingId = parseInt(req.params.listingId, 10);
   if (!listingId) {
