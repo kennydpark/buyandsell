@@ -19,9 +19,7 @@ export default class YourListings extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(listings => {
-        this.setState({ listings });
-      });
+      .then(listings => this.setState({ listings }));
   }
 
   render() {
