@@ -24,7 +24,7 @@ export default class ListingDetails extends React.Component {
       .then(res => res.json())
       .then(listing => this.setState({ listing }));
 
-    fetch(`/api/user/saved/${this.props.listingId}`, {
+    fetch(`/api/user/saved/listing/${this.props.listingId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export default class ListingDetails extends React.Component {
     })
       .then(res => res.json())
       .then(listing => {
-        if (listing.length === 0) {
+        if (listing.false) {
           this.setState({ saved: false });
         } else {
           this.setState({ saved: true });

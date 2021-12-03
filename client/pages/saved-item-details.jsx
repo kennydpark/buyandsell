@@ -21,6 +21,16 @@ export default class SavedItemDetails extends React.Component {
   }
 
   componentDidMount() {
+    // fetch(`/api/user/saved/listing/${this.props.listingId}`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'X-Access-Token': this.props.token
+    //   }
+    // })
+    //   .then(res => res.json())
+    //   .then(listing => this.setState({ listing }));
+
     fetch(`/api/user/saved/listing/${this.props.listingId}`, {
       method: 'GET',
       headers: {
@@ -29,22 +39,13 @@ export default class SavedItemDetails extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(listing => this.setState({ listing }));
-
-    fetch(`/api/user/saved/${this.props.listingId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': this.props.token
-      }
-    })
-      .then(res => res.json())
       .then(listing => {
-        if (listing.length === 0) {
+        if (listing.false) {
           this.setState({ saved: false });
         } else {
           this.setState({ saved: true });
         }
+        this.setState({ listing });
       });
   }
 
@@ -113,7 +114,7 @@ export default class SavedItemDetails extends React.Component {
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
-    if (this.state.listing.error) {
+    if (this.state.listing.false) {
       return <NotFound />;
     }
     const {
