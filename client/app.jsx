@@ -13,7 +13,6 @@ import YourListings from './pages/your-listings';
 import YourListingDetails from './pages/your-listing-details';
 import EditListing from './pages/edit-listing';
 import SavedItems from './pages/saved-items';
-import SavedItemDetails from './pages/saved-item-details';
 import CreateListingFormParent from './components/create-listing-form-parent';
 
 export default class App extends React.Component {
@@ -69,7 +68,8 @@ export default class App extends React.Component {
       return <ListingDetails
         user={this.state.user}
         token={this.state.token}
-        listingId = {listingId} />;
+        listingId = {listingId}
+        route={this.state.route} />;
     } else if (route.path === 'create-listing') {
       return <CreateListingFormParent
         user={this.state.user}
@@ -90,10 +90,11 @@ export default class App extends React.Component {
         token={this.state.token} />;
     } else if (route.path === 'saved-item-details') {
       const listingId = route.params.get('listingId');
-      return <SavedItemDetails
+      return <ListingDetails
         user={this.state.user}
         token={this.state.token}
-        listingId={listingId} />;
+        listingId={listingId}
+        route={this.state.route} />;
     } else if (route.path === 'edit-listing') {
       const listingId = route.params.get('listingId');
       return <EditListing

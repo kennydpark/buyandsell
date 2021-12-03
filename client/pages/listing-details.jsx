@@ -1,6 +1,7 @@
 import React from 'react';
 import EmailForm from '../components/email-form-modal';
 import Redirect from '../components/redirect';
+import NotFound from './not-found';
 
 export default class ListingDetails extends React.Component {
   constructor(props) {
@@ -20,9 +21,28 @@ export default class ListingDetails extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/listings/${this.props.listingId}`)
-      .then(res => res.json())
-      .then(listing => this.setState({ listing }));
+    if (this.props.route.path === 'listing-details') {
+      fetch(`/api/listings/${this.props.listingId}`)
+        .then(res => res.json())
+        .then(listing => this.setState({ listing }));
+    } else {
+      fetch(`/api/user/saved/listing/${this.props.listingId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': this.props.token
+        }
+      })
+        .then(res => res.json())
+        .then(listing => {
+          if (listing.false) {
+            this.setState({ saved: false });
+          } else {
+            this.setState({ saved: true });
+          }
+          this.setState({ listing });
+        });
+    }
 
     fetch(`/api/user/saved/listing/${this.props.listingId}`, {
       method: 'GET',
@@ -106,6 +126,9 @@ export default class ListingDetails extends React.Component {
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
+    if (this.state.listing.false) {
+      return <NotFound />;
+    }
     const {
       imageUrl, title, price, location, condition, description
     } = this.state.listing;
@@ -117,7 +140,7 @@ export default class ListingDetails extends React.Component {
     }
     let contactView;
     let notice;
-    if (this.state.listing.userId === this.props.user.userId) {
+    if ((this.props.route.path === 'listing-details') && (this.state.listing.userId === this.props.user.userId)) {
       contactView = 'hidden';
       bookmark = 'hidden';
       notice = 'row justify-center italic dark-grey-color front-margin-top';
@@ -125,19 +148,26 @@ export default class ListingDetails extends React.Component {
       contactView = 'row row-contact-seller justify-center';
       notice = 'hidden';
     }
+    let href;
+    if (this.props.route.path === 'listing-details') {
+      href = '#browse-all';
+    } else {
+      href = '#saved-items';
+    }
     return (
       <>
         < EmailForm formActive={this.state.formActive}
         listingId={this.props.listingId}
         listingInfo={this.state.listing}
         sellerEmail={this.state.sellerEmail}
-        handleCancelButton={this.handleCancelButton} />
+        handleCancelButton={this.handleCancelButton}
+        route={this.props.route} />
         <div className="details-container">
           <div className="row row-header justify-center">
             <h1 className="page-header-text">buyandsell</h1>
           </div>
           <div className="row row-back-button justify-left">
-            <a href="#browse-all"><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
+            <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
           </div>
           <div className="details-container-full text-center">
             <div className="row justify-center margin-auto">
