@@ -123,6 +123,10 @@ export default class ListingDetails extends React.Component {
     }, 2000);
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.intervalID);
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
