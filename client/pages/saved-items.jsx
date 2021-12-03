@@ -1,6 +1,6 @@
 import React from 'react';
 import Redirect from '../components/redirect';
-import NoListings from '../components/no-listings';
+import NoSavedItems from '../components/no-saved-items';
 
 export default class SavedItems extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class SavedItems extends React.Component {
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (this.state.listings.length === 0) {
-      return <NoListings />;
+      return <NoSavedItems />;
     } else {
       return (
         <div className="container">
