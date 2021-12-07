@@ -30,6 +30,7 @@ export default class YourListingDetails extends React.Component {
     }
     const { listingId, imageUrl, title, price, location, condition, description } = this.state.listing;
     const href = `#edit-listing?listingId=${listingId}`;
+    const googleLocation = `http://maps.google.com/?q=${location}`;
     return (
       <>
         <div className="details-container">
@@ -59,7 +60,9 @@ export default class YourListingDetails extends React.Component {
                   <p className="details-card-price details-text dark-grey-color">${price}</p>
                 </div>
                 <div className="row">
-                  <p className="details-card-location details-text dark-grey-color">{location}</p>
+                  <a href={googleLocation} target="_blank" rel="noopener noreferrer" className="google-location-anchor">
+                    <p className="details-card-location details-text dark-grey-color">{location} <span><i className="fas fa-external-link-alt external-link-icon"></i></span></p>
+                  </a>
                 </div>
                 <div className="row row-condition margin-auto dark-grey-color">
                   <div className="column">

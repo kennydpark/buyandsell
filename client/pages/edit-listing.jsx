@@ -24,7 +24,6 @@ export default class EditListing extends React.Component {
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
   }
@@ -91,23 +90,10 @@ export default class EditListing extends React.Component {
         this.setState({ updated: true });
       })
       .catch(err => console.error(err));
-
   }
 
   handleConfirm() {
     this.setState({ formActive: true });
-  }
-
-  handleDelete() {
-    event.preventDefault();
-    fetch(`/api/user/listings/${this.props.listingId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': this.props.token
-      }
-    })
-      .then(res => res.json());
   }
 
   handleCancelButton() {
@@ -180,7 +166,7 @@ export default class EditListing extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="row row-details-submit">
                 <div className="col-buttons cancel-previous">
                   <a onClick={this.handleConfirm} className="delete-button">Delete</a>
                 </div>

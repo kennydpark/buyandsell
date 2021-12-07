@@ -16,11 +16,12 @@ export default class CreateListingFormParent extends React.Component {
         file: null
       },
       view: 'details',
-      location: 'Location'
+      location: ''
     };
     this.handleLocationSubmitted = this.handleLocationSubmitted.bind(this);
     this.switchToDetails = this.switchToDetails.bind(this);
     this.handleDetailsSubmitted = this.handleDetailsSubmitted.bind(this);
+    this.handleLocationSelect = this.handleLocationSelect.bind(this);
   }
 
   switchToDetails(location) {
@@ -67,13 +68,14 @@ export default class CreateListingFormParent extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
 
+  handleLocationSelect(address) {
+    this.setState({ location: address });
   }
 
   render() {
-
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-
     if (this.state.view === 'details') {
       return <CreateListingFormDetails
       switchToLocation={this.switchToLocation}
@@ -84,7 +86,9 @@ export default class CreateListingFormParent extends React.Component {
       return <CreateListingFormLocation
       switchToDetails={this.switchToDetails}
       handleLocationSubmitted={this.handleLocationSubmitted}
-      location={this.state.location} />;
+      location={this.state.location}
+      nav={this.props.nav}
+      handleLocationSelect={this.handleLocationSelect} />;
     } else if (this.state.view === 'published') {
       return <CreateListingPublished />;
     }
