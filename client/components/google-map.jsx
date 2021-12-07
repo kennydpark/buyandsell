@@ -10,6 +10,7 @@ export class MapContainer extends Component {
     super(props);
     this.state = {
       address: this.props.location,
+      placeId: null,
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
@@ -27,13 +28,12 @@ export class MapContainer extends Component {
     this.setState({ address });
   }
 
-  handleSelect(address) {
+  handleSelect(address, placeId) {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
         // console.log('Success', latLng);
-        this.setState({ address });
-        this.setState({ mapCenter: latLng });
+        this.setState({ address, placeId, mapCenter: latLng });
         this.props.handleAddress(this.state.address);
       })
       .catch(error => console.error('Error', error));
@@ -72,7 +72,7 @@ export class MapContainer extends Component {
               />
               <div className="autocomplete-dropdown-container text-start dark-grey-color">
                 {loading && <div>Loading...</div>}
-                {suggestions.map((suggestion, index) => {
+                {suggestions.map(suggestion => {
                   const className = suggestion.active
                     ? 'suggestion-item--active'
                     : 'suggestion-item';
@@ -82,11 +82,11 @@ export class MapContainer extends Component {
                     : { backgroundColor: '#ffffff', cursor: 'pointer' };
                   return (
                     <div
-                      key={index}
                       {...getSuggestionItemProps(suggestion, {
                         className,
                         style
                       })}
+                      key={suggestion.placeId}
                     >
                       <span>{suggestion.description}</span>
                     </div>
@@ -96,6 +96,7 @@ export class MapContainer extends Component {
             </div>
           )}
         </PlacesAutocomplete>
+
         <Map
           containerStyle={containerStyle}
           className="map"
@@ -122,5 +123,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ('AIzaSyCjYP25K9AebK2XPrNYJ19qO19ELe1jU4c')
+  apiKey: (process.env.GOOGLE_API_KEY)
 })(MapContainer);
