@@ -75,55 +75,23 @@ export default class CreateListingFormParent extends React.Component {
     this.setState({ location: address });
   }
 
-  // render() {
-
-  //   if (!this.props.user || !this.props.token) return <Redirect to="" />;
-
-  //   if (this.state.view === 'details') {
-  //     return <CreateListingFormDetails
-  //     switchToLocation={this.switchToLocation}
-  //     handleDetailsSubmitted={this.handleDetailsSubmitted}
-  //     details={this.state.details}
-  //     user={this.props.user} />;
-  //   } else if (this.state.view === 'location') {
-  //     return <CreateListingFormLocation
-  //     switchToDetails={this.switchToDetails}
-  //     handleLocationSubmitted={this.handleLocationSubmitted}
-  //     location={this.state.location}
-  //     nav={this.props.nav}
-  //     handleLocationSelect={this.handleLocationSelect} />;
-  //   } else if (this.state.view === 'published') {
-  //     return <CreateListingPublished />;
-  //   }
-  // }
-
   render() {
 
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
 
     if (this.state.view === 'details') {
-      return (
-        <>
-      <CreateListingFormDetails
-        switchToLocation={this.switchToLocation}
-        handleDetailsSubmitted={this.handleDetailsSubmitted}
-        details={this.state.details}
-        user={this.props.user} />
-      <CreateListingFormLocation
-        switchToDetails={this.switchToDetails}
-        handleLocationSubmitted={this.handleLocationSubmitted}
-        location={this.state.location}
-        nav={this.props.nav}
-        handleLocationSelect={this.handleLocationSelect} />
-        </>
-      );
+      return <CreateListingFormDetails
+      switchToLocation={this.switchToLocation}
+      handleDetailsSubmitted={this.handleDetailsSubmitted}
+      details={this.state.details}
+      user={this.props.user} />;
     } else if (this.state.view === 'location') {
       return <CreateListingFormLocation
-        switchToDetails={this.switchToDetails}
-        handleLocationSubmitted={this.handleLocationSubmitted}
-        location={this.state.location}
-        nav={this.props.nav}
-        handleLocationSelect={this.handleLocationSelect} />;
+      switchToDetails={this.switchToDetails}
+      handleLocationSubmitted={this.handleLocationSubmitted}
+      location={this.state.location}
+      nav={this.props.nav}
+      handleLocationSelect={this.handleLocationSelect} />;
     } else if (this.state.view === 'published') {
       return <CreateListingPublished />;
     }
