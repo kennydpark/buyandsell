@@ -180,7 +180,7 @@ export default class EditListing extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="row row-details-submit">
                 <div className="col-buttons cancel-previous">
                   <a onClick={this.handleConfirm} className="delete-button">Delete</a>
                 </div>
