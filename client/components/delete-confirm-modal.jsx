@@ -5,15 +5,45 @@ class DeleteConfirm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deleted: false
+      deleted: false,
+      saved: false
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.close = this.close.bind(this);
     this.deleted = this.deleted.bind(this);
   }
 
+  componentDidMount() {
+    fetch(`/api/user/allSaved/${this.props.listing.listingId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': this.props.token
+      }
+    })
+      .then(res => res.json())
+      .then(listing => {
+        if (listing.false) {
+          this.setState({ saved: false });
+        } else {
+          this.setState({ saved: true });
+        }
+      });
+  }
+
   handleDelete() {
     event.preventDefault();
+    if (this.state.saved === true) {
+      fetch(`/api/user/allSaved/${this.props.listing.listingId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Access-Token': this.props.token
+        }
+      })
+        .catch(err => console.error(err));
+    }
+
     fetch(`/api/user/listings/${this.props.listing.listingId}`, {
       method: 'DELETE',
       headers: {
