@@ -16,8 +16,7 @@ export default class CreateListingFormParent extends React.Component {
         file: null
       },
       view: 'details',
-      location: '',
-      nav: this.props.nav
+      location: ''
     };
     this.handleLocationSubmitted = this.handleLocationSubmitted.bind(this);
     this.switchToDetails = this.switchToDetails.bind(this);
@@ -76,9 +75,7 @@ export default class CreateListingFormParent extends React.Component {
   }
 
   render() {
-
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-
     if (this.state.view === 'details') {
       return <CreateListingFormDetails
       switchToLocation={this.switchToLocation}
