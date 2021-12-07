@@ -598,13 +598,14 @@ input[type="file"] {
   height: 100%;
   position: fixed;
   top: 0;
-  transition: transform 0.7s cubic-bezier(0.21, 0.92, 0, 1);
+  transition: transform 0.3s cubic-bezier(1, 0.04, 1, 1);
   transform: translateX(-100%);
 }
 
 .navbar-modal-container.open {
   box-shadow: 5px 0 10px;
   transform: translateX(0);
+  transition: transform 0.7s cubic-bezier(0.21, 0.92, 0, 1);
 }
 
 .navbar-overlay {
