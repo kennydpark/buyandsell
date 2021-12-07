@@ -117,7 +117,7 @@ export default class CreateListingFormDetails extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="row row-details-submit">
                 <div className="col-buttons cancel-previous">
                   <a href="#browse-all" className="create-listing-cancel-button">Cancel</a>
                 </div>

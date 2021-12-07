@@ -41,11 +41,11 @@ class Navbar extends React.Component {
       icon = 'fas fa-bars navbar-icon';
     }
     if (this.state.active === false) {
-      modal = 'navbar-modal-container navbar-hidden';
+      modal = 'navbar-modal-container';
       full = 'navbar-modal-container-full';
       overlay = '';
     } else {
-      modal = 'navbar-modal-container navbar-view navbar-shadow';
+      modal = 'navbar-modal-container open';
       full = 'navbar-modal-container-full';
       overlay = 'navbar-overlay';
     }

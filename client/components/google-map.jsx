@@ -15,7 +15,6 @@ export class MapContainer extends Component {
       activeMarker: {},
       selectedPlace: {},
       mapCenter: {
-        // irvine coordinates
         lat: 33.6846,
         lng: -117.8265
       }
@@ -37,16 +36,6 @@ export class MapContainer extends Component {
       })
       .catch(error => console.error('Error', error));
   }
-
-  // handleZIndex() {
-  //   this.intervalID = setTimeout(() => {
-  //     this.setState({ zIndex: '0' });
-  //   }, 1000);
-  // }
-
-  // handleZIndexx() {
-  //   this.setState({ zIndex: '-1' });
-  // }
 
   render() {
     const containerStyle = {
@@ -75,7 +64,6 @@ export class MapContainer extends Component {
                   const className = suggestion.active
                     ? 'suggestion-item--active'
                     : 'suggestion-item';
-                  // inline style for demonstration purpose
                   const style = suggestion.active
                     ? { backgroundColor: '#8ab6d662', cursor: 'pointer' }
                     : { backgroundColor: '#ffffff', cursor: 'pointer' };

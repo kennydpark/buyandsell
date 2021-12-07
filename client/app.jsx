@@ -73,7 +73,8 @@ export default class App extends React.Component {
     } else if (route.path === 'create-listing') {
       return <CreateListingFormParent
         user={this.state.user}
-        token={this.state.token} />;
+        token={this.state.token}
+        nav={this.state.nav} />;
     } else if (route.path === 'your-listings') {
       return <YourListings
         user={this.state.user}

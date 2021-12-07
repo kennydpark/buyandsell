@@ -11,8 +11,6 @@ export default class CreateListingFormLocation extends React.Component {
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePreviousClick = this.handlePreviousClick.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSelect = this.handleSelect.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
   }
 
@@ -38,24 +36,12 @@ export default class CreateListingFormLocation extends React.Component {
     this.props.switchToDetails(this.state.location);
   }
 
-  // handleChange(address) {
-  //   this.setState({ address });
-  // }
-
-  // handleSelect(event) {
-  //   geocodeByAddress(address)
-  //     .then(results => getLatLng(results[0]))
-  //     .then(latLng => console.log('Success', latLng))
-  //     .catch(error => console.error('Error', error));
-  // }
-
   handleAddress(address) {
     this.setState({ location: address });
     this.props.handleLocationSelect(address);
   }
 
   render() {
-    // const googleMapPlaceholder = 'images/irvine-map.png';
     return (
       <>
         <div className="container">
