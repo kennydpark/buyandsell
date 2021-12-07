@@ -32,7 +32,6 @@ export class MapContainer extends Component {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
-        // console.log('Success', latLng);
         this.setState({ address, placeId, mapCenter: latLng });
         this.props.handleAddress(this.state.address);
       })
