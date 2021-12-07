@@ -50,7 +50,7 @@ class Navbar extends React.Component {
       overlay = 'navbar-overlay';
     }
     return (
-      <div className='navbar-header'>
+      <div className='row navbar-header'>
         <div className={full}>
         </div>
         <div onClick={this.handleClick} className={overlay}></div>
@@ -130,7 +130,12 @@ class Navbar extends React.Component {
             </li>
           </ul>
         </div>
-        <i onClick={this.handleClick} className={icon}></i>
+        <div className="nav-col-half col-nav-icon">
+          <i onClick={this.handleClick} className={icon}></i>
+        </div>
+        <div className="nav-col-half col-header">
+          <h1 className="nav-header-text lobster-font">buyandsell</h1>
+        </div>
       </div>
     );
   }
