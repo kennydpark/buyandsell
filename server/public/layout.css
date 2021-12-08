@@ -199,6 +199,7 @@
 
   .details-column-body {
     border-radius: 0 10px 10px 0;
+    padding-right: 15px;
   }
 
   .details-card-price {
@@ -258,8 +259,12 @@
     border-radius: 10px 0 0 10px;
   }
 
+  .details-description-container {
+    margin-top: 25px;
+  }
+
   .details-column-body {
-    padding-left: 20px;
+    padding: 0 20px;
     border-radius: 0 10px 10px 0;
   }
 
