@@ -297,7 +297,7 @@ input[type="file"] {
   background-color: white;
   display: block;
   margin-bottom: 75px;
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
@@ -307,6 +307,7 @@ input[type="file"] {
   width: 300px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .browse-all-description {
