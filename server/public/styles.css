@@ -3,10 +3,6 @@
   box-sizing: border-box;
 }
 
-.lobster-font {
-  font-family: Lobster, cursive;
-}
-
 h1,
 a {
   font-weight: 400;
@@ -111,6 +107,23 @@ button.next-submit:active {
 
 /* create-listing */
 
+.dollar {
+  position: relative;
+  width: 100%;
+  color: #7c7c7c;
+}
+
+.dollar input {
+  padding-left: 25px;
+}
+
+.dollar::before {
+  position: absolute;
+  top: 14px;
+  content: "$";
+  left: 10px;
+}
+
 .img-style {
   width: 100%;
   height: 100%;
@@ -121,6 +134,7 @@ button.next-submit:active {
 .page-header-text {
   margin-bottom: 15px;
   font-family: Lobster, cursive;
+  padding-right: 77px;
 }
 
 .col-buttons {
@@ -217,6 +231,14 @@ input[type="file"] {
 
 /* utility */
 
+.lobster-font {
+  font-family: Lobster, cursive;
+}
+
+.roboto-font {
+  font-family: Roboto, sans-serif;
+}
+
 .hidden {
   display: none;
 }
@@ -272,25 +294,25 @@ input[type="file"] {
 /* browse-all, your-listings */
 
 .browse-all-listing {
+  background-color: white;
   display: block;
   margin-bottom: 75px;
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .browse-all-image {
   height: 300px;
   width: 300px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .browse-all-description {
   height: 4.5rem;
   overflow: hidden;
-}
-
-.row-browse-all {
-  margin-top: 20px;
 }
 
 .card-price {
@@ -436,8 +458,8 @@ input[type="file"] {
   transition: 0.2s ease-in-out;
 }
 
-.column-contact-empty {
-  background-color: white;
+.column-contact-seller {
+  text-align: center;
 }
 
 /* edit-listing */
@@ -480,11 +502,21 @@ input[type="file"] {
 
 .navbar-header {
   position: fixed;
+  top: 0;
   background-color: white;
-  width: 45px;
+  width: 100%;
   padding-bottom: 10px;
-  border-radius: 10px;
   z-index: 2;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 7.5%);
+}
+
+.col-nav-icon {
+  width: 11%;
+}
+
+.col-header {
+  width: 89%;
+  margin: auto;
 }
 
 .navbar-ul {
@@ -576,7 +608,7 @@ input[type="file"] {
   font-size: 2rem;
   cursor: pointer;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 12px;
   color: #444;
   transition: 0.2s ease-in-out;
 }
@@ -601,6 +633,7 @@ input[type="file"] {
   transition: transform 0.3s cubic-bezier(1, 0.04, 1, 1);
   transform: translateX(-105%);
   box-shadow: 4px 0 8px;
+  z-index: 3;
 }
 
 .navbar-modal-container.open {
@@ -618,12 +651,14 @@ input[type="file"] {
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 3;
 }
 
 /* email-form */
 
 .row-contact-seller {
   margin-top: 20px;
+  background-color: #f8f8f8;
 }
 
 .email-modal-container {
@@ -638,6 +673,7 @@ input[type="file"] {
   bottom: 0;
   left: 0;
   display: flex;
+  z-index: 3;
 }
 
 .row-input-name {

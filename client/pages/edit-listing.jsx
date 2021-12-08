@@ -29,6 +29,7 @@ export default class EditListing extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundColor = 'white';
     fetch(`/api/user/listings/${this.props.listingId}`, {
       method: 'GET',
       headers: {
@@ -118,14 +119,14 @@ export default class EditListing extends React.Component {
             handleCancelButton={this.handleCancelButton}
             user={this.props.user}
             token={this.props.token} />
-        <div className="container">
+        <div className="container edit-listing-container">
           <div className="row row-header justify-center">
             <h1 className="page-header-text">Edit listing</h1>
           </div>
           <div className="row row-back-button justify-left">
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
           </div>
-          <div className="form-container-full text-center">
+          <div className="edit-form-container text-center">
             <form onSubmit={this.handleSubmit}>
               <div className="row">
                 <div className="column-half">

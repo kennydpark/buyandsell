@@ -11,6 +11,7 @@ export default class YourListingDetails extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundColor = '#F8F8F8';
     fetch(`/api/user/listings/${this.props.listingId}`, {
       method: 'GET',
       headers: {

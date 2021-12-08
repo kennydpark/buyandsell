@@ -4,7 +4,7 @@ export default class NoSavedItems extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container saved-items-container">
         <div className="row row-header justify-center">
           <h1 className="page-header-text">Saved Items</h1>
         </div>

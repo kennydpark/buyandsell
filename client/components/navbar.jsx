@@ -11,7 +11,7 @@ class Navbar extends React.Component {
     this.handleClickSignOut = this.handleClickSignOut.bind(this);
   }
 
-  handleClick() {
+  handleClick(event) {
     if (this.state.active === false) {
       this.setState({ active: true });
     } else {
@@ -35,10 +35,13 @@ class Navbar extends React.Component {
     let overlay;
     const { user } = this.context;
     let icon;
+    let navbar;
     if (!user) {
       icon = 'hidden';
+      navbar = 'hidden';
     } else {
       icon = 'fas fa-bars navbar-icon';
+      navbar = 'row navbar-header';
     }
     if (this.state.active === false) {
       modal = 'navbar-modal-container';
@@ -50,7 +53,14 @@ class Navbar extends React.Component {
       overlay = 'navbar-overlay';
     }
     return (
-      <div className='navbar-header'>
+      <>
+        <div className={navbar}>
+          <div className="nav-col-half col-nav-icon">
+            <a onClick={this.handleClick}>
+              <i className={icon}></i>
+            </a>
+          </div>
+        </div>
         <div className={full}>
         </div>
         <div onClick={this.handleClick} className={overlay}></div>
@@ -103,7 +113,7 @@ class Navbar extends React.Component {
               </a>
             </li>
             <li>
-              { user !== null &&
+              {user !== null &&
                 <a onClick={this.handleClickSignOut}>
                   <div className='row navbar-row-sign'>
                     <div className='navbar-column-sign-icon'>
@@ -115,7 +125,7 @@ class Navbar extends React.Component {
                   </div>
                 </a>
               }
-              { user === null &&
+              {user === null &&
                 <a onClick={this.handleClick} href="#sign-in">
                   <div className='row navbar-row-sign'>
                     <div className='navbar-column-sign-icon'>
@@ -130,8 +140,7 @@ class Navbar extends React.Component {
             </li>
           </ul>
         </div>
-        <i onClick={this.handleClick} className={icon}></i>
-      </div>
+    </>
     );
   }
 }

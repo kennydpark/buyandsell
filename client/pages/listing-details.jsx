@@ -21,6 +21,7 @@ export default class ListingDetails extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundColor = '#F8F8F8';
     if (this.props.route.path === 'listing-details') {
       fetch(`/api/listings/${this.props.listingId}`)
         .then(res => res.json())
@@ -130,7 +131,7 @@ export default class ListingDetails extends React.Component {
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
-    if (this.state.listing.false) {
+    if (this.state.listing.false || this.state.listing.error) {
       return <NotFound />;
     }
     const {
@@ -153,10 +154,13 @@ export default class ListingDetails extends React.Component {
       notice = 'hidden';
     }
     let href;
+    let header;
     if (this.props.route.path === 'listing-details') {
       href = '#browse-all';
+      header = 'buyandsell';
     } else {
       href = '#saved-items';
+      header = 'Saved Items';
     }
     const googleLocation = `http://maps.google.com/?q=${location}`;
     return (
@@ -169,7 +173,7 @@ export default class ListingDetails extends React.Component {
         route={this.props.route} />
         <div className="details-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">buyandsell</h1>
+            <h1 className="page-header-text">{header}</h1>
           </div>
           <div className="row row-back-button justify-left">
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
@@ -213,8 +217,7 @@ export default class ListingDetails extends React.Component {
               </div>
             </div>
             <div className={contactView}>
-              <div className="column-half column-contact-empty"></div>
-              <div className="column-half column-contact-seller">
+              <div className="column-half column-contact-seller justify-center">
                 <button onClick={this.handleContactButton} className="contact-seller">Contact Seller</button>
               </div>
             </div>

@@ -4,7 +4,7 @@ export default class NoListings extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container no-listings-container">
         <div className="row row-header justify-center">
           <h1 className="page-header-text">Your Listings</h1>
         </div>

@@ -1,11 +1,32 @@
-.container,
-.browse-all-container,
-.details-container {
+.container {
   max-width: 575px;
   margin: 0 auto;
 }
 
+.browse-all-container,
+.details-container {
+  max-width: 575px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.details-container,
+.edit-listing-container {
+  margin-top: 80px;
+}
+
+.your-listings-container,
+.saved-items-container,
+.no-listings-container {
+  margin-top: 100px;
+}
+
 .form-container-full {
+  margin: 0 20px;
+  margin-top: 85px;
+}
+
+.edit-form-container {
   margin: 0 20px;
 }
 
@@ -50,6 +71,9 @@
 
 .card-body {
   width: 300px;
+  padding: 10px;
+  padding-top: 0;
+  border-radius: 0 0 10px 10px;
 }
 
 .card-title {
@@ -60,7 +84,8 @@
   height: 300px;
   width: 300px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .margin-auto {
@@ -69,6 +94,15 @@
 
 .details-column-half {
   width: 300px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
+  border-radius: 10px 0 0 10px;
+}
+
+.details-column-body {
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  padding-top: 0;
 }
 
 .email-modal-window {
@@ -111,6 +145,14 @@
   top: 110px;
 }
 
+.row-header {
+  z-index: 2;
+  top: -15px;
+  left: 40px;
+  width: 100%;
+  position: fixed;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
@@ -124,13 +166,13 @@
     max-width: 1100px;
   }
 
-  .row-header {
-    margin-bottom: 30px;
-  }
-
   .column-half,
   .details-column-half {
     width: 50%;
+  }
+
+  .form-container-full {
+    margin-top: 100px;
   }
 
   .row-form {
@@ -150,8 +192,14 @@
   }
 
   .details-listing-image {
-    width: 360px;
-    height: 360px;
+    width: 430px;
+    height: 400px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .details-column-body {
+    border-radius: 0 10px 10px 0;
+    padding-right: 15px;
   }
 
   .details-card-price {
@@ -193,6 +241,7 @@
   .form-container-full {
     max-width: 1060px;
     margin: 0 50px;
+    margin-top: 100px;
   }
 
   .row-file-upload {
@@ -205,12 +254,18 @@
   }
 
   .details-listing-image {
-    width: 500px;
+    width: 530px;
     height: 500px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .details-description-container {
+    margin-top: 25px;
   }
 
   .details-column-body {
-    padding-left: 20px;
+    padding: 0 20px;
+    border-radius: 0 10px 10px 0;
   }
 
   .row-description {

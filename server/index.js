@@ -113,6 +113,7 @@ app.get('/api/listings', (req, res, next) => {
   const sql = `
     select *
     from "listings"
+    order by "createdAt"
     `;
   db.query(sql)
     .then(result => {
@@ -203,6 +204,7 @@ app.get('/api/user/listings', (req, res, next) => {
     select *
     from "listings"
     where "userId" = $1
+    order by "createdAt"
   `;
   const params = [userId];
   db.query(sql, params)

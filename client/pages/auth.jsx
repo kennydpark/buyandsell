@@ -4,12 +4,13 @@ import AuthForm from '../components/auth-form';
 import AppContext from '../lib/app-context';
 
 export default class AuthPage extends React.Component {
+  componentDidMount() {
+    document.body.style.backgroundColor = 'white';
+  }
+
   render() {
-
     const { user, route, handleSignIn } = this.context;
-
     if (user) return <Redirect to="" />;
-
     const welcomeMessage = route.path === 'sign-in'
       ? 'Welcome back'
       : 'Create an account';
