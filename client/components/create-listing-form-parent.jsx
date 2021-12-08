@@ -24,6 +24,10 @@ export default class CreateListingFormParent extends React.Component {
     this.handleLocationSelect = this.handleLocationSelect.bind(this);
   }
 
+  componentDidMount() {
+    document.body.style.backgroundColor = 'white';
+  }
+
   switchToDetails(location) {
     this.setState({
       view: 'details',

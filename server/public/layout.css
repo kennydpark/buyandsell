@@ -1,8 +1,18 @@
-.container,
+.container {
+  max-width: 575px;
+  margin: 0 auto;
+}
+
 .browse-all-container,
 .details-container {
   max-width: 575px;
   margin: 0 auto;
+  margin-top: 100px;
+}
+
+.your-listings-container,
+.saved-items-container {
+  margin-top: 100px;
 }
 
 .form-container-full {
@@ -50,6 +60,9 @@
 
 .card-body {
   width: 300px;
+  padding: 10px;
+  padding-top: 0;
+  border-radius: 0 0 10px 10px;
 }
 
 .card-title {
@@ -60,7 +73,8 @@
   height: 300px;
   width: 300px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .margin-auto {
@@ -69,6 +83,15 @@
 
 .details-column-half {
   width: 300px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
+  border-radius: 10px 0 0 10px;
+}
+
+.details-column-body {
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  padding-top: 0;
 }
 
 .email-modal-window {
@@ -150,8 +173,13 @@
   }
 
   .details-listing-image {
-    width: 360px;
+    width: 430px;
     height: 360px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .details-column-body {
+    border-radius: 0 10px 10px 0;
   }
 
   .details-card-price {
@@ -205,12 +233,14 @@
   }
 
   .details-listing-image {
-    width: 500px;
+    width: 530px;
     height: 500px;
+    border-radius: 10px 0 0 10px;
   }
 
   .details-column-body {
     padding-left: 20px;
+    border-radius: 0 10px 10px 0;
   }
 
   .row-description {

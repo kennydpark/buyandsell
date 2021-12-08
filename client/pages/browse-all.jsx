@@ -10,6 +10,7 @@ export default class BrowseAll extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundColor = '#F8F8F8';
     if (this.props.user) {
       fetch('/api/listings', {
         method: 'GET'
@@ -23,9 +24,9 @@ export default class BrowseAll extends React.Component {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     return (
       <div className="browse-all-container">
-        <div className="row justify-center">
+        {/* <div className="row justify-center">
           <h1 className="page-header-text">buyandsell</h1>
-        </div>
+        </div> */}
         <div className="row row-browse-all justify-center">
           {
             this.state.listings.reverse().map(listing => (

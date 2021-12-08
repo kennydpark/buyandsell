@@ -4,6 +4,10 @@ import AuthForm from '../components/auth-form';
 import AppContext from '../lib/app-context';
 
 export default class AuthPage extends React.Component {
+  componentDidMount() {
+    document.body.style.backgroundColor = 'white';
+  }
+
   render() {
 
     const { user, route, handleSignIn } = this.context;

@@ -21,6 +21,7 @@ export default class ListingDetails extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundColor = '#F8F8F8';
     if (this.props.route.path === 'listing-details') {
       fetch(`/api/listings/${this.props.listingId}`)
         .then(res => res.json())
@@ -168,9 +169,9 @@ export default class ListingDetails extends React.Component {
         handleCancelButton={this.handleCancelButton}
         route={this.props.route} />
         <div className="details-container">
-          <div className="row row-header justify-center">
+          {/* <div className="row row-header justify-center">
             <h1 className="page-header-text">buyandsell</h1>
-          </div>
+          </div> */}
           <div className="row row-back-button justify-left">
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
           </div>

@@ -2,6 +2,10 @@ import React from 'react';
 import Redirect from '../components/redirect';
 
 export default class FrontPage extends React.Component {
+  componentDidMount() {
+    document.body.style.backgroundColor = 'white';
+  }
+
   render() {
     if (this.props.user) return <Redirect to="browse-all" />;
 

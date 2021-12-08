@@ -3,10 +3,6 @@
   box-sizing: border-box;
 }
 
-.lobster-font {
-  font-family: Lobster, cursive;
-}
-
 h1,
 a {
   font-weight: 400;
@@ -217,6 +213,14 @@ input[type="file"] {
 
 /* utility */
 
+.lobster-font {
+  font-family: Lobster, cursive;
+}
+
+.roboto-font {
+  font-family: Roboto, sans-serif;
+}
+
 .hidden {
   display: none;
 }
@@ -272,16 +276,19 @@ input[type="file"] {
 /* browse-all, your-listings */
 
 .browse-all-listing {
+  background-color: white;
   display: block;
   margin-bottom: 75px;
+  border-radius: 0 0 10px 10px;
   cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .browse-all-image {
   height: 300px;
   width: 300px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 .browse-all-description {
@@ -290,7 +297,7 @@ input[type="file"] {
 }
 
 .row-browse-all {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .card-price {
@@ -437,7 +444,7 @@ input[type="file"] {
 }
 
 .column-contact-empty {
-  background-color: white;
+  background-color: #f8f8f8;
 }
 
 /* edit-listing */
@@ -493,16 +500,12 @@ input[type="file"] {
   box-shadow: 0 3px 5px rgb(0 0 0 / 7.5%);
 }
 
-.nav-col-half {
-  /* width: 50%; */
-}
-
 .col-nav-icon {
-  width: 8%;
+  width: 11%;
 }
 
 .col-header {
-  width: 92%;
+  width: 89%;
   margin: auto;
 }
 
@@ -604,6 +607,8 @@ input[type="file"] {
 .navbar-icon {
   font-size: 2rem;
   cursor: pointer;
+
+  /* cursor: pointer; */
   margin-left: 10px;
   margin-top: 14px;
   color: #444;

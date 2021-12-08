@@ -11,6 +11,7 @@ export default class SavedItems extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundColor = '#F8F8F8';
     fetch('/api/user/saved', {
       method: 'GET',
       headers: {
@@ -28,10 +29,10 @@ export default class SavedItems extends React.Component {
       return <NoSavedItems />;
     } else {
       return (
-        <div className="container">
-          <div className="row row-header justify-center">
+        <div className="container saved-items-container">
+          {/* <div className="row row-header justify-center">
             <h1 className="page-header-text">Saved Items</h1>
-          </div>
+          </div> */}
           <div className="row row-browse-all justify-center">
             {
               this.state.listings.reverse().map(listing => (
