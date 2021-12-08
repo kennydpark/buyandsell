@@ -8,6 +8,7 @@ export default class YourListings extends React.Component {
     this.state = {
       listings: []
     };
+    this.scrollToTop = this.scrollToTop.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +24,10 @@ export default class YourListings extends React.Component {
       .then(listings => this.setState({ listings }));
   }
 
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (this.state.listings.length === 0) {
@@ -31,7 +36,7 @@ export default class YourListings extends React.Component {
       return (
         <div className="container your-listings-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">Your Listings</h1>
+            <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Your Listings</h1></a>
           </div>
           <div className="row row-browse-all justify-center">
             {

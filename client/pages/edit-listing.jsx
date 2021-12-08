@@ -26,6 +26,7 @@ export default class EditListing extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
   }
 
   componentDidMount() {
@@ -101,6 +102,10 @@ export default class EditListing extends React.Component {
     this.setState({ formActive: false });
   }
 
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (!this.state.listing) return null;
@@ -121,7 +126,7 @@ export default class EditListing extends React.Component {
             token={this.props.token} />
         <div className="container edit-listing-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">Edit listing</h1>
+            <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Edit listing</h1></a>
           </div>
           <div className="row row-back-button justify-left">
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>

@@ -173,7 +173,7 @@ export default class ListingDetails extends React.Component {
         route={this.props.route} />
         <div className="details-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">{header}</h1>
+            <a href={href} className="page-header-anchor"><h1 className="page-header-text">{header}</h1></a>
           </div>
           <div className="row row-back-button justify-left">
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>

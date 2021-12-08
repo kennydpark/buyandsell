@@ -31,7 +31,7 @@ export default class SavedItems extends React.Component {
       return (
         <div className="container saved-items-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">Saved Items</h1>
+            <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Saved Items</h1></a>
           </div>
           <div className="row row-browse-all justify-center">
             {

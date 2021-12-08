@@ -36,7 +36,7 @@ export default class YourListingDetails extends React.Component {
       <>
         <div className="details-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">Your Listings</h1>
+            <a href="#your-listings" className="page-header-anchor"><h1 className="page-header-text">Your Listings</h1></a>
           </div>
           <div className="row row-back-button justify-left">
             <a href="#your-listings"><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>

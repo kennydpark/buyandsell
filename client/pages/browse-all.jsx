@@ -7,6 +7,7 @@ export default class BrowseAll extends React.Component {
     this.state = {
       listings: []
     };
+    this.scrollToTop = this.scrollToTop.bind(this);
   }
 
   componentDidMount() {
@@ -20,12 +21,17 @@ export default class BrowseAll extends React.Component {
     }
   }
 
+  scrollToTop() {
+    // window.location.reload();
+    window.scrollTo(0, 0);
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     return (
       <div className="browse-all-container">
         <div className="row row-header justify-center">
-          <h1 className="page-header-text">buyandsell</h1>
+          <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">buyandsell</h1></a>
         </div>
         <div className="row row-browse-all justify-center">
           {

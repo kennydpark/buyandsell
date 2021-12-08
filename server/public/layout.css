@@ -17,7 +17,8 @@
 
 .your-listings-container,
 .saved-items-container,
-.no-listings-container {
+.no-listings-container,
+.published-container {
   margin-top: 100px;
 }
 

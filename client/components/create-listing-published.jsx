@@ -10,7 +10,7 @@ export default class CreateListingPublished extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container published-container">
         <div className="row row-header justify-center">
           <h1 className="page-header-text">Item For Sale</h1>
         </div>

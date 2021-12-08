@@ -46,7 +46,7 @@ export default class CreateListingFormLocation extends React.Component {
       <>
         <div className="container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">Item For Sale</h1>
+            <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Item For Sale</h1></a>
           </div>
           <div className="form-container-full">
             <form onSubmit={this.handleSubmit}>

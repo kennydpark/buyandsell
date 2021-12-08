@@ -74,7 +74,7 @@ export default class CreateListingFormDetails extends React.Component {
     return (
       <div className="container">
         <div className="row row-header justify-center">
-          <h1 className="page-header-text">Item For Sale</h1>
+          <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Item For Sale</h1></a>
         </div>
         <div className="form-container-full text-center">
           <form onSubmit={this.handleSubmit}>
