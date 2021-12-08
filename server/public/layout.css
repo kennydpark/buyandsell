@@ -10,13 +10,19 @@
   margin-top: 100px;
 }
 
+.details-container {
+  margin-top: 80px;
+}
+
 .your-listings-container,
-.saved-items-container {
+.saved-items-container,
+.no-listings-container {
   margin-top: 100px;
 }
 
 .form-container-full {
   margin: 0 20px;
+  margin-top: 85px;
 }
 
 .welcome-message {
@@ -134,6 +140,16 @@
   top: 110px;
 }
 
+.row-header {
+  z-index: 2;
+  top: -15px;
+  left: 40px;
+  width: 100%;
+
+  /* margin-left: 30px; */
+  position: fixed;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
@@ -148,12 +164,18 @@
   }
 
   .row-header {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   }
 
   .column-half,
   .details-column-half {
     width: 50%;
+  }
+
+  .form-container-full {
+    /* margin: 0 20px; */
+
+    margin-top: 100px;
   }
 
   .row-form {
@@ -221,6 +243,7 @@
   .form-container-full {
     max-width: 1060px;
     margin: 0 50px;
+    margin-top: 100px;
   }
 
   .row-file-upload {

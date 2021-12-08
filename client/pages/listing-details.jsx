@@ -154,10 +154,13 @@ export default class ListingDetails extends React.Component {
       notice = 'hidden';
     }
     let href;
+    let header;
     if (this.props.route.path === 'listing-details') {
       href = '#browse-all';
+      header = 'buyandsell';
     } else {
       href = '#saved-items';
+      header = 'Saved Items';
     }
     const googleLocation = `http://maps.google.com/?q=${location}`;
     return (
@@ -169,9 +172,9 @@ export default class ListingDetails extends React.Component {
         handleCancelButton={this.handleCancelButton}
         route={this.props.route} />
         <div className="details-container">
-          {/* <div className="row row-header justify-center">
-            <h1 className="page-header-text">buyandsell</h1>
-          </div> */}
+          <div className="row row-header justify-center">
+            <h1 className="page-header-text">{header}</h1>
+          </div>
           <div className="row row-back-button justify-left">
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
           </div>

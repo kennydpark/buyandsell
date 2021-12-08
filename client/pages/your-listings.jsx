@@ -30,9 +30,9 @@ export default class YourListings extends React.Component {
     } else {
       return (
         <div className="container your-listings-container">
-          {/* <div className="row row-header justify-center">
+          <div className="row row-header justify-center">
             <h1 className="page-header-text">Your Listings</h1>
-          </div> */}
+          </div>
           <div className="row row-browse-all justify-center">
             {
               this.state.listings.reverse().map(listing => (

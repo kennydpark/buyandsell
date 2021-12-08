@@ -23,9 +23,11 @@ export default class App extends React.Component {
       token: null,
       isAuthorizing: true,
       route: parseRoute(window.location.hash)
+      // header: this.state.route.path
     };
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+    // this.handleHeader = this.handleHeader.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +40,11 @@ export default class App extends React.Component {
     const token = window.localStorage.getItem('react-context-jwt');
     const user = token ? decodeToken(token) : null;
     this.setState({ user, token, isAuthorizing: false });
+    // if (this.state.route.path === 'browse-all') {
+    //   this.setState({ header: 'buyandsell' });
+    // } else if (this.state.route.path === 'create-listing') {
+    //   this.setState({ header: 'Item For Sale' });
+    // }
   }
 
   handleSignIn(result) {
@@ -53,6 +60,10 @@ export default class App extends React.Component {
       token: null
     });
   }
+
+  // handleHeader() {
+
+  // }
 
   renderPage() {
     const { route } = this.state;
@@ -116,7 +127,7 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <>
-          <Navbar user={this.state.user} />
+          <Navbar user={this.state.user} route={this.state.route} />
           <PageContainer>
             { this.renderPage() }
           </PageContainer>
