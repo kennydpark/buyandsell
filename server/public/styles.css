@@ -458,8 +458,9 @@ input[type="file"] {
   transition: 0.2s ease-in-out;
 }
 
-.column-contact-empty {
-  background-color: #f8f8f8;
+.column-contact-seller {
+  /* background-color: #f8f8f8; */
+  text-align: center;
 }
 
 /* edit-listing */
@@ -658,6 +659,7 @@ input[type="file"] {
 
 .row-contact-seller {
   margin-top: 20px;
+  background-color: #f8f8f8;
 }
 
 .email-modal-container {

@@ -217,8 +217,8 @@ export default class ListingDetails extends React.Component {
               </div>
             </div>
             <div className={contactView}>
-              <div className="column-half column-contact-empty"></div>
-              <div className="column-half column-contact-seller">
+              {/* <div className="column-half column-contact-empty"></div> */}
+              <div className="column-half column-contact-seller justify-center">
                 <button onClick={this.handleContactButton} className="contact-seller">Contact Seller</button>
               </div>
             </div>
