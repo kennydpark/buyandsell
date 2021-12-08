@@ -21,6 +21,7 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: 0.2s ease-out;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 button.next-submit,
@@ -80,6 +81,7 @@ button.next-submit:active {
   text-align: center;
   cursor: pointer;
   transition: 0.2s ease-out;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .front-button:hover {
@@ -218,6 +220,7 @@ input[type="file"] {
   font-size: 1rem;
   cursor: pointer;
   transition: 0.2s ease-out;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 7.5%);
 }
 
 .create-listing-cancel-button:hover {
@@ -537,6 +540,7 @@ input[type="file"] {
   font-size: 1rem;
   cursor: pointer;
   transition: 0.2s ease-out;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .delete-button:hover {
@@ -759,6 +763,7 @@ input[type="file"] {
   text-align: center;
   cursor: pointer;
   transition: 0.2s ease-out;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .return-home-button:hover {
@@ -780,6 +785,7 @@ input[type="file"] {
   font-size: 1rem;
   cursor: pointer;
   transition: 0.2s ease-out;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .create-new-listing-button:hover {
