@@ -10,7 +10,8 @@
   margin-top: 100px;
 }
 
-.details-container {
+.details-container,
+.edit-listing-container {
   margin-top: 80px;
 }
 
@@ -23,6 +24,10 @@
 .form-container-full {
   margin: 0 20px;
   margin-top: 85px;
+}
+
+.edit-form-container {
+  margin: 0 20px;
 }
 
 .welcome-message {
