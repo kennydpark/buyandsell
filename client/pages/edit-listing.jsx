@@ -29,6 +29,7 @@ export default class EditListing extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundColor = 'white';
     fetch(`/api/user/listings/${this.props.listingId}`, {
       method: 'GET',
       headers: {
