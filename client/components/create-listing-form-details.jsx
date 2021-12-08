@@ -91,13 +91,17 @@ export default class CreateListingFormDetails extends React.Component {
               </div>
               <div className="column-half">
                 <div className="row row-form row-input-title">
-                  <input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
-                        required label="title" type="text" placeholder="Title">
-                  </input>
+
+                    <input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
+                          required label="title" type="text" placeholder="Title">
+                    </input>
+
                 </div>
                 <div className="row row-form">
+                  <span className="dollar">
                     <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
-                  type="number" min="0" max="999999" required placeholder="$ Price" />
+                  type="number" min="0" max="999999" required placeholder="Price" />
+                  </span>
                 </div>
                 <div className="row row-form">
                   <select value={this.state.condition} onChange={this.handleSelectChange}

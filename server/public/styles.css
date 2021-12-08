@@ -107,6 +107,23 @@ button.next-submit:active {
 
 /* create-listing */
 
+.dollar {
+  position: relative;
+  width: 100%;
+  color: #7c7c7c;
+}
+
+.dollar input {
+  padding-left: 25px;
+}
+
+.dollar::before {
+  position: absolute;
+  top: 14px;
+  content: "$";
+  left: 10px;
+}
+
 .img-style {
   width: 100%;
   height: 100%;
