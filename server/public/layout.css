@@ -142,7 +142,8 @@
   padding: 8px 0;
   font-size: 1.2rem;
   position: absolute;
-  border-radius: 0 0 10px 10px;
+
+  /* border-radius: 0 0 10px 10px; */
   transition: 0.2s;
 }
 
@@ -240,7 +241,8 @@
   }
 
   .saved-prompt {
-    width: 360px;
+    /* width: 100%; */
+    border-radius: 0 0 0 10px;
   }
 
   #google-map {
@@ -298,7 +300,8 @@
   }
 
   .saved-prompt {
-    width: 500px;
+    /* width: 100%; */
+    border-radius: 0 0 0 10px;
   }
 
   #google-map {
