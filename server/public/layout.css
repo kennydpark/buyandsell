@@ -91,7 +91,11 @@
   width: 300px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
+
+  /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
+  clip-path: inset(-4px 0 -4px -4px); */
+
+  /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%); */
 }
 
 .margin-auto {
@@ -100,8 +104,7 @@
 
 .details-column-half {
   width: 300px;
-
-  /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%); */
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
   border-radius: 10px 0 0 10px;
 }
 
@@ -111,7 +114,8 @@
   padding: 10px;
   padding-top: 0;
 
-  /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%); */
+  /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
+  clip-path: inset(-4px -4px -4px 0); */
 }
 
 .email-modal-window,
