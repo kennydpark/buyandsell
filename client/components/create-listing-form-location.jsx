@@ -1,17 +1,20 @@
 import React from 'react';
 import MapContainer from '../components/google-map';
+import LoadingModal from '../components/loading-modal';
 
 export default class CreateListingFormLocation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       location: this.props.location,
-      error: ''
+      error: '',
+      loading: false
     };
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePreviousClick = this.handlePreviousClick.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   handleLocationChange(event) {
@@ -27,7 +30,8 @@ export default class CreateListingFormLocation extends React.Component {
     } else {
       this.props.handleLocationSubmitted(this.state.location);
       this.setState({
-        error: ''
+        error: '',
+        loading: true
       });
     }
   }
@@ -41,9 +45,15 @@ export default class CreateListingFormLocation extends React.Component {
     this.props.handleLocationSelect(address);
   }
 
+  loadingClose() {
+    this.setState({ loading: false });
+  }
+
   render() {
     return (
       <>
+        < LoadingModal loading={this.state.loading}
+          loadingClose={this.loadingClose} />
         <div className="container">
           <div className="row row-header justify-center">
             <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Item For Sale</h1></a>
@@ -65,7 +75,7 @@ export default class CreateListingFormLocation extends React.Component {
                   <button type="submit" className="next-submit">Publish</button>
                 </div>
               </div>
-              <div className="row justify-center">
+              <div className="row row-no-location-error justify-center">
                 <p className="text-no-location-error">{this.state.error}</p>
               </div>
             </form>

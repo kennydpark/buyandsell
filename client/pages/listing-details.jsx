@@ -69,15 +69,11 @@ export default class ListingDetails extends React.Component {
       .then(res => res.json())
       .then(email => this.setState({ sellerEmail: email.email }))
       .catch(err => console.error(err));
-    this.setState({
-      formActive: true
-    });
+    this.setState({ formActive: true });
   }
 
   handleCancelButton() {
-    this.setState({
-      formActive: false
-    });
+    this.setState({ formActive: false });
   }
 
   handleSaveButton() {
@@ -179,7 +175,7 @@ export default class ListingDetails extends React.Component {
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
           </div>
           <div className="details-container-full text-center">
-            <div className="row justify-center margin-auto">
+            <div className="row row-card-full justify-center margin-auto">
               <div className="details-column-half">
                 <div className="row image-container justify-center margin-auto">
                   <img src={imageUrl} className="details-listing-image" />

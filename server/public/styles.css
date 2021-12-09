@@ -202,6 +202,10 @@ input[type="file"] {
   margin-top: 0;
 }
 
+.row-no-location-error {
+  margin-top: 5px;
+}
+
 .text-no-location-error {
   color: red;
   margin-top: 18px;
@@ -261,6 +265,10 @@ input[type="file"] {
   display: none;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 .italic {
   font-style: italic;
 }
@@ -301,44 +309,12 @@ input[type="file"] {
   color: #444;
 }
 
-.div-published-body {
-  margin-top: 50px;
-}
-
 .front-margin-top {
   margin-top: 30px;
 }
 
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent;
-}
-
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
+.margin-bottom-button {
+  margin-bottom: 20px;
 }
 
 @keyframes lds-ring {
@@ -719,18 +695,22 @@ input[type="file"] {
   z-index: 3;
 }
 
-/* email-form */
+/* email-form & loading spinner */
 
 .row-contact-seller {
   margin-top: 20px;
   background-color: #f8f8f8;
 }
 
-.email-modal-container {
+.email-modal-container,
+.loading-modal-container,
+.sent-modal-container {
   margin: auto;
 }
 
-.email-overlay {
+.email-overlay,
+.loading-overlay,
+.sent-overlay {
   background-color: rgb(0 0 0 / 70%);
   position: fixed;
   top: 0;
@@ -747,6 +727,50 @@ input[type="file"] {
 
 .email-modal-shadow {
   box-shadow: 0 0 5px;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+.div-published-body {
+  margin-top: 25%;
+}
+
+.published-text {
+  font-size: 1.2rem;
+}
+
+.published-redirect-text {
+  margin-top: 50%;
 }
 
 /* not-found */
