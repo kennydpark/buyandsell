@@ -13,7 +13,7 @@ import YourListings from './pages/your-listings';
 import YourListingDetails from './pages/your-listing-details';
 import EditListing from './pages/edit-listing';
 import SavedItems from './pages/saved-items';
-import CreateListingFormParent from './components/create-listing-form-parent';
+import CreateListingFormParent from './pages/create-listing';
 
 export default class App extends React.Component {
   constructor(props) {
