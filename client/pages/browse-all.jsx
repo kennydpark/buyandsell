@@ -1,13 +1,18 @@
 import React from 'react';
 import Redirect from '../components/redirect';
+// import NoListings from '../components/no-listings';
+import LoadingModal from '../components/loading-modal';
 
 export default class BrowseAll extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listings: []
+      listings: [],
+      loading: true,
+      hasListings: true
     };
     this.scrollToTop = this.scrollToTop.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -17,7 +22,13 @@ export default class BrowseAll extends React.Component {
         method: 'GET'
       })
         .then(res => res.json())
-        .then(listings => this.setState({ listings }));
+        .then(listings => {
+          if (listings.length === 0) {
+            this.setState({ hasListings: false, loading: false });
+          } else {
+            this.setState({ listings: listings.reverse(), loading: false });
+          }
+        });
     }
   }
 
@@ -26,24 +37,34 @@ export default class BrowseAll extends React.Component {
     window.scrollTo(0, 0);
   }
 
+  loadingClose() {
+    this.setState({ loading: false });
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-    return (
-      <div className="browse-all-container">
-        <div className="row row-header justify-center">
-          <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">buyandsell</h1></a>
+    if (this.state.loading) {
+      return <LoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    } else {
+      return (
+        <div className="browse-all-container">
+          <div className="row row-header justify-center">
+            <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">buyandsell</h1></a>
+          </div>
+          <div className="row row-browse-all justify-center">
+            {
+              this.state.listings.reverse().map(listing => (
+                <div key={listing.listingId}>
+                  <Listing listing={listing} />
+                </div>
+              ))
+            }
+          </div>
         </div>
-        <div className="row row-browse-all justify-center">
-          {
-            this.state.listings.reverse().map(listing => (
-              <div key={listing.listingId}>
-                <Listing listing={listing} />
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

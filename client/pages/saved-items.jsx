@@ -1,13 +1,18 @@
 import React from 'react';
 import Redirect from '../components/redirect';
 import NoSavedItems from '../components/no-saved-items';
+import LoadingModal from '../components/loading-modal';
 
 export default class SavedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listings: []
+      listings: [],
+      loading: true,
+      hasListings: true
     };
+    this.scrollToTop = this.scrollToTop.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -20,12 +25,30 @@ export default class SavedItems extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(listings => this.setState({ listings }));
+      .then(listings => {
+        if (listings.length === 0) {
+          this.setState({ hasListings: false, loading: false });
+        } else {
+          this.setState({ listings: listings.reverse(), loading: false });
+        }
+      });
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
+  loadingClose() {
+    this.setState({ loading: false });
   }
 
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-    if (this.state.listings.length === 0) {
+    if (this.state.loading) {
+      return <LoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    } else if (this.state.hasListings === false) {
       return <NoSavedItems />;
     } else {
       return (

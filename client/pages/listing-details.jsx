@@ -2,6 +2,7 @@ import React from 'react';
 import EmailForm from '../components/email-form-modal';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
+import LoadingModal from '../components/loading-modal';
 
 export default class ListingDetails extends React.Component {
   constructor(props) {
@@ -12,12 +13,14 @@ export default class ListingDetails extends React.Component {
       formActive: false,
       saved: false,
       savedPrompt: 'saved-prompt saved-hidden',
-      savedPromptText: 'Saved'
+      savedPromptText: 'Saved',
+      loading: true
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
     this.prompt = this.prompt.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +28,7 @@ export default class ListingDetails extends React.Component {
     if (this.props.route.path === 'listing-details') {
       fetch(`/api/listings/${this.props.listingId}`)
         .then(res => res.json())
-        .then(listing => this.setState({ listing }));
+        .then(listing => this.setState({ listing, loading: false }));
     } else {
       fetch(`/api/user/saved/listing/${this.props.listingId}`, {
         method: 'GET',
@@ -41,7 +44,7 @@ export default class ListingDetails extends React.Component {
           } else {
             this.setState({ saved: true });
           }
-          this.setState({ listing });
+          this.setState({ listing, loading: false });
         });
     }
 
@@ -124,8 +127,17 @@ export default class ListingDetails extends React.Component {
     clearTimeout(this.intervalID);
   }
 
+  loadingClose() {
+    this.setState({ loading: false });
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
+    if (this.state.loading) {
+      return <LoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    }
     if (!this.state.listing) return null;
     if (this.state.listing.false || this.state.listing.error) {
       return <NotFound />;
