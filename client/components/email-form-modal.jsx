@@ -2,6 +2,7 @@ import React from 'react';
 // import EmailConfirmation from './email-sent-modal';
 import LoadingModal from './loading-modal';
 // import Redirect from './redirect';
+import LoadError from '../components/load-error';
 
 class EmailForm extends React.Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class EmailForm extends React.Component {
       phone: '',
       message: '',
       loading: false,
-      sent: false
+      sent: false,
+      loadError: false
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleBuyerEmailChange = this.handleBuyerEmailChange.bind(this);
@@ -22,6 +24,7 @@ class EmailForm extends React.Component {
     this.close = this.close.bind(this);
     this.loadingClose = this.loadingClose.bind(this);
     this.sentModalClose = this.sentModalClose.bind(this);
+    this.closeAllModals = this.closeAllModals.bind(this);
   }
 
   handleNameChange(event) {
@@ -78,7 +81,10 @@ class EmailForm extends React.Component {
       .then(data => {
         this.setState({ loading: false, sent: true });
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        this.setState({ loadError: true });
+        console.error(err);
+      });
   }
 
   close() {
@@ -97,6 +103,10 @@ class EmailForm extends React.Component {
 
   sentModalClose() {
     this.setState({ sent: false });
+  }
+
+  closeAllModals() {
+    this.setState({ loading: false, loadError: false });
   }
 
   render() {
@@ -129,6 +139,9 @@ class EmailForm extends React.Component {
       <>
         < LoadingModal loading={this.state.loading}
           loadingClose={this.loadingClose} />
+        <LoadError
+          loadError={this.state.loadError}
+          closeAllModals={this.closeAllModals} />;
         <div className={modal}>
           <div className={window}>
             <form onSubmit={this.handleSubmit}>

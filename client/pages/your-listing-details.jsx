@@ -57,7 +57,7 @@ export default class YourListingDetails extends React.Component {
             <div className="row justify-center margin-auto">
               <div className="details-column-half">
                 <div className="row image-container justify-center margin-auto">
-                  <img src={imageUrl} className="details-listing-image" />
+                  <img src={imageUrl} className="details-listing-image" alt={title} />
                 </div>
               </div>
               <div className="details-column-half details-column-body">

@@ -1,6 +1,7 @@
 import React from 'react';
 import MapContainer from '../components/google-map';
 import LoadingModal from '../components/loading-modal';
+import LoadError from '../components/load-error';
 
 export default class CreateListingFormLocation extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class CreateListingFormLocation extends React.Component {
     this.handlePreviousClick = this.handlePreviousClick.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
     this.loadingClose = this.loadingClose.bind(this);
+    this.closeAllModals = this.closeAllModals.bind(this);
   }
 
   handleLocationChange(event) {
@@ -49,11 +51,19 @@ export default class CreateListingFormLocation extends React.Component {
     this.setState({ loading: false });
   }
 
+  closeAllModals() {
+    this.setState({ loading: false });
+    this.props.loadErrorClose();
+  }
+
   render() {
     return (
       <>
-        < LoadingModal loading={this.state.loading}
+        <LoadingModal loading={this.state.loading}
           loadingClose={this.loadingClose} />
+        <LoadError
+          loadError={this.props.loadError}
+          closeAllModals={this.closeAllModals} />;
         <div className="container">
           <div className="row row-header justify-center">
             <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Item For Sale</h1></a>

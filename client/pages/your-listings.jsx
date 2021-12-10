@@ -84,7 +84,7 @@ function Listing(props) {
     <a
       href={href}
       className="browse-all-listing">
-      <img src={imageUrl} className="browse-all-image" />
+      <img src={imageUrl} className="browse-all-image" alt={title} />
       <div className="card-body">
         <p className="card-price">${price}</p>
         <p className="card-title">{title}</p>

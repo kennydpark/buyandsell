@@ -3,6 +3,7 @@ import EmailForm from '../components/email-form-modal';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
 import LoadingModal from '../components/loading-modal';
+import LoadError from '../components/load-error';
 
 export default class ListingDetails extends React.Component {
   constructor(props) {
@@ -14,13 +15,15 @@ export default class ListingDetails extends React.Component {
       saved: false,
       savedPrompt: 'saved-prompt saved-hidden',
       savedPromptText: 'Saved',
-      loading: true
+      loading: true,
+      saveError: false
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
     this.prompt = this.prompt.bind(this);
     this.loadingClose = this.loadingClose.bind(this);
+    this.closeAllModals = this.closeAllModals.bind(this);
   }
 
   componentDidMount() {
@@ -95,7 +98,10 @@ export default class ListingDetails extends React.Component {
             savedPromptText: 'Saved'
           });
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          this.setState({ saveError: true });
+          console.error(err);
+        });
       this.prompt();
     } else {
       fetch(`/api/user/saved/${this.props.listingId}`, {
@@ -112,7 +118,10 @@ export default class ListingDetails extends React.Component {
             savedPromptText: 'Removed'
           });
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          this.setState({ saveError: true });
+          console.error(err);
+        });
       this.prompt();
     }
   }
@@ -129,6 +138,10 @@ export default class ListingDetails extends React.Component {
 
   loadingClose() {
     this.setState({ loading: false });
+  }
+
+  closeAllModals() {
+    this.setState({ saveError: false });
   }
 
   render() {
@@ -179,6 +192,9 @@ export default class ListingDetails extends React.Component {
         sellerEmail={this.state.sellerEmail}
         handleCancelButton={this.handleCancelButton}
         route={this.props.route} />
+        <LoadError
+          loadError={this.state.saveError}
+          closeAllModals={this.closeAllModals} />;
         <div className="details-container">
           <div className="row row-header justify-center">
             <a href={href} className="page-header-anchor"><h1 className="page-header-text">{header}</h1></a>
@@ -190,7 +206,7 @@ export default class ListingDetails extends React.Component {
             <div className="row row-card-full justify-center margin-auto">
               <div className="details-column-half">
                 <div className="row image-container justify-center margin-auto">
-                  <img src={imageUrl} className="details-listing-image" />
+                  <img src={imageUrl} className="details-listing-image" alt={title} />
                   <p className={this.state.savedPrompt}>{this.state.savedPromptText}</p>
                 </div>
               </div>

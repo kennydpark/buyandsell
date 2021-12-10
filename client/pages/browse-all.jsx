@@ -2,6 +2,7 @@ import React from 'react';
 import Redirect from '../components/redirect';
 // import NoListings from '../components/no-listings';
 import LoadingModal from '../components/loading-modal';
+// import LoadError from '../components/load-error';
 
 export default class BrowseAll extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class BrowseAll extends React.Component {
       listings: [],
       loading: true,
       hasListings: true
+      // loadError: false
     };
     this.scrollToTop = this.scrollToTop.bind(this);
     this.loadingClose = this.loadingClose.bind(this);
@@ -28,6 +30,10 @@ export default class BrowseAll extends React.Component {
           } else {
             this.setState({ listings: listings.reverse(), loading: false });
           }
+        })
+        .catch(err => {
+          this.setState({ loadError: true });
+          console.error(err);
         });
     }
   }
@@ -75,7 +81,7 @@ function Listing(props) {
     <a
       href={href}
       className="browse-all-listing">
-      <img src={imageUrl} className="browse-all-image" />
+      <img src={imageUrl} className="browse-all-image" alt={title} />
       <div className="card-body">
         <p className="card-price">${price}</p>
         <p className="card-title">{title}</p>
