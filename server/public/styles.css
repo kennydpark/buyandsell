@@ -171,7 +171,8 @@ button.next-submit:active {
 }
 
 .demo-button-anchor {
-  padding-top: 25px;
+  margin-top: 31px;
+  padding-top: 9px;
   cursor: pointer;
 }
 
