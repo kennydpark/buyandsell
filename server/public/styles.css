@@ -171,7 +171,7 @@ button.next-submit:active {
 }
 
 .demo-button-anchor {
-  padding-top: 20px;
+  padding-top: 25px;
   cursor: pointer;
 }
 
@@ -198,7 +198,7 @@ button.next-submit:active {
 }
 
 .row-demo-sign-in {
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 /* create-listing */

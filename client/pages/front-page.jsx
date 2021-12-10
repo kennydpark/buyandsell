@@ -52,10 +52,10 @@ export default class FrontPage extends React.Component {
     let demoArrow;
     let demoButton;
     if (this.state.demoView) {
-      demoArrow = 'fas fa-chevron-up demo-arrow-icon';
+      demoArrow = 'fas fa-chevron-up demo-arrow-icon bounce';
       demoButton = 'demo-button';
     } else {
-      demoArrow = 'fas fa-chevron-down demo-arrow-icon bounce';
+      demoArrow = 'fas fa-chevron-down demo-arrow-icon';
       demoButton = 'demo-button demo-hidden';
     }
     return (
