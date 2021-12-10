@@ -2,7 +2,6 @@ import React from 'react';
 import EmailForm from '../components/email-form-modal';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
-// import LoadingModal from '../components/loading-modal';
 import LoadError from '../components/load-error';
 
 export default class ListingDetails extends React.Component {
@@ -15,14 +14,12 @@ export default class ListingDetails extends React.Component {
       saved: false,
       savedPrompt: 'saved-prompt saved-hidden',
       savedPromptText: 'Saved',
-      // loading: false,
       saveError: false
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
     this.prompt = this.prompt.bind(this);
-    // this.loadingClose = this.loadingClose.bind(this);
     this.closeAllModals = this.closeAllModals.bind(this);
   }
 
@@ -136,21 +133,12 @@ export default class ListingDetails extends React.Component {
     clearTimeout(this.intervalID);
   }
 
-  // loadingClose() {
-  //   this.setState({ loading: false });
-  // }
-
   closeAllModals() {
     this.setState({ saveError: false });
   }
 
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-    // if (this.state.loading) {
-    //   return <LoadingModal
-    //     loading={this.state.loading}
-    //     loadingClose={this.loadingClose} />;
-    // }
     if (!this.state.listing) return null;
     if (this.state.listing.false || this.state.listing.error) {
       return <NotFound />;

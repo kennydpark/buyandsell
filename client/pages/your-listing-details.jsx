@@ -1,16 +1,13 @@
 import React from 'react';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
-// import LoadingModal from '../components/loading-modal';
 
 export default class YourListingDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       listing: null
-      // loading: true
     };
-    // this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -26,17 +23,8 @@ export default class YourListingDetails extends React.Component {
       .then(listing => this.setState({ listing }));
   }
 
-  // loadingClose() {
-  //   this.setState({ loading: false });
-  // }
-
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-    // if (this.state.loading) {
-    //   return <LoadingModal
-    //     loading={this.state.loading}
-    //     loadingClose={this.loadingClose} />;
-    // }
     if (!this.state.listing) return null;
     if (this.state.listing.error) {
       return <NotFound />;

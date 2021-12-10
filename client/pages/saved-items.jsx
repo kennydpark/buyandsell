@@ -1,18 +1,15 @@
 import React from 'react';
 import Redirect from '../components/redirect';
 import NoSavedItems from '../components/no-saved-items';
-// import LoadingModal from '../components/loading-modal';
 
 export default class SavedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       listings: [],
-      // loading: true,
       hasListings: true
     };
     this.scrollToTop = this.scrollToTop.bind(this);
-    // this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -37,10 +34,6 @@ export default class SavedItems extends React.Component {
   scrollToTop() {
     window.scrollTo(0, 0);
   }
-
-  // loadingClose() {
-  //   this.setState({ loading: false });
-  // }
 
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
