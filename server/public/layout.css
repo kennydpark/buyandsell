@@ -37,8 +37,16 @@
   margin: 0;
 }
 
-.row-front-title {
-  padding-top: 25%;
+.row-front-back {
+  padding-top: 10%;
+  padding-bottom: 15px;
+  width: 330px;
+  margin: auto;
+}
+
+.row-front-title,
+.row-front-landing {
+  padding-top: 50px;
   margin-bottom: 60px;
 }
 
@@ -163,6 +171,14 @@
     max-width: 900px;
   }
 
+  .row-front-landing {
+    padding-top: 20%;
+  }
+
+  .row-front-back {
+    padding-top: 15%;
+  }
+
   .browse-all-container {
     max-width: 1100px;
   }
@@ -244,8 +260,12 @@
     max-width: 1100px;
   }
 
-  .row-front-title {
+  .row-front-landing {
     padding-top: 25%;
+  }
+
+  .row-front-back {
+    padding-top: 20%;
   }
 
   .form-container-full {

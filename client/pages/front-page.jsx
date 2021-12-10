@@ -60,7 +60,7 @@ export default class FrontPage extends React.Component {
     }
     return (
       <div className="container">
-        <div className="row row-front-title justify-center">
+        <div className="row row-front-landing justify-center">
           <h1 className="front-page-title text-center lobster-font">buyandsell</h1>
         </div>
         <div className="row row-get-started justify-center">

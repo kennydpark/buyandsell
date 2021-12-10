@@ -42,6 +42,25 @@ button.next-submit:active {
 
 /* front-page */
 
+.front-back-icon {
+  font-size: 2rem;
+  color: #444;
+  transition: 0.2s ease-out;
+}
+
+.front-back-icon:hover {
+  transition: 0.2s ease-out;
+  color: black;
+}
+
+.auth-container {
+  width: 335px;
+  margin: auto;
+  box-shadow: 2px 4px 8px 2px rgb(0 0 0 / 8%);
+  border-radius: 10px;
+  background-color: white;
+}
+
 .front-page-title {
   font-size: 3rem;
 }
@@ -105,6 +124,10 @@ button.next-submit:active {
 
 .row-invalid-sign {
   padding: 0 10px;
+}
+
+.row-alternate-action {
+  padding-bottom: 20px;
 }
 
 .stage {
