@@ -1,8 +1,6 @@
 import React from 'react';
 import Redirect from '../components/redirect';
-// import NoListings from '../components/no-listings';
 import LoadingModal from '../components/loading-modal';
-// import LoadError from '../components/load-error';
 
 export default class BrowseAll extends React.Component {
   constructor(props) {
@@ -11,7 +9,6 @@ export default class BrowseAll extends React.Component {
       listings: [],
       loading: true,
       hasListings: true
-      // loadError: false
     };
     this.scrollToTop = this.scrollToTop.bind(this);
     this.loadingClose = this.loadingClose.bind(this);
@@ -39,7 +36,6 @@ export default class BrowseAll extends React.Component {
   }
 
   scrollToTop() {
-    // window.location.reload();
     window.scrollTo(0, 0);
   }
 

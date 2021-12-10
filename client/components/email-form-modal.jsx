@@ -1,7 +1,5 @@
 import React from 'react';
-// import EmailConfirmation from './email-sent-modal';
 import LoadingModal from './loading-modal';
-// import Redirect from './redirect';
 import LoadError from '../components/load-error';
 
 class EmailForm extends React.Component {

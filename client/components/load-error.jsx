@@ -7,10 +7,6 @@ class LoadError extends React.Component {
     this.tryAgain = this.tryAgain.bind(this);
   }
 
-  // componentWillUnmount() {
-  //   this.props.loadingClose();
-  // }
-
   tryAgain() {
     this.props.closeAllModals();
   }

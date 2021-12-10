@@ -143,11 +143,6 @@ button.next-submit:active {
   margin-bottom: 0;
   font-family: Lobster, cursive;
   user-select: none;
-
-  /* padding-right: 77px; */
-
-  /* position: relative;
-  left: -40px; */
 }
 
 .col-buttons {

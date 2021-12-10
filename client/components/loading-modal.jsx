@@ -1,12 +1,6 @@
 import React from 'react';
 
 class LoadingModal extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //   };
-  // }
-
   componentWillUnmount() {
     this.props.loadingClose();
   }

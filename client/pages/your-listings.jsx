@@ -16,7 +16,6 @@ export default class YourListings extends React.Component {
   }
 
   componentDidMount() {
-    // this.setState({ loading: true });
     document.body.style.backgroundColor = '#F8F8F8';
     fetch('/api/user/listings', {
       method: 'GET',
