@@ -107,6 +107,44 @@ button.next-submit:active {
   padding: 0 10px;
 }
 
+.stage {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.demo-arrow-icon {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+  font-size: 1.3rem;
+  color: #2978b5;
+}
+
+.bounce {
+  animation-name: bounce;
+  animation-timing-function: linear;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.demo-button-anchor {
+  cursor: pointer;
+}
+
+.row-demo-arrow {
+  margin-top: 20px;
+}
+
+.row-demo-sign-in {
+  margin-top: 25px;
+}
+
 /* create-listing */
 
 .dollar {
