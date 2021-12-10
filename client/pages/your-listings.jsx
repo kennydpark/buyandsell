@@ -1,18 +1,18 @@
 import React from 'react';
 import Redirect from '../components/redirect';
 import NoListings from '../components/no-listings';
-import LoadingModal from '../components/loading-modal';
+// import LoadingModal from '../components/loading-modal';
 
 export default class YourListings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       listings: [],
-      loading: true,
+      // loading: true,
       hasListings: true
     };
     this.scrollToTop = this.scrollToTop.bind(this);
-    this.loadingClose = this.loadingClose.bind(this);
+    // this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -27,9 +27,9 @@ export default class YourListings extends React.Component {
       .then(res => res.json())
       .then(listings => {
         if (listings.length === 0) {
-          this.setState({ hasListings: false, loading: false });
+          this.setState({ hasListings: false });
         } else {
-          this.setState({ listings, loading: false });
+          this.setState({ listings });
         }
       });
   }
@@ -38,24 +38,20 @@ export default class YourListings extends React.Component {
     window.scrollTo(0, 0);
   }
 
-  loadingClose() {
-    this.setState({ loading: false });
-  }
+  // loadingClose() {
+  //   this.setState({ loading: false });
+  // }
 
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-    if (this.state.loading) {
-      return <LoadingModal
-              loading={this.state.loading}
-              loadingClose={this.loadingClose} />;
-    } else if (this.state.hasListings === false) {
+    if (this.state.hasListings === false) {
       return <NoListings />;
     } else {
       return (
         <>
-          <LoadingModal
+          {/* <LoadingModal
             loading={this.state.loading}
-            loadingClose={this.loadingClose} />
+            loadingClose={this.loadingClose} /> */}
           <div className="container your-listings-container">
             <div className="row row-header justify-center">
               <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Your Listings</h1></a>
