@@ -3,6 +3,7 @@ import EmailForm from '../components/email-form-modal';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
 import LoadError from '../components/load-error';
+import PageLoadingModal from '../components/page-loading-modal';
 
 export default class ListingDetails extends React.Component {
   constructor(props) {
@@ -14,12 +15,14 @@ export default class ListingDetails extends React.Component {
       saved: false,
       savedPrompt: 'saved-prompt saved-hidden',
       savedPromptText: 'Saved',
-      saveError: false
+      saveError: false,
+      loading: true
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
     this.prompt = this.prompt.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
     this.closeAllModals = this.closeAllModals.bind(this);
   }
 
@@ -28,7 +31,7 @@ export default class ListingDetails extends React.Component {
     if (this.props.route.path === 'listing-details') {
       fetch(`/api/listings/${this.props.listingId}`)
         .then(res => res.json())
-        .then(listing => this.setState({ listing }));
+        .then(listing => this.setState({ listing, loading: false }));
     } else {
       fetch(`/api/user/saved/listing/${this.props.listingId}`, {
         method: 'GET',
@@ -39,6 +42,7 @@ export default class ListingDetails extends React.Component {
       })
         .then(res => res.json())
         .then(listing => {
+          this.setState({ loading: false });
           if (listing.false) {
             this.setState({ saved: false });
           } else {
@@ -133,12 +137,21 @@ export default class ListingDetails extends React.Component {
     clearTimeout(this.intervalID);
   }
 
+  loadingClose() {
+    this.setState({ loading: false });
+  }
+
   closeAllModals() {
     this.setState({ saveError: false });
   }
 
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
+    if (this.state.loading) {
+      return <PageLoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    }
     if (!this.state.listing) return null;
     if (this.state.listing.false || this.state.listing.error) {
       return <NotFound />;

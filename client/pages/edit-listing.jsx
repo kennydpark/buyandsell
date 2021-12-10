@@ -2,6 +2,7 @@ import React from 'react';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
 import DeleteConfirm from '../components/delete-confirm-modal';
+import PageLoadingModal from '../components/page-loading-modal';
 import LoadingModal from '../components/loading-modal';
 
 export default class EditListing extends React.Component {
@@ -17,7 +18,8 @@ export default class EditListing extends React.Component {
       description: '',
       formActive: false,
       updated: false,
-      loading: false
+      loading: true,
+      editLoading: false
     };
     this.fileInputRef = React.createRef();
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -30,6 +32,7 @@ export default class EditListing extends React.Component {
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.scrollToTop = this.scrollToTop.bind(this);
     this.loadingClose = this.loadingClose.bind(this);
+    this.editLoadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +52,8 @@ export default class EditListing extends React.Component {
         title: listing.title,
         price: listing.price,
         condition: listing.condition,
-        description: listing.description
+        description: listing.description,
+        loading: false
       }));
   }
 
@@ -77,7 +81,7 @@ export default class EditListing extends React.Component {
   }
 
   handleSave(event) {
-    this.setState({ loading: true });
+    this.setState({ editLoading: true });
     event.preventDefault();
     const formData = new FormData();
     formData.append('image', this.state.file);
@@ -93,7 +97,7 @@ export default class EditListing extends React.Component {
       body: formData
     })
       .then(res => {
-        this.setState({ updated: true, loading: false });
+        this.setState({ updated: true, editLoading: false });
       })
       .catch(err => console.error(err));
   }
@@ -114,12 +118,21 @@ export default class EditListing extends React.Component {
     this.setState({ loading: false });
   }
 
+  editLoadingClose() {
+    this.setState({ editLoading: false });
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (this.state.loading) {
-      return <LoadingModal
+      return <PageLoadingModal
         loading={this.state.loading}
         loadingClose={this.loadingClose} />;
+    }
+    if (this.state.editLoading) {
+      return <LoadingModal
+        loading={this.state.editLoading}
+        loadingClose={this.editLoadingClose} />;
     }
     if (!this.state.listing) return null;
     if (this.state.listing.error) {
