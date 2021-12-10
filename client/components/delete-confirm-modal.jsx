@@ -1,16 +1,19 @@
 import React from 'react';
 import Redirect from '../components/redirect';
+import LoadingModal from '../components/loading-modal';
 
 class DeleteConfirm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       deleted: false,
-      saved: false
+      saved: false,
+      loading: false
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.close = this.close.bind(this);
     this.deleted = this.deleted.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +35,7 @@ class DeleteConfirm extends React.Component {
   }
 
   handleDelete() {
+    this.setState({ loading: true });
     event.preventDefault();
     if (this.state.saved === true) {
       fetch(`/api/user/allSaved/${this.props.listing.listingId}`, {
@@ -52,6 +56,7 @@ class DeleteConfirm extends React.Component {
       }
     })
       .then(res => {
+        this.setState({ loading: false });
         this.deleted();
       })
       .catch(err => console.error(err));
@@ -66,9 +71,18 @@ class DeleteConfirm extends React.Component {
     this.props.handleCancelButton();
   }
 
+  loadingClose() {
+    this.setState({ loading: false });
+  }
+
   render() {
     if (this.state.deleted === true) {
       return <Redirect to="your-listings" />;
+    }
+    if (this.state.loading) {
+      return <LoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
     }
     let modal;
     let window;

@@ -2,6 +2,7 @@ import React from 'react';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
 import DeleteConfirm from '../components/delete-confirm-modal';
+import LoadingModal from '../components/loading-modal';
 
 export default class EditListing extends React.Component {
   constructor(props) {
@@ -15,7 +16,8 @@ export default class EditListing extends React.Component {
       condition: '',
       description: '',
       formActive: false,
-      updated: false
+      updated: false,
+      loading: false
     };
     this.fileInputRef = React.createRef();
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -27,6 +29,7 @@ export default class EditListing extends React.Component {
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.scrollToTop = this.scrollToTop.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -74,6 +77,7 @@ export default class EditListing extends React.Component {
   }
 
   handleSave(event) {
+    this.setState({ loading: true });
     event.preventDefault();
     const formData = new FormData();
     formData.append('image', this.state.file);
@@ -89,7 +93,7 @@ export default class EditListing extends React.Component {
       body: formData
     })
       .then(res => {
-        this.setState({ updated: true });
+        this.setState({ updated: true, loading: false });
       })
       .catch(err => console.error(err));
   }
@@ -106,8 +110,17 @@ export default class EditListing extends React.Component {
     window.scrollTo(0, 0);
   }
 
+  loadingClose() {
+    this.setState({ loading: false });
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
+    if (this.state.loading) {
+      return <LoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    }
     if (!this.state.listing) return null;
     if (this.state.listing.error) {
       return <NotFound />;
@@ -123,7 +136,8 @@ export default class EditListing extends React.Component {
             listing={this.state.listing}
             handleCancelButton={this.handleCancelButton}
             user={this.props.user}
-            token={this.props.token} />
+            token={this.props.token}
+            loading={this.state.loading} />
         <div className="container edit-listing-container">
           <div className="row row-header justify-center">
             <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Edit listing</h1></a>
