@@ -1,21 +1,12 @@
 import React from 'react';
+import ScrollToTop from '../components/scroll-to-top';
 
 export default class NoListings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.scrollToTop = this.scrollToTop.bind(this);
-  }
-
-  scrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
   render() {
+    const header = 'Your Listings';
     return (
       <div className="container no-listings-container">
-        <div className="row row-header justify-center">
-          <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Your Listings</h1></a>
-        </div>
+        <ScrollToTop header={header} />
         <div className="form-container-full div-published-body text-center">
           <p className="dark-grey-color">When you start selling, your listings will appear here.</p>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import MapContainer from '../components/google-map';
 import LoadingModal from '../components/loading-modal';
 import LoadError from '../components/load-error';
+import ScrollToTop from '../components/scroll-to-top';
 
 export default class CreateListingFormLocation extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ export default class CreateListingFormLocation extends React.Component {
   }
 
   render() {
+    const header = 'Item For Sale';
     return (
       <>
         <LoadingModal loading={this.state.loading}
@@ -65,9 +67,7 @@ export default class CreateListingFormLocation extends React.Component {
           loadError={this.props.loadError}
           closeAllModals={this.closeAllModals} />;
         <div className="container">
-          <div className="row row-header justify-center">
-            <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Item For Sale</h1></a>
-          </div>
+          <ScrollToTop header={header} />
           <div className="form-container-full">
             <form onSubmit={this.handleSubmit}>
               <div className="row justify-center">

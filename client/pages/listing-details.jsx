@@ -187,7 +187,7 @@ export default class ListingDetails extends React.Component {
     const googleLocation = `http://maps.google.com/?q=${location}`;
     return (
       <>
-        < EmailForm formActive={this.state.formActive}
+        <EmailForm formActive={this.state.formActive}
         listingId={this.props.listingId}
         listingInfo={this.state.listing}
         sellerEmail={this.state.sellerEmail}

@@ -2,6 +2,7 @@ import React from 'react';
 import Redirect from '../components/redirect';
 import NoSavedItems from '../components/no-saved-items';
 import PageLoadingModal from '../components/page-loading-modal';
+import ScrollToTop from '../components/scroll-to-top';
 
 export default class SavedItems extends React.Component {
   constructor(props) {
@@ -11,7 +12,6 @@ export default class SavedItems extends React.Component {
       hasListings: true,
       loading: true
     };
-    this.scrollToTop = this.scrollToTop.bind(this);
     this.loadingClose = this.loadingClose.bind(this);
   }
 
@@ -35,15 +35,12 @@ export default class SavedItems extends React.Component {
       });
   }
 
-  scrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
   loadingClose() {
     this.setState({ loading: false });
   }
 
   render() {
+    const header = 'Saved Items';
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (this.state.loading) {
       return <PageLoadingModal
@@ -55,9 +52,7 @@ export default class SavedItems extends React.Component {
     } else {
       return (
         <div className="container saved-items-container">
-          <div className="row row-header justify-center">
-            <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Saved Items</h1></a>
-          </div>
+          <ScrollToTop header={header} />
           <div className="row row-browse-all justify-center">
             {
               this.state.listings.reverse().map(listing => (

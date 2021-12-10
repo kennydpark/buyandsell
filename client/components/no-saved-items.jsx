@@ -1,21 +1,12 @@
 import React from 'react';
+import ScrollToTop from '../components/scroll-to-top';
 
 export default class NoSavedItems extends React.Component {
-  constructor(props) {
-    super(props);
-    this.scrollToTop = this.scrollToTop.bind(this);
-  }
-
-  scrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
   render() {
+    const header = 'Saved Items';
     return (
       <div className="container saved-items-container">
-        <div className="row row-header justify-center">
-          <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">Saved Items</h1></a>
-        </div>
+        <ScrollToTop header={header} />
         <div className="form-container-full div-published-body text-center">
           <p className="dark-grey-color">You have no saved items.</p>
         </div>

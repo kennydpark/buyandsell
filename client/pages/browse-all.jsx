@@ -1,14 +1,17 @@
 import React from 'react';
 import Redirect from '../components/redirect';
+import PageLoadingModal from '../components/page-loading-modal';
+import ScrollToTop from '../components/scroll-to-top';
 
 export default class BrowseAll extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       listings: [],
-      hasListings: true
+      hasListings: true,
+      loading: true
     };
-    this.scrollToTop = this.scrollToTop.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -19,10 +22,11 @@ export default class BrowseAll extends React.Component {
       })
         .then(res => res.json())
         .then(listings => {
+          this.setState({ loading: false });
           if (listings.length === 0) {
             this.setState({ hasListings: false });
           } else {
-            this.setState({ listings, loading: false });
+            this.setState({ listings });
           }
         })
         .catch(err => {
@@ -32,17 +36,21 @@ export default class BrowseAll extends React.Component {
     }
   }
 
-  scrollToTop() {
-    window.scrollTo(0, 0);
+  loadingClose() {
+    this.setState({ loading: false });
   }
 
   render() {
+    const header = 'buyandsell';
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
+    if (this.state.loading) {
+      return <PageLoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    }
     return (
         <div className="browse-all-container">
-          <div className="row row-header justify-center">
-            <a onClick={this.scrollToTop} className="page-header-anchor"><h1 className="page-header-text">buyandsell</h1></a>
-          </div>
+          <ScrollToTop header={header} />
           <div className="row row-browse-all justify-center">
             {
               this.state.listings.reverse().map(listing => (
