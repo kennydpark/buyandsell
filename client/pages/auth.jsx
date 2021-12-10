@@ -5,7 +5,7 @@ import AppContext from '../lib/app-context';
 
 export default class AuthPage extends React.Component {
   componentDidMount() {
-    document.body.style.backgroundColor = 'white';
+    document.body.style.backgroundColor = '#F8F8F8';
   }
 
   render() {
@@ -17,14 +17,19 @@ export default class AuthPage extends React.Component {
 
     return (
         <div className="text-center">
-          <div className="row row-front-title justify-center">
-            <h1 className="welcome-message text-center">{ welcomeMessage }</h1>
+          <div className="row row-front-back">
+            <a href="#"><i className="fas fa-angle-left front-back-icon"></i></a>
           </div>
-          <div>
-            <AuthForm
-              key={route.path}
-              action={route.path}
-              onSignIn={handleSignIn} />
+          <div className="auth-container">
+            <div className="row row-front-title justify-center">
+              <h1 className="welcome-message text-center">{ welcomeMessage }</h1>
+            </div>
+            <div>
+              <AuthForm
+                key={route.path}
+                action={route.path}
+                onSignIn={handleSignIn} />
+            </div>
           </div>
         </div>
     );

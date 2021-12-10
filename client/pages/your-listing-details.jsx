@@ -1,13 +1,16 @@
 import React from 'react';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
+import PageLoadingModal from '../components/page-loading-modal';
 
 export default class YourListingDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listing: null
+      listing: null,
+      loading: true
     };
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -20,11 +23,20 @@ export default class YourListingDetails extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(listing => this.setState({ listing }));
+      .then(listing => this.setState({ listing, loading: false }));
+  }
+
+  loadingClose() {
+    this.setState({ loading: false });
   }
 
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
+    if (this.state.loading) {
+      return <PageLoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    }
     if (!this.state.listing) return null;
     if (this.state.listing.error) {
       return <NotFound />;
@@ -36,7 +48,7 @@ export default class YourListingDetails extends React.Component {
       <>
         <div className="details-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">Your Listings</h1>
+            <a href="#your-listings" className="page-header-anchor"><h1 className="page-header-text">Your Listings</h1></a>
           </div>
           <div className="row row-back-button justify-left">
             <a href="#your-listings"><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
@@ -45,7 +57,7 @@ export default class YourListingDetails extends React.Component {
             <div className="row justify-center margin-auto">
               <div className="details-column-half">
                 <div className="row image-container justify-center margin-auto">
-                  <img src={imageUrl} className="details-listing-image" />
+                  <img src={imageUrl} className="details-listing-image" alt={title} />
                 </div>
               </div>
               <div className="details-column-half details-column-body">

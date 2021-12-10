@@ -17,7 +17,8 @@
 
 .your-listings-container,
 .saved-items-container,
-.no-listings-container {
+.no-listings-container,
+.published-container {
   margin-top: 100px;
 }
 
@@ -36,8 +37,16 @@
   margin: 0;
 }
 
-.row-front-title {
-  padding-top: 30%;
+.row-front-back {
+  padding-top: 10%;
+  padding-bottom: 15px;
+  width: 330px;
+  margin: auto;
+}
+
+.row-front-title,
+.row-front-landing {
+  padding-top: 65px;
   margin-bottom: 60px;
 }
 
@@ -85,7 +94,6 @@
   width: 300px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
 }
 
 .margin-auto {
@@ -105,11 +113,17 @@
   padding-top: 0;
 }
 
-.email-modal-window {
+.email-modal-window,
+.loading-modal-window,
+.sent-modal-window {
   width: 340px;
   margin: auto;
   background-color: white;
   border-radius: 10px;
+}
+
+.loading-modal-window {
+  background-color: rgb(0 0 0 / 0%);
 }
 
 .details-description-container {
@@ -123,7 +137,6 @@
   padding: 8px 0;
   font-size: 1.2rem;
   position: absolute;
-  border-radius: 0 0 10px 10px;
   transition: 0.2s;
 }
 
@@ -156,6 +169,14 @@
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
+  }
+
+  .row-front-landing {
+    padding-top: 20%;
+  }
+
+  .row-front-back {
+    padding-top: 15%;
   }
 
   .browse-all-container {
@@ -191,9 +212,13 @@
     margin: 0 33px;
   }
 
+  .image-container {
+    height: 100%;
+  }
+
   .details-listing-image {
-    width: 430px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     border-radius: 10px 0 0 10px;
   }
 
@@ -215,12 +240,13 @@
     text-align: left;
   }
 
-  .email-modal-window {
+  .email-modal-window,
+  .loading-modal-window {
     width: 420px;
   }
 
   .saved-prompt {
-    width: 360px;
+    border-radius: 0 0 0 10px;
   }
 
   #google-map {
@@ -234,8 +260,12 @@
     max-width: 1100px;
   }
 
-  .row-front-title {
+  .row-front-landing {
     padding-top: 25%;
+  }
+
+  .row-front-back {
+    padding-top: 20%;
   }
 
   .form-container-full {
@@ -255,7 +285,7 @@
 
   .details-listing-image {
     width: 530px;
-    height: 500px;
+    height: 100%;
     border-radius: 10px 0 0 10px;
   }
 
@@ -278,7 +308,7 @@
   }
 
   .saved-prompt {
-    width: 500px;
+    border-radius: 0 0 0 10px;
   }
 
   #google-map {

@@ -2,6 +2,8 @@ import React from 'react';
 import EmailForm from '../components/email-form-modal';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
+import LoadError from '../components/load-error';
+import PageLoadingModal from '../components/page-loading-modal';
 
 export default class ListingDetails extends React.Component {
   constructor(props) {
@@ -12,12 +14,16 @@ export default class ListingDetails extends React.Component {
       formActive: false,
       saved: false,
       savedPrompt: 'saved-prompt saved-hidden',
-      savedPromptText: 'Saved'
+      savedPromptText: 'Saved',
+      saveError: false,
+      loading: true
     };
     this.handleContactButton = this.handleContactButton.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
     this.handleSaveButton = this.handleSaveButton.bind(this);
     this.prompt = this.prompt.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
+    this.closeAllModals = this.closeAllModals.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +31,7 @@ export default class ListingDetails extends React.Component {
     if (this.props.route.path === 'listing-details') {
       fetch(`/api/listings/${this.props.listingId}`)
         .then(res => res.json())
-        .then(listing => this.setState({ listing }));
+        .then(listing => this.setState({ listing, loading: false }));
     } else {
       fetch(`/api/user/saved/listing/${this.props.listingId}`, {
         method: 'GET',
@@ -36,6 +42,7 @@ export default class ListingDetails extends React.Component {
       })
         .then(res => res.json())
         .then(listing => {
+          this.setState({ loading: false });
           if (listing.false) {
             this.setState({ saved: false });
           } else {
@@ -69,15 +76,11 @@ export default class ListingDetails extends React.Component {
       .then(res => res.json())
       .then(email => this.setState({ sellerEmail: email.email }))
       .catch(err => console.error(err));
-    this.setState({
-      formActive: true
-    });
+    this.setState({ formActive: true });
   }
 
   handleCancelButton() {
-    this.setState({
-      formActive: false
-    });
+    this.setState({ formActive: false });
   }
 
   handleSaveButton() {
@@ -96,7 +99,10 @@ export default class ListingDetails extends React.Component {
             savedPromptText: 'Saved'
           });
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          this.setState({ saveError: true });
+          console.error(err);
+        });
       this.prompt();
     } else {
       fetch(`/api/user/saved/${this.props.listingId}`, {
@@ -113,7 +119,10 @@ export default class ListingDetails extends React.Component {
             savedPromptText: 'Removed'
           });
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          this.setState({ saveError: true });
+          console.error(err);
+        });
       this.prompt();
     }
   }
@@ -128,8 +137,21 @@ export default class ListingDetails extends React.Component {
     clearTimeout(this.intervalID);
   }
 
+  loadingClose() {
+    this.setState({ loading: false });
+  }
+
+  closeAllModals() {
+    this.setState({ saveError: false });
+  }
+
   render() {
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
+    if (this.state.loading) {
+      return <PageLoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    }
     if (!this.state.listing) return null;
     if (this.state.listing.false || this.state.listing.error) {
       return <NotFound />;
@@ -165,24 +187,27 @@ export default class ListingDetails extends React.Component {
     const googleLocation = `http://maps.google.com/?q=${location}`;
     return (
       <>
-        < EmailForm formActive={this.state.formActive}
+        <EmailForm formActive={this.state.formActive}
         listingId={this.props.listingId}
         listingInfo={this.state.listing}
         sellerEmail={this.state.sellerEmail}
         handleCancelButton={this.handleCancelButton}
         route={this.props.route} />
+        <LoadError
+          loadError={this.state.saveError}
+          closeAllModals={this.closeAllModals} />;
         <div className="details-container">
           <div className="row row-header justify-center">
-            <h1 className="page-header-text">{header}</h1>
+            <a href={href} className="page-header-anchor"><h1 className="page-header-text">{header}</h1></a>
           </div>
           <div className="row row-back-button justify-left">
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
           </div>
           <div className="details-container-full text-center">
-            <div className="row justify-center margin-auto">
+            <div className="row row-card-full justify-center margin-auto">
               <div className="details-column-half">
                 <div className="row image-container justify-center margin-auto">
-                  <img src={imageUrl} className="details-listing-image" />
+                  <img src={imageUrl} className="details-listing-image" alt={title} />
                   <p className={this.state.savedPrompt}>{this.state.savedPromptText}</p>
                 </div>
               </div>

@@ -1,8 +1,8 @@
 import React from 'react';
-import CreateListingFormDetails from './create-listing-form-details';
-import CreateListingFormLocation from './create-listing-form-location';
-import CreateListingPublished from './create-listing-published';
-import Redirect from './redirect';
+import CreateListingFormDetails from '../components/create-listing-form-details';
+import CreateListingFormLocation from '../components/create-listing-form-location';
+import CreateListingPublished from '../components/create-listing-published';
+import Redirect from '../components/redirect';
 
 export default class CreateListingFormParent extends React.Component {
   constructor(props) {
@@ -16,12 +16,14 @@ export default class CreateListingFormParent extends React.Component {
         file: null
       },
       view: 'details',
-      location: ''
+      location: '',
+      loadError: false
     };
     this.handleLocationSubmitted = this.handleLocationSubmitted.bind(this);
     this.switchToDetails = this.switchToDetails.bind(this);
     this.handleDetailsSubmitted = this.handleDetailsSubmitted.bind(this);
     this.handleLocationSelect = this.handleLocationSelect.bind(this);
+    this.loadErrorClose = this.loadErrorClose.bind(this);
   }
 
   componentDidMount() {
@@ -71,11 +73,18 @@ export default class CreateListingFormParent extends React.Component {
           view: 'published'
         });
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        this.setState({ loadError: true });
+        console.error(err);
+      });
   }
 
   handleLocationSelect(address) {
     this.setState({ location: address });
+  }
+
+  loadErrorClose() {
+    this.setState({ loadError: false });
   }
 
   render() {
@@ -92,7 +101,9 @@ export default class CreateListingFormParent extends React.Component {
       handleLocationSubmitted={this.handleLocationSubmitted}
       location={this.state.location}
       nav={this.props.nav}
-      handleLocationSelect={this.handleLocationSelect} />;
+      handleLocationSelect={this.handleLocationSelect}
+      loadError={this.state.loadError}
+      loadErrorClose={this.loadErrorClose} />;
     } else if (this.state.view === 'published') {
       return <CreateListingPublished />;
     }

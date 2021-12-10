@@ -2,6 +2,9 @@ import React from 'react';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
 import DeleteConfirm from '../components/delete-confirm-modal';
+import PageLoadingModal from '../components/page-loading-modal';
+import LoadingModal from '../components/loading-modal';
+import ScrollToTop from '../components/scroll-to-top';
 
 export default class EditListing extends React.Component {
   constructor(props) {
@@ -15,7 +18,9 @@ export default class EditListing extends React.Component {
       condition: '',
       description: '',
       formActive: false,
-      updated: false
+      updated: false,
+      loading: true,
+      editLoading: false
     };
     this.fileInputRef = React.createRef();
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -26,6 +31,8 @@ export default class EditListing extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
+    this.loadingClose = this.loadingClose.bind(this);
+    this.editLoadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -45,7 +52,8 @@ export default class EditListing extends React.Component {
         title: listing.title,
         price: listing.price,
         condition: listing.condition,
-        description: listing.description
+        description: listing.description,
+        loading: false
       }));
   }
 
@@ -73,6 +81,7 @@ export default class EditListing extends React.Component {
   }
 
   handleSave(event) {
+    this.setState({ editLoading: true });
     event.preventDefault();
     const formData = new FormData();
     formData.append('image', this.state.file);
@@ -88,7 +97,7 @@ export default class EditListing extends React.Component {
       body: formData
     })
       .then(res => {
-        this.setState({ updated: true });
+        this.setState({ updated: true, editLoading: false });
       })
       .catch(err => console.error(err));
   }
@@ -101,8 +110,27 @@ export default class EditListing extends React.Component {
     this.setState({ formActive: false });
   }
 
+  loadingClose() {
+    this.setState({ loading: false });
+  }
+
+  editLoadingClose() {
+    this.setState({ editLoading: false });
+  }
+
   render() {
+    const header = 'Edit Listing';
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
+    if (this.state.loading) {
+      return <PageLoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    }
+    if (this.state.editLoading) {
+      return <LoadingModal
+        loading={this.state.editLoading}
+        loadingClose={this.editLoadingClose} />;
+    }
     if (!this.state.listing) return null;
     if (this.state.listing.error) {
       return <NotFound />;
@@ -118,11 +146,10 @@ export default class EditListing extends React.Component {
             listing={this.state.listing}
             handleCancelButton={this.handleCancelButton}
             user={this.props.user}
-            token={this.props.token} />
+            token={this.props.token}
+            loading={this.state.loading} />
         <div className="container edit-listing-container">
-          <div className="row row-header justify-center">
-            <h1 className="page-header-text">Edit listing</h1>
-          </div>
+          <ScrollToTop header={header} />
           <div className="row row-back-button justify-left">
             <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
           </div>

@@ -13,9 +13,13 @@ const styles = {
 };
 
 export default function NotFound(props) {
+
   return (
     <div style={styles.pageContent}>
       <div className="row">
+        <div className="row row-header justify-center">
+          <a href="#browse-all" className="page-header-anchor"><h1 className="page-header-text">buyandsell</h1></a>
+        </div>
         <div className="col text-center mb-5">
           <h3 className="dark-grey-color">
             Uh oh, we could not find the page you were looking for!

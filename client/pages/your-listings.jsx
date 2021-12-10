@@ -1,13 +1,18 @@
 import React from 'react';
 import Redirect from '../components/redirect';
 import NoListings from '../components/no-listings';
+import PageLoadingModal from '../components/page-loading-modal';
+import ScrollToTop from '../components/scroll-to-top';
 
 export default class YourListings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listings: []
+      listings: [],
+      hasListings: true,
+      loading: true
     };
+    this.loadingClose = this.loadingClose.bind(this);
   }
 
   componentDidMount() {
@@ -20,19 +25,34 @@ export default class YourListings extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(listings => this.setState({ listings }));
+      .then(listings => {
+        this.setState({ loading: false });
+        if (listings.length === 0) {
+          this.setState({ hasListings: false });
+        } else {
+          this.setState({ listings });
+        }
+      });
+  }
+
+  loadingClose() {
+    this.setState({ loading: false });
   }
 
   render() {
+    const header = 'Your Listings';
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
-    if (this.state.listings.length === 0) {
+    if (this.state.loading) {
+      return <PageLoadingModal
+        loading={this.state.loading}
+        loadingClose={this.loadingClose} />;
+    }
+    if (this.state.hasListings === false) {
       return <NoListings />;
     } else {
       return (
         <div className="container your-listings-container">
-          <div className="row row-header justify-center">
-            <h1 className="page-header-text">Your Listings</h1>
-          </div>
+          <ScrollToTop header={header} />
           <div className="row row-browse-all justify-center">
             {
               this.state.listings.reverse().map(listing => (
@@ -55,7 +75,7 @@ function Listing(props) {
     <a
       href={href}
       className="browse-all-listing">
-      <img src={imageUrl} className="browse-all-image" />
+      <img src={imageUrl} className="browse-all-image" alt={title} />
       <div className="card-body">
         <p className="card-price">${price}</p>
         <p className="card-title">{title}</p>
