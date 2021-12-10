@@ -6,18 +6,7 @@ export default class CreateListingPublished extends React.Component {
     this.state = {
       view: 'published'
     };
-    // this.redirect = this.redirect.bind(this);
   }
-
-  // componentDidMount() {
-  //   // this.redirect();
-  // }
-
-  // redirect() {
-  //   this.intervalID = setTimeout(() => {
-  //     window.location.href = '#browse-all';
-  //   }, 2200);
-  // }
 
   render() {
     return (
