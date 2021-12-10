@@ -57,7 +57,9 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     if (route.path === '') {
-      return <FrontPage user={this.state.user} />;
+      return <FrontPage
+        user={this.state.user}
+        onSignIn={this.handleSignIn} />;
     }
     if (route.path === 'browse-all') {
       return <BrowseAll
