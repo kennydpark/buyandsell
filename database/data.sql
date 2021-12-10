@@ -45,3 +45,16 @@ Sorry babe, no more joy rides... :(
 - transmission: manual
 
 - seats were recently replaced and are relatively new');
+
+insert into "listings" ("userId", "imageUrl", "title", "price", "location", "condition", "description")
+values ('2', 'https://buyandsell-bucket.s3.us-west-1.amazonaws.com/1639109785255.jpeg', 'Ikea desk', '60', 'Fullerton, CA', 'Used - Like New', 'Bought new from Ikea a few months back but father-in-law got me a nicer one as a graduation gift. And you probably dont care about any of that.');
+
+insert into "listings" ("userId", "imageUrl", "title", "price", "location", "condition", "description")
+values ('2', 'https://buyandsell-bucket.s3.us-west-1.amazonaws.com/1639109930156.jpeg', 'Special Edition Pikachu pokemon card', '10000', 'Santa Monica, CA', 'New', 'An extremely rare card. Trust me bro.
+
+Contact me for shipping options.
+
+Not NFT');
+
+insert into "listings" ("userId", "imageUrl", "title", "price", "location", "condition", "description")
+values ('2', 'https://buyandsell-bucket.s3.us-west-1.amazonaws.com/1639110073943.jpeg', 'Whirlpool fridge', '100', 'Yorba Linda, CA', 'Used - Good', 'Stainless steel fridge with a french style freezer drawer. Includes a 10-year warranty.');
