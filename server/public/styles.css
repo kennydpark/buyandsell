@@ -120,6 +120,12 @@ button.next-submit:active {
   transform-origin: bottom;
   font-size: 1.3rem;
   color: #2978b5;
+  transition: 0.2s ease-out;
+}
+
+.demo-arrow-icon:hover {
+  color: #236699;
+  transition: 0.2s ease-out;
 }
 
 .bounce {
@@ -133,12 +139,34 @@ button.next-submit:active {
   100% { transform: translateY(0); }
 }
 
+.row-demo-arrow {
+  margin-top: 35px;
+  border-top: solid 1.5px rgb(190 190 190);
+  width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .demo-button-anchor {
+  padding-top: 20px;
   cursor: pointer;
 }
 
-.row-demo-arrow {
-  margin-top: 20px;
+.demo-button {
+  background-color: #2978b5;
+  color: white;
+  padding: 15px 0;
+  width: 225px;
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
+}
+
+.demo-hidden {
+  transform: scale(1, 0);
+  transition: 0.2s ease-out;
 }
 
 .row-demo-sign-in {

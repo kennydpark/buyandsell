@@ -53,10 +53,10 @@ export default class FrontPage extends React.Component {
     let demoButton;
     if (this.state.demoView) {
       demoArrow = 'fas fa-chevron-up demo-arrow-icon';
-      demoButton = 'row row-demo-sign-in justify-center';
+      demoButton = 'demo-button';
     } else {
       demoArrow = 'fas fa-chevron-down demo-arrow-icon bounce';
-      demoButton = 'hidden';
+      demoButton = 'demo-button demo-hidden';
     }
     return (
       <div className="container">
@@ -75,8 +75,8 @@ export default class FrontPage extends React.Component {
         <div className="row row-demo-arrow justify-center">
           <a onClick={this.handleDemoView} className="demo-button-anchor"><i className={demoArrow}></i></a>
         </div>
-        <div className={demoButton}>
-          <a onClick={this.handleDemoSignIn} className="front-button">Demo sign in</a>
+        <div className="row row-demo-sign-in justify-center">
+          <a onClick={this.handleDemoSignIn} className={demoButton}>Demo</a>
         </div>
       </div>
     );

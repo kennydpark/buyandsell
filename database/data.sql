@@ -13,8 +13,6 @@ values ('1', 'https://buyandsell-bucket.s3.us-west-1.amazonaws.com/1639107211158
 
 - works perfectly
 
-- perfect condition
-
 - I have to sell because my kitchen has no room :(
 
 Pickup at the walmart parking lot on 43rd and jefferson blvd');
