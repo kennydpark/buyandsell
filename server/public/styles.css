@@ -163,7 +163,7 @@ button.next-submit:active {
 }
 
 .row-demo-arrow {
-  margin-top: 35px;
+  margin-top: 40px;
   border-top: solid 1.5px rgb(190 190 190);
   width: 240px;
   margin-left: auto;
@@ -176,7 +176,7 @@ button.next-submit:active {
 }
 
 .demo-button {
-  background-color: #2978b5;
+  background-color: rgb(180 180 180);
   color: white;
   padding: 15px 0;
   width: 225px;
@@ -185,6 +185,11 @@ button.next-submit:active {
   cursor: pointer;
   transition: 0.2s ease-out;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
+}
+
+.demo-button:hover {
+  transition: 0.2s ease-out;
+  background-color: #a5a5a5;
 }
 
 .demo-hidden {

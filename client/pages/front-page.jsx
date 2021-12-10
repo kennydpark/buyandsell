@@ -5,7 +5,7 @@ export default class FrontPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      demoView: false
+      demoView: true
     };
     this.handleDemoView = this.handleDemoView.bind(this);
     this.handleDemoSignIn = this.handleDemoSignIn.bind(this);
