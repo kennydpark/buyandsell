@@ -68,46 +68,46 @@ class Navbar extends React.Component {
           <ul className='navbar-ul'>
             <a onClick={this.handleClick} href="#browse-all">
               <div className='row navbar-row-browse'>
-                <div className='navbar-column-browse-icon'>
+                <div className='navbar-column-icon'>
                   <i className='fas fa-store navbar-browse-icon'></i>
                 </div>
-                <div className='navbar-column-browse-text'>
+                <div className='navbar-column-text'>
                   <h1 className='navbar-browse-all-anchor'>buyandsell</h1>
                 </div>
               </div>
             </a>
             <li>
               <a onClick={this.handleClick} href="#create-listing">
-                <div className='row navbar-row-create'>
-                  <div className='navbar-column-create-icon'>
-                    <i className='fas fa-plus navbar-create-icon'></i>
+                <div className='row navbar-row-full'>
+                  <div className='navbar-column-icon'>
+                    <i className='fas fa-plus navbar-page-icon'></i>
                   </div>
-                  <div className='navbar-column-create-text'>
-                    <h1 className='navbar-create-anchor'>Create new listing</h1>
+                  <div className='navbar-column-text'>
+                    <h1 className='navbar-page-anchor'>Create new listing</h1>
                   </div>
                 </div>
               </a>
             </li>
             <li>
               <a onClick={this.handleClick} href="#your-listings">
-                <div className='row navbar-row-listings'>
-                  <div className='navbar-column-listings-icon'>
-                    <i className='fas fa-tags navbar-listings-icon'></i>
+                <div className='row navbar-row-full'>
+                  <div className='navbar-column-icon'>
+                    <i className='fas fa-tags navbar-page-icon'></i>
                   </div>
-                  <div className='navbar-column-listings-text'>
-                    <h1 className='navbar-listings-anchor'>Your listings</h1>
+                  <div className='navbar-column-text'>
+                    <h1 className='navbar-page-anchor'>Your listings</h1>
                   </div>
                 </div>
               </a>
             </li>
             <li>
               <a onClick={this.handleClick} href="#saved-items">
-                <div className='row navbar-row-saved'>
-                  <div className='navbar-column-saved-icon'>
-                    <i className='fas fa-bookmark navbar-saved-icon'></i>
+                <div className='row navbar-row-full'>
+                  <div className='navbar-column-icon'>
+                    <i className='fas fa-bookmark navbar-page-icon'></i>
                   </div>
-                  <div className='navbar-column-saved-text'>
-                    <h1 className='navbar-saved-anchor'>Saved items</h1>
+                  <div className='navbar-column-text'>
+                    <h1 className='navbar-page-anchor'>Saved items</h1>
                   </div>
                 </div>
               </a>
@@ -115,24 +115,24 @@ class Navbar extends React.Component {
             <li>
               {user !== null &&
                 <a onClick={this.handleClickSignOut}>
-                  <div className='row navbar-row-sign'>
-                    <div className='navbar-column-sign-icon'>
-                      <i className='fas fa-sign-out-alt navbar-sign-icon'></i>
+                  <div className='row navbar-row-full'>
+                    <div className='navbar-column-icon'>
+                      <i className='fas fa-sign-out-alt navbar-page-icon'></i>
                     </div>
-                    <div className='navbar-column-sign-text'>
-                      <h1 className='navbar-sign-anchor'>Sign out</h1>
+                    <div className='navbar-column-text'>
+                      <h1 className='navbar-page-anchor'>Sign out</h1>
                     </div>
                   </div>
                 </a>
               }
               {user === null &&
                 <a onClick={this.handleClick} href="#sign-in">
-                  <div className='row navbar-row-sign'>
+                  <div className='row navbar-row-full'>
                     <div className='navbar-column-sign-icon'>
-                      <i className='fas fa-sign-in-alt navbar-sign-icon'></i>
+                      <i className='fas fa-sign-in-alt navbar-page-icon'></i>
                     </div>
-                    <div className='navbar-column-sign-text'>
-                      <h1 className='navbar-sign-anchor'>Sign in</h1>
+                    <div className='navbar-column-text'>
+                      <h1 className='navbar-page-anchor'>Sign in</h1>
                     </div>
                   </div>
                 </a>

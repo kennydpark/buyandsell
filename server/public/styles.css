@@ -326,6 +326,26 @@ input[type="file"] {
   transform: scale(0.97);
 }
 
+.create-new-listing-button {
+  text-align: center;
+  display: inline-block;
+  background-color: #2978b5;
+  color: white;
+  padding: 15px 0;
+  width: 190px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
+}
+
+.create-new-listing-button:hover {
+  background-color: #236699;
+  transition: 0.2s ease-out;
+}
+
 .autocomplete-dropdown-container {
   padding-top: 10px;
   padding-left: 5px;
@@ -663,39 +683,25 @@ input[type="file"] {
   margin-bottom: 25px;
 }
 
-.navbar-row-create,
-.navbar-row-listings,
-.navbar-row-saved,
-.navbar-row-sign {
+.navbar-row-full {
   border-radius: 10px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
   margin-bottom: 10px;
 }
 
-.navbar-row-browse:hover,
-.navbar-row-create:hover,
-.navbar-row-listings:hover,
-.navbar-row-saved:hover,
-.navbar-row-sign:hover {
+.navbar-row-full:hover,
+.navbar-row-browse:hover {
   background-color: #2978b53a;
   transition: 0.2s ease-in-out;
 }
 
-.navbar-column-browse-icon,
-.navbar-column-create-icon,
-.navbar-column-listings-icon,
-.navbar-column-saved-icon,
-.navbar-column-sign-icon {
+.navbar-column-icon {
   width: 25%;
   color: #444;
 }
 
-.navbar-column-browse-text,
-.navbar-column-create-text,
-.navbar-column-listings-text,
-.navbar-column-saved-text,
-.navbar-column-sign-text {
+.navbar-column-text {
   width: 70%;
   height: 40px;
 }
@@ -718,18 +724,12 @@ input[type="file"] {
   font-family: Lobster, cursive;
 }
 
-.navbar-create-icon,
-.navbar-listings-icon,
-.navbar-saved-icon,
-.navbar-sign-icon {
+.navbar-page-icon {
   margin-left: 13px;
   padding-top: 12px;
 }
 
-.navbar-create-anchor,
-.navbar-listings-anchor,
-.navbar-saved-anchor,
-.navbar-sign-anchor {
+.navbar-page-anchor {
   cursor: pointer;
   border-radius: 5px;
   font-size: 1rem;
@@ -897,26 +897,6 @@ input[type="file"] {
 }
 
 /* no-listings */
-
-.create-new-listing-button {
-  text-align: center;
-  display: inline-block;
-  background-color: #2978b5;
-  color: white;
-  padding: 15px 0;
-  width: 190px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.2s ease-out;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 7.5%);
-}
-
-.create-new-listing-button:hover {
-  background-color: #236699;
-  transition: 0.2s ease-out;
-}
 
 .row-create-new-listing-button {
   margin-top: 20%;

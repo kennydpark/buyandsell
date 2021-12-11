@@ -173,8 +173,10 @@ export default class EditListing extends React.Component {
                     </input>
                   </div>
                   <div className="row row-form">
-                    <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
-                      type="number" min="0" max="999999" required placeholder="$ Price" />
+                    <span className="dollar">
+                      <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
+                        type="number" min="0" max="999999" required placeholder="Price" />
+                    </span>
                   </div>
                   <div className="row row-form">
                     <select value={this.state.condition} onChange={this.handleSelectChange}
