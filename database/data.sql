@@ -63,7 +63,7 @@ values ('2', 'https://buyandsell-bucket.s3.us-west-1.amazonaws.com/1639267432986
 Local pickup also available');
 
 insert into "listings" ("userId", "imageUrl", "title", "price", "location", "condition", "description")
-values ('2', 'https://buyandsell-bucket.s3.amazonaws.com/1639267146007.jpeg', 'Samsung TV - 4K', '160', 'Gibsonton, FL', 'New', 'Samsung 55 inch TV. Flat screen and comes with power cord. Works with no problems.
+values ('2', 'https://buyandsell-bucket.s3.amazonaws.com/1639267146007.jpeg', 'Samsung TV - 4K', '160', 'La Mirada, CA', 'New', 'Samsung 55 inch TV. Flat screen and comes with power cord. Works with no problems.
 
 Contact me for shipping options.
 
