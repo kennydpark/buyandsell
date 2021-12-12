@@ -6,7 +6,7 @@ My goal in building this project was to create something that was first and fore
 
 ## Live Demo
 
-Try the application live at [buyandsell-app.herokuapp.com](https://buyandsell-app.herokuapp.com).
+Try the application live [here](https://buyandsell-app.herokuapp.com).
 
 
 ## Preview
