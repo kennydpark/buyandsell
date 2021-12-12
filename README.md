@@ -8,15 +8,6 @@ My goal in building this project was to create something that was first and fore
 
 Try the application live [here](https://buyandsell-app.herokuapp.com).
 
-
-## Preview
-
-<p align="center">
-  <img src="server/public/images/create-listing.gif" width="400px" height="886px"/>
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="server/public/images/contact-seller.gif" width="400px" height="886px"/>
-</p>
-
 ## Technologies Used
 
 - React
@@ -42,6 +33,12 @@ Try the application live [here](https://buyandsell-app.herokuapp.com).
 - User can edit their listing
 - User can sign up
 - User can sign in
+
+## Preview
+
+![User can create a listing](server/public/images/create-listing.gif)
+
+![User can send a message to a seller](server/public/images/contact-seller.gif)
 
 ## Development
 
