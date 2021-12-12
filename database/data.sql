@@ -56,3 +56,15 @@ Not NFT');
 
 insert into "listings" ("userId", "imageUrl", "title", "price", "location", "condition", "description")
 values ('2', 'https://buyandsell-bucket.s3.us-west-1.amazonaws.com/1639110073943.jpeg', 'Whirlpool fridge', '100', 'Yorba Linda, CA', 'Used - Good', 'Stainless steel fridge with a french style freezer drawer. Includes a 10-year warranty.');
+
+insert into "listings" ("userId", "imageUrl", "title", "price", "location", "condition", "description")
+values ('2', 'https://buyandsell-bucket.s3.us-west-1.amazonaws.com/1639267432986.jpeg', 'Yeezy 350 Mix Oat size 11.5 men''s', '160', 'Gibsonton, FL', 'New', 'Contact me for shipping options!
+
+Local pickup also available');
+
+insert into "listings" ("userId", "imageUrl", "title", "price", "location", "condition", "description")
+values ('2', 'https://buyandsell-bucket.s3.amazonaws.com/1639267146007.jpeg', 'Samsung TV - 4K', '160', 'Gibsonton, FL', 'New', 'Samsung 55 inch TV. Flat screen and comes with power cord. Works with no problems.
+
+Contact me for shipping options.
+
+Email me for more info');
