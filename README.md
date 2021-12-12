@@ -30,6 +30,7 @@ Try the application live at [buyandsell-app.herokuapp.com](https://buyandsell-ap
 - CSS3
 - AWS S3
 - Google Maps APIs (Geocoding, Maps, Places)
+- SendGrid
 - Heroku
 
 ## Features
