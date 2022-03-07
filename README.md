@@ -2,7 +2,7 @@
 
 A full stack web application for buyers and sellers to fulfill their needs in a simple yet intuitive marketplace.
 
-My goal in building this project was to create something that was first and foremost useful and easy to use. The main philosophy throughout the process, in both a design and functionality standpoint, was to give the user a minimalist UI for conveniently selling and buying items in an overall smooth experience.
+My goal in building this project was to create something that was first and foremost useful and easy to use. The main philosophy throughout the process, in both a design and functionality standpoint, was to give the user a minimalistic UI for conveniently selling and buying items in a smooth and intuitive experience.
 
 ## Live Demo
 
