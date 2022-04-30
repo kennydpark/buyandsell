@@ -1,4 +1,5 @@
 import React from 'react';
+// import styled from 'styled-components';
 
 export default class AuthForm extends React.Component {
   constructor(props) {
@@ -75,8 +76,14 @@ export default class AuthForm extends React.Component {
       ? 'Already have an account?'
       : 'Don\'t have an account?';
 
+    // const Form = styled.form`
+    //   color: ${props => props.theme.fontColor};
+    //   transition: all .5s ease;
+    // `;
+
     return (
       <form onSubmit={ this.handleSubmit }>
+      {/* <Form onSubmit={ this.handleSubmit }> */}
         <div className="front-input-row text-center">
           <input
             required
@@ -106,13 +113,14 @@ export default class AuthForm extends React.Component {
           </button>
         </div>
         <div className="row row-alternate-action justify-center">
-          <p className="dark-grey-color">{ alternateActionQuestion }</p>
+          <p>{ alternateActionQuestion }</p>
           <span className="front-login-span">
             <a href={ alternateActionHref }
                className="front-login-anchor">{ alternateActionText }
             </a>
           </span>
         </div>
+      {/* </Form> */}
       </form>
     );
   }
