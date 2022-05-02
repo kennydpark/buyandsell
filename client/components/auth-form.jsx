@@ -1,5 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 
+const Input = styled.input`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.inputBackground};
+`;
 export default class AuthForm extends React.Component {
   constructor(props) {
     super(props);
@@ -78,7 +83,7 @@ export default class AuthForm extends React.Component {
     return (
       <form onSubmit={ this.handleSubmit }>
         <div className="front-input-row text-center">
-          <input
+          <Input
             required
             id="email"
             type="email"
@@ -88,7 +93,7 @@ export default class AuthForm extends React.Component {
             className="sign-in-form-style" />
         </div>
         <div className="front-input-row text-center">
-          <input
+          <Input
             required
             id="password"
             type="password"
@@ -106,7 +111,7 @@ export default class AuthForm extends React.Component {
           </button>
         </div>
         <div className="row row-alternate-action justify-center">
-          <p className="dark-grey-color">{ alternateActionQuestion }</p>
+          <p>{ alternateActionQuestion }</p>
           <span className="front-login-span">
             <a href={ alternateActionHref }
                className="front-login-anchor">{ alternateActionText }

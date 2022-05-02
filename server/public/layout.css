@@ -100,7 +100,6 @@
 }
 
 .details-column-body {
-  background-color: white;
   border-radius: 0 0 10px 10px;
   padding: 10px;
   padding-top: 0;
@@ -111,7 +110,6 @@
 .sent-modal-window {
   width: 340px;
   margin: auto;
-  background-color: white;
   border-radius: 10px;
 }
 
@@ -256,7 +254,7 @@
   }
 
   .row-front-landing {
-    padding-top: 25%;
+    padding-top: 20%;
   }
 
   .row-front-back {

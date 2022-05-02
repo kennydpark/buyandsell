@@ -1,6 +1,12 @@
 import React from 'react';
 import Redirect from '../components/redirect';
 import LoadingModal from '../components/loading-modal';
+import styled from 'styled-components';
+
+const DeleteModal = styled.div`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.primary};
+`;
 
 class DeleteConfirm extends React.Component {
   constructor(props) {
@@ -95,9 +101,9 @@ class DeleteConfirm extends React.Component {
     }
     return (
       <div className={modal}>
-        <div className={window}>
+        <DeleteModal className={window}>
           <div className="row justify-center row-delete-confirm">
-            <p className="dark-grey-color text-center delete-confirm-text">Are you sure you want to delete this listing?</p>
+            <p className="text-center delete-confirm-text">Are you sure you want to delete this listing?</p>
           </div>
           <div className="row row-delete-confirm-buttons">
             <div className="col-buttons cancel-previous">
@@ -107,7 +113,7 @@ class DeleteConfirm extends React.Component {
               <button onClick={this.handleDelete} className="delete-button">Confirm</button>
             </div>
           </div>
-        </div>
+        </DeleteModal>
       </div>
     );
   }

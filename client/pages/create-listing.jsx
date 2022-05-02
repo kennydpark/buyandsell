@@ -3,7 +3,6 @@ import CreateListingFormDetails from '../components/create-listing-form-details'
 import CreateListingFormLocation from '../components/create-listing-form-location';
 import CreateListingPublished from '../components/create-listing-published';
 import Redirect from '../components/redirect';
-
 export default class CreateListingFormParent extends React.Component {
   constructor(props) {
     super(props);
@@ -24,10 +23,6 @@ export default class CreateListingFormParent extends React.Component {
     this.handleDetailsSubmitted = this.handleDetailsSubmitted.bind(this);
     this.handleLocationSelect = this.handleLocationSelect.bind(this);
     this.loadErrorClose = this.loadErrorClose.bind(this);
-  }
-
-  componentDidMount() {
-    document.body.style.backgroundColor = 'white';
   }
 
   switchToDetails(location) {
@@ -94,7 +89,9 @@ export default class CreateListingFormParent extends React.Component {
       switchToLocation={this.switchToLocation}
       handleDetailsSubmitted={this.handleDetailsSubmitted}
       details={this.state.details}
-      user={this.props.user} />;
+      user={this.props.user}
+      theme={this.props.theme}
+      handleTheme={this.props.handleTheme} />;
     } else if (this.state.view === 'location') {
       return <CreateListingFormLocation
       switchToDetails={this.switchToDetails}
@@ -103,7 +100,9 @@ export default class CreateListingFormParent extends React.Component {
       nav={this.props.nav}
       handleLocationSelect={this.handleLocationSelect}
       loadError={this.state.loadError}
-      loadErrorClose={this.loadErrorClose} />;
+      loadErrorClose={this.loadErrorClose}
+      theme={this.props.theme}
+      handleTheme={this.props.handleTheme} />;
     } else if (this.state.view === 'published') {
       return <CreateListingPublished />;
     }

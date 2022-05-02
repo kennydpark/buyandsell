@@ -1,4 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Header = styled.a`
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
+
+const Notice = styled.h3`
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
 
 const styles = {
   pageContent: {
@@ -18,12 +29,12 @@ export default function NotFound(props) {
     <div style={styles.pageContent}>
       <div className="row">
         <div className="row row-header justify-center">
-          <a href="#browse-all" className="page-header-anchor"><h1 className="page-header-text">buyandsell</h1></a>
+          <Header href="#browse-all" className="page-header-anchor"><h1 className="page-header-text">buyandsell</h1></Header>
         </div>
         <div className="col text-center mb-5">
-          <h3 className="dark-grey-color">
+          <Notice>
             Uh oh, we could not find the page you were looking for!
-          </h3>
+          </Notice>
           <div className="row justify-center return-home-row">
             <a href="#" className="return-home-button white">Return Home</a>
           </div>

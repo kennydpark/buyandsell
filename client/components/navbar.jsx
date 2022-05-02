@@ -1,6 +1,39 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import styled from 'styled-components';
+import { CgSun } from 'react-icons/cg';
+import { HiMoon } from 'react-icons/hi';
+import Switch from '../components/switch';
 
+const NavBar = styled.div`
+  background-color: ${props => props.theme.primary};
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
+
+const Modal = styled.div`
+  background-color: ${props => props.theme.primary};
+`;
+
+const Anchor = styled.a`
+  color: ${props => props.theme.fontColor};
+`;
+
+const ToggleIcon = styled.button`
+  cursor: default;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: none;
+  background-color: ${props => props.theme.fontColor};
+  color: ${props => props.theme.primary};
+  &:focus {
+    outline: none;
+  }
+  transition: all .5s ease;
+  padding-top: 7px;
+  margin-top: 24px;
+`;
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -34,15 +67,6 @@ class Navbar extends React.Component {
     let full;
     let overlay;
     const { user } = this.context;
-    let icon;
-    let navbar;
-    if (!user) {
-      icon = 'hidden';
-      navbar = 'hidden';
-    } else {
-      icon = 'fas fa-bars navbar-icon';
-      navbar = 'row navbar-header';
-    }
     if (this.state.active === false) {
       modal = 'navbar-modal-container';
       full = 'navbar-modal-container-full';
@@ -52,21 +76,24 @@ class Navbar extends React.Component {
       full = 'navbar-modal-container-full';
       overlay = 'navbar-overlay';
     }
+
+    const toggle = this.props.theme === 'dark' ? <HiMoon size={19} /> : <CgSun size={19} />;
+
     return (
       <>
-        <div className={navbar}>
+        <NavBar className="row navbar-header">
           <div className="nav-col-half col-nav-icon">
             <a onClick={this.handleClick}>
-              <i className={icon}></i>
+              <i className='fas fa-bars navbar-icon'></i>
             </a>
           </div>
-        </div>
+        </NavBar>
         <div className={full}>
         </div>
         <div onClick={this.handleClick} className={overlay}></div>
-        <div className={modal}>
+        <Modal className={modal}>
           <ul className='navbar-ul'>
-            <a onClick={this.handleClick} href="#browse-all">
+            <Anchor onClick={this.handleClick} href="#browse-all">
               <div className='row navbar-row-browse'>
                 <div className='navbar-column-icon'>
                   <i className='fas fa-store navbar-browse-icon'></i>
@@ -75,9 +102,9 @@ class Navbar extends React.Component {
                   <h1 className='navbar-browse-all-anchor'>buyandsell</h1>
                 </div>
               </div>
-            </a>
+            </Anchor>
             <li>
-              <a onClick={this.handleClick} href="#create-listing">
+              <Anchor onClick={this.handleClick} href="#create-listing">
                 <div className='row navbar-row-full'>
                   <div className='navbar-column-icon'>
                     <i className='fas fa-plus navbar-page-icon'></i>
@@ -86,10 +113,10 @@ class Navbar extends React.Component {
                     <h1 className='navbar-page-anchor'>Create new listing</h1>
                   </div>
                 </div>
-              </a>
+              </Anchor>
             </li>
             <li>
-              <a onClick={this.handleClick} href="#your-listings">
+              <Anchor onClick={this.handleClick} href="#your-listings">
                 <div className='row navbar-row-full'>
                   <div className='navbar-column-icon'>
                     <i className='fas fa-tags navbar-page-icon'></i>
@@ -98,10 +125,10 @@ class Navbar extends React.Component {
                     <h1 className='navbar-page-anchor'>Your listings</h1>
                   </div>
                 </div>
-              </a>
+              </Anchor>
             </li>
             <li>
-              <a onClick={this.handleClick} href="#saved-items">
+              <Anchor onClick={this.handleClick} href="#saved-items">
                 <div className='row navbar-row-full'>
                   <div className='navbar-column-icon'>
                     <i className='fas fa-bookmark navbar-page-icon'></i>
@@ -110,11 +137,11 @@ class Navbar extends React.Component {
                     <h1 className='navbar-page-anchor'>Saved items</h1>
                   </div>
                 </div>
-              </a>
+              </Anchor>
             </li>
             <li>
               {user !== null &&
-                <a onClick={this.handleClickSignOut}>
+                <Anchor onClick={this.handleClickSignOut}>
                   <div className='row navbar-row-full'>
                     <div className='navbar-column-icon'>
                       <i className='fas fa-sign-out-alt navbar-page-icon'></i>
@@ -123,10 +150,10 @@ class Navbar extends React.Component {
                       <h1 className='navbar-page-anchor'>Sign out</h1>
                     </div>
                   </div>
-                </a>
+                </Anchor>
               }
               {user === null &&
-                <a onClick={this.handleClick} href="#sign-in">
+                <Anchor onClick={this.handleClick} href="#sign-in">
                   <div className='row navbar-row-full'>
                     <div className='navbar-column-sign-icon'>
                       <i className='fas fa-sign-in-alt navbar-page-icon'></i>
@@ -135,12 +162,18 @@ class Navbar extends React.Component {
                       <h1 className='navbar-page-anchor'>Sign in</h1>
                     </div>
                   </div>
-                </a>
+                </Anchor>
               }
             </li>
+            <li className="navbar-theme-toggle">
+              <ToggleIcon>
+                {toggle}
+              </ToggleIcon>
+              <Switch theme={this.props.theme} handleTheme={this.props.handleTheme} />
+            </li>
           </ul>
-        </div>
-    </>
+        </Modal>
+      </>
     );
   }
 }

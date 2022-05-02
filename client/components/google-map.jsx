@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import styled from 'styled-components';
+
+const Input = styled.input`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.inputBackground};
+  transition: all .5s ease;
+`;
+
+const DropDown = styled.div`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.primary};
+  transition: all .5s ease;
+`;
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -38,6 +51,7 @@ export class MapContainer extends Component {
     const containerStyle = {
       position: 'relative'
     };
+
     return (
       <div id="google-map" className="container justify-center">
         <PlacesAutocomplete
@@ -48,21 +62,21 @@ export class MapContainer extends Component {
         >
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
-              <input
+              <Input
                 {...getInputProps({
                   placeholder: 'Search location',
                   className: 'location-search-input new-listing-form-style justify-center'
                 })}
               />
-              <div className="autocomplete-dropdown-container text-start dark-grey-color">
+              <DropDown className="autocomplete-dropdown-container text-start">
                 {loading && <div>Loading...</div>}
                 {suggestions.map(suggestion => {
                   const className = suggestion.active
                     ? 'suggestion-item--active'
                     : 'suggestion-item';
                   const style = suggestion.active
-                    ? { backgroundColor: '#8ab6d662', cursor: 'pointer' }
-                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                    ? { backgroundColor: '#8ab6d6', cursor: 'pointer' }
+                    : { backgroundColor: '#ffffff00', cursor: 'pointer' };
                   return (
                     <div
                       {...getSuggestionItemProps(suggestion, {
@@ -75,7 +89,7 @@ export class MapContainer extends Component {
                     </div>
                   );
                 })}
-              </div>
+              </DropDown>
             </div>
           )}
         </PlacesAutocomplete>

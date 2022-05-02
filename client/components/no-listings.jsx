@@ -1,5 +1,11 @@
 import React from 'react';
 import ScrollToTop from '../components/scroll-to-top';
+import styled from 'styled-components';
+
+const Notice = styled.p`
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
 
 export default class NoListings extends React.Component {
   render() {
@@ -8,7 +14,7 @@ export default class NoListings extends React.Component {
       <div className="container no-listings-container">
         <ScrollToTop header={header} />
         <div className="form-container-full div-published-body text-center">
-          <p className="dark-grey-color">When you start selling, your listings will appear here.</p>
+          <Notice>When you start selling, your listings will appear here.</Notice>
         </div>
         <div className="row row-create-new-listing-button justify-center">
           <a href="#create-listing" className="create-new-listing-button">

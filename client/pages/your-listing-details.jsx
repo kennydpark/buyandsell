@@ -2,6 +2,23 @@ import React from 'react';
 import Redirect from '../components/redirect';
 import NotFound from './not-found';
 import PageLoadingModal from '../components/page-loading-modal';
+import styled from 'styled-components';
+
+const Header = styled.h1`
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
+
+const Details = styled.div`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.primary};
+  transition: all .5s ease;
+`;
+
+const BackButton = styled.a`
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
 
 export default class YourListingDetails extends React.Component {
   constructor(props) {
@@ -14,7 +31,6 @@ export default class YourListingDetails extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = '#F8F8F8';
     fetch(`/api/user/listings/${this.props.listingId}`, {
       method: 'GET',
       headers: {
@@ -48,10 +64,10 @@ export default class YourListingDetails extends React.Component {
       <>
         <div className="details-container">
           <div className="row row-header justify-center">
-            <a href="#your-listings" className="page-header-anchor"><h1 className="page-header-text">Your Listings</h1></a>
+            <a href="#your-listings" className="page-header-anchor"><Header className="page-header-text">Your Listings</Header></a>
           </div>
           <div className="row row-back-button justify-left">
-            <a href="#your-listings"><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
+            <BackButton href="#your-listings"><i className="fas fa-angle-left back-icon"></i></BackButton>
           </div>
           <div className="details-container-full text-center">
             <div className="row justify-center margin-auto">
@@ -60,7 +76,7 @@ export default class YourListingDetails extends React.Component {
                   <img src={imageUrl} className="details-listing-image" alt={title} />
                 </div>
               </div>
-              <div className="details-column-half details-column-body">
+              <Details className="details-column-half details-column-body">
                 <div className="row row-details-body">
                   <div className="col-title">
                     <p className="details-card-title details-text text-start">{title}</p>
@@ -70,14 +86,14 @@ export default class YourListingDetails extends React.Component {
                   </div>
                 </div>
                 <div className="row">
-                  <p className="details-card-price details-text dark-grey-color">${price}</p>
+                  <p className="details-card-price details-text">${price}</p>
                 </div>
                 <div className="row">
                   <a href={googleLocation} target="_blank" rel="noopener noreferrer" className="google-location-anchor">
-                    <p className="details-card-location details-text dark-grey-color">{location} <span><i className="fas fa-external-link-alt external-link-icon"></i></span></p>
+                    <p className="details-card-location details-text">{location} <span><i className="fas fa-external-link-alt external-link-icon"></i></span></p>
                   </a>
                 </div>
-                <div className="row row-condition margin-auto dark-grey-color">
+                <div className="row row-condition margin-auto">
                   <div className="column">
                     <p className="details-card-condition-label details-text">Condition</p>
                   </div>
@@ -86,9 +102,9 @@ export default class YourListingDetails extends React.Component {
                   </div>
                 </div>
                 <div className="row details-description-container text-start">
-                  <p className="details-card-description dark-grey-color">{description}</p>
+                  <p className="details-card-description">{description}</p>
                 </div>
-              </div>
+              </Details>
             </div>
           </div>
         </div>
