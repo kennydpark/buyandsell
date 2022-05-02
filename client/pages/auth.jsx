@@ -2,11 +2,19 @@ import React from 'react';
 import Redirect from '../components/redirect';
 import AuthForm from '../components/auth-form';
 import AppContext from '../lib/app-context';
+import styled from 'styled-components';
 
+const AuthContainer = styled.div`
+  background-color: ${props => props.theme.primary};
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
+
+const BackButton = styled.a`
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
 export default class AuthPage extends React.Component {
-  componentDidMount() {
-    document.body.style.backgroundColor = '#F8F8F8';
-  }
 
   render() {
     const { user, route, handleSignIn } = this.context;
@@ -18,9 +26,9 @@ export default class AuthPage extends React.Component {
     return (
         <div className="text-center">
           <div className="row row-front-back">
-            <a href="#"><i className="fas fa-angle-left front-back-icon"></i></a>
+            <BackButton href="#"><i className="fas fa-angle-left front-back-icon"></i></BackButton>
           </div>
-          <div className="auth-container">
+          <AuthContainer className="auth-container">
             <div className="row row-front-title justify-center">
               <h1 className="welcome-message text-center">{ welcomeMessage }</h1>
             </div>
@@ -30,7 +38,7 @@ export default class AuthPage extends React.Component {
                 action={route.path}
                 onSignIn={handleSignIn} />
             </div>
-          </div>
+          </AuthContainer>
         </div>
     );
   }

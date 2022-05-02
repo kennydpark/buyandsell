@@ -2,7 +2,13 @@ import React from 'react';
 import Redirect from '../components/redirect';
 import PageLoadingModal from '../components/page-loading-modal';
 import ScrollToTop from '../components/scroll-to-top';
+import styled from 'styled-components';
 
+const Card = styled.a`
+  background-color: ${props => props.theme.primary};
+  color: ${props => props.theme.fontColor};
+  transition: all 0.5s ease;
+`;
 export default class BrowseAll extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +21,6 @@ export default class BrowseAll extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = '#F8F8F8';
     if (this.props.user) {
       fetch('/api/listings', {
         method: 'GET'
@@ -26,7 +31,7 @@ export default class BrowseAll extends React.Component {
           if (listings.length === 0) {
             this.setState({ hasListings: false });
           } else {
-            this.setState({ listings });
+            this.setState({ listings: listings.reverse() });
           }
         })
         .catch(err => {
@@ -48,19 +53,20 @@ export default class BrowseAll extends React.Component {
         loading={this.state.loading}
         loadingClose={this.loadingClose} />;
     }
+
     return (
-        <div className="browse-all-container">
-          <ScrollToTop header={header} />
-          <div className="row row-browse-all justify-center">
-            {
-              this.state.listings.reverse().map(listing => (
-                <div key={listing.listingId}>
-                  <Listing listing={listing} />
-                </div>
-              ))
-            }
-          </div>
+      <div className="browse-all-container">
+        <ScrollToTop header={header} theme={this.props.theme} handleTheme={this.props.handleTheme} handleTheme2={this.handleTheme2} />
+        <div className="row row-browse-all justify-center">
+          {
+            this.state.listings.map(listing => (
+              <div key={listing.listingId}>
+                <Listing listing={listing} />
+              </div>
+            ))
+          }
         </div>
+      </div>
     );
   }
 }
@@ -68,16 +74,17 @@ export default class BrowseAll extends React.Component {
 function Listing(props) {
   const { listingId, title, price, imageUrl, location } = props.listing;
   const href = `#listing-details?listingId=${listingId}`;
+
   return (
-    <a
+    <Card
       href={href}
       className="browse-all-listing">
       <img src={imageUrl} className="browse-all-image" alt={title} />
       <div className="card-body">
         <p className="card-price">${price}</p>
         <p className="card-title">{title}</p>
-        <p className="card-location">{ location }</p>
+        <p className="card-location">{location}</p>
       </div>
-    </a>
+    </Card>
   );
 }

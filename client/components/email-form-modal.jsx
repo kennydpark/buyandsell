@@ -1,7 +1,22 @@
 import React from 'react';
 import LoadingModal from './loading-modal';
 import LoadError from '../components/load-error';
+import styled from 'styled-components';
 
+const EmailModal = styled.div`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.primary};
+`;
+
+const Input = styled.input`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.inputBackground};
+`;
+
+const EmailConfirmation = styled.div`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.primary};
+`;
 class EmailForm extends React.Component {
   constructor(props) {
     super(props);
@@ -135,33 +150,33 @@ class EmailForm extends React.Component {
 
     return (
       <>
-        < LoadingModal loading={this.state.loading}
+        <LoadingModal loading={this.state.loading}
           loadingClose={this.loadingClose} />
         <LoadError
           loadError={this.state.loadError}
           closeAllModals={this.closeAllModals} />;
         <div className={modal}>
-          <div className={window}>
+          <EmailModal className={window}>
             <form onSubmit={this.handleSubmit}>
               <div className="row row-form row-input-name">
-                <input onChange={this.handleNameChange} className="new-listing-form-style"
+                <Input onChange={this.handleNameChange} className="new-listing-form-style"
                   required label="name" type="text" placeholder="Name">
-                </input>
+                </Input>
               </div>
               <div className="row row-form">
-                <input onChange={this.handleBuyerEmailChange} className="new-listing-form-style"
+                <Input onChange={this.handleBuyerEmailChange} className="new-listing-form-style"
                   type="email" required placeholder="Email" />
               </div>
               <div className="row row-form row-input-title">
-                <input onChange={this.handlePhoneChange} className="new-listing-form-style"
+                <Input onChange={this.handlePhoneChange} className="new-listing-form-style"
                 label="phone" type="tel" maxLength="14" placeholder="Phone Number">
-                </input>
+                </Input>
               </div>
               <div className="row row-form">
-                <textarea value={this.state.description} onChange={this.handleMessageChange}
+                <Input as="textarea" value={this.state.description} onChange={this.handleMessageChange}
                   className="new-listing-form-style" required label="message" type="text" rows="7"
                   placeholder="Message">
-                </textarea>
+                </Input>
               </div>
               <div className="row">
                 <div className="col-buttons cancel-previous">
@@ -172,17 +187,17 @@ class EmailForm extends React.Component {
                 </div>
               </div>
             </form>
-          </div>
+          </EmailModal>
         </div>
         <div className={sentModal}>
-          <div className={sentWindow}>
+          <EmailConfirmation className={sentWindow}>
             <div className="row row-form justify-center front-margin-top">
-              <p className="dark-grey-color">Your email has been sent!</p>
+              <p>Your email has been sent!</p>
             </div>
             <div className="row justify-center margin-bottom-button">
               <button onClick={this.sentModalClose} className="next-submit">Okay</button>
             </div>
-          </div>
+          </EmailConfirmation>
         </div>
       </>
     );

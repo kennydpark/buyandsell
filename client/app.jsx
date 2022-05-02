@@ -17,8 +17,6 @@ import CreateListingFormParent from './pages/create-listing';
 import { ThemeProvider } from 'styled-components';
 import { themes, GlobalStyles } from './lib/themes.js';
 
-// window.localStorage.setItem('theme', JSON.stringify('light'));
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +25,7 @@ export default class App extends React.Component {
       token: null,
       isAuthorizing: true,
       route: parseRoute(window.location.hash),
-      theme: 'light'
+      theme: this.props.theme
     };
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
@@ -35,13 +33,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // localStorage.setItem('theme', JSON.stringify('light'));
-    // console.log(this.state.theme);
-    window.addEventListener('onload', () => {
-      window.localStorage.setItem('theme', JSON.stringify(this.state.theme));
-      this.setState({ theme: localStorage.getItem('theme') });
-    });
-
     window.addEventListener('hashchange', () => {
       const hashChangeParse = parseRoute(window.location.hash);
       this.setState({
@@ -70,10 +61,10 @@ export default class App extends React.Component {
   handleTheme() {
     if (this.state.theme === 'light') {
       this.setState({ theme: 'dark' });
-      window.localStorage.setItem('theme', JSON.stringify('dark'));
+      localStorage.setItem('theme', JSON.stringify('dark'));
     } else {
       this.setState({ theme: 'light' });
-      window.localStorage.setItem('theme', JSON.stringify('light'));
+      localStorage.setItem('theme', JSON.stringify('light'));
     }
   }
 
@@ -82,7 +73,9 @@ export default class App extends React.Component {
     if (route.path === '') {
       return <FrontPage
         user={this.state.user}
-        onSignIn={this.handleSignIn} />;
+        onSignIn={this.handleSignIn}
+        theme={this.state.theme}
+        handleTheme={this.handleTheme} />;
     }
     if (route.path === 'browse-all') {
       return <BrowseAll
@@ -134,7 +127,9 @@ export default class App extends React.Component {
       return <EditListing
         user={this.state.user}
         token={this.state.token}
-        listingId={listingId} />;
+        listingId={listingId}
+        theme={this.state.theme}
+        handleTheme={this.handleTheme} />;
     } else if (route.path === 'sign-in' || route.path === 'sign-up') {
       return <Auth />;
     }
@@ -146,26 +141,16 @@ export default class App extends React.Component {
     const { user, route, theme } = this.state;
     const { handleSignIn, handleSignOut, handleTheme } = this;
     const contextValue = { user, route, handleSignIn, handleSignOut };
-    // DARK-MODE ********************************************************************************************
-    // const StyledApp = styled.div`
-    //   background-color: ${props => props.theme.body};
-    //   transition: all .5s ease;
-    // `;
-    // const StyledApp = styled.div`
-    //   background-color: ${props => props.theme.body};
-    // `;
 
     return (
-      <ThemeProvider theme={themes[this.state.theme]}>
+      <ThemeProvider theme={themes[theme]}>
         <AppContext.Provider value={contextValue}>
           <>
             <GlobalStyles />
-            {/* <StyledApp> */}
-              <Navbar user={this.state.user} theme={theme} handleTheme={handleTheme} />
+              { user && <Navbar user={this.state.user} theme={theme} handleTheme={handleTheme} /> }
               <PageContainer>
                 { this.renderPage() }
               </PageContainer>
-            {/* </StyledApp> */}
           </>
         </AppContext.Provider>
       </ThemeProvider>

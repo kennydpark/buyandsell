@@ -67,13 +67,13 @@ export default class CreateListingFormLocation extends React.Component {
           loadError={this.props.loadError}
           closeAllModals={this.closeAllModals} />;
         <div className="container">
-          <ScrollToTop header={header} />
+          <ScrollToTop header={header} theme={this.props.theme} handleTheme={this.props.handleTheme} handleTheme2={this.props.handleTheme2} />
           <div className="form-container-full">
             <form onSubmit={this.handleSubmit}>
               <div className="row justify-center">
                 <div className="column-full">
                   <div className="container">
-                    <MapContainer location={this.state.location} handleAddress={this.handleAddress}/>
+                    <MapContainer location={this.state.location} handleAddress={this.handleAddress} theme={this.props.theme} />
                   </div>
                 </div>
               </div>

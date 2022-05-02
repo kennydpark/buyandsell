@@ -5,6 +5,18 @@ import DeleteConfirm from '../components/delete-confirm-modal';
 import PageLoadingModal from '../components/page-loading-modal';
 import LoadingModal from '../components/loading-modal';
 import ScrollToTop from '../components/scroll-to-top';
+import styled from 'styled-components';
+
+const BackButton = styled.a`
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
+
+const Input = styled.input`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.inputBackground};
+  transition: all .5s ease;
+`;
 
 export default class EditListing extends React.Component {
   constructor(props) {
@@ -36,7 +48,6 @@ export default class EditListing extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = 'white';
     fetch(`/api/user/listings/${this.props.listingId}`, {
       method: 'GET',
       headers: {
@@ -142,16 +153,16 @@ export default class EditListing extends React.Component {
     const href = `#your-listing-details?listingId=${this.props.listingId}`;
     return (
       <>
-        < DeleteConfirm formActive={this.state.formActive}
+        <DeleteConfirm formActive={this.state.formActive}
             listing={this.state.listing}
             handleCancelButton={this.handleCancelButton}
             user={this.props.user}
             token={this.props.token}
             loading={this.state.loading} />
         <div className="container edit-listing-container">
-          <ScrollToTop header={header} />
+          <ScrollToTop header={header} theme={this.props.theme} handleTheme={this.props.handleTheme} handleTheme2={this.handleTheme2} />
           <div className="row row-back-button justify-left">
-            <a href={href}><i className="fas fa-angle-left back-icon dark-grey-color"></i></a>
+            <BackButton href={href}><i className="fas fa-angle-left back-icon"></i></BackButton>
           </div>
           <div className="edit-form-container text-center">
             <form onSubmit={this.handleSubmit}>
@@ -160,39 +171,39 @@ export default class EditListing extends React.Component {
                   <div className="row row-form row-file-upload">
                     <label className="custom-file-upload">
                       <img src={this.state.imagePreview} className="img-style" />
-                      <input onChange={this.handleImageChange} ref={this.fileInputRef} accept=".png, .jpg, .jpeg"
+                      <Input onChange={this.handleImageChange} ref={this.fileInputRef} accept=".png, .jpg, .jpeg"
                         className="new-listing-form-style file-upload" type="file" name="image">
-                      </input>
+                      </Input>
                     </label>
                   </div>
                 </div>
                 <div className="column-half">
                   <div className="row row-form row-input-title">
-                    <input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
+                    <Input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
                       required label="title" type="text">
-                    </input>
+                    </Input>
                   </div>
                   <div className="row row-form">
                     <span className="dollar">
-                      <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
+                      <Input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
                         type="number" min="0" max="999999" required placeholder="Price" />
                     </span>
                   </div>
                   <div className="row row-form">
-                    <select value={this.state.condition} onChange={this.handleSelectChange}
+                    <Input as="select" value={this.state.condition} onChange={this.handleSelectChange}
                       className="new-listing-form-style" required label="condition" placeholder="Condition">
                       <option value="Condition" disabled>Condition</option>
                       <option value="New">New</option>
                       <option value="Used - Like New">Used - Like New</option>
                       <option value="Used - Good">Used - Good</option>
                       <option value="Used - Fair">Used - Fair</option>
-                    </select>
+                    </Input>
                   </div>
                   <div className="row row-form row-description">
-                    <textarea value={this.state.description} onChange={this.handleDescriptionChange}
+                    <Input as="textarea" value={this.state.description} onChange={this.handleDescriptionChange}
                       className="new-listing-form-style" required label="description" type="text" rows="7"
                       placeholder="Description">
-                    </textarea>
+                    </Input>
                   </div>
                 </div>
               </div>

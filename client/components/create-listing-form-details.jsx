@@ -1,12 +1,19 @@
 import React from 'react';
 import ScrollToTop from '../components/scroll-to-top';
+import styled from 'styled-components';
+
+const Input = styled.input`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.inputBackground};
+  transition: all .5s ease;
+`;
 
 export default class CreateListingFormDetails extends React.Component {
   constructor(props) {
     super(props);
     let imagePreview;
     if (this.props.details.file === null) {
-      imagePreview = 'images/placeholder-image.png';
+      imagePreview = 'images/placeholder.png';
     } else {
       imagePreview = URL.createObjectURL(this.props.details.file);
     }
@@ -15,7 +22,7 @@ export default class CreateListingFormDetails extends React.Component {
       price: this.props.details.price,
       condition: this.props.details.condition,
       description: this.props.details.description,
-      imagePreview: imagePreview,
+      imagePreview,
       file: this.props.details.file,
       error: ''
     };
@@ -75,7 +82,7 @@ export default class CreateListingFormDetails extends React.Component {
     const header = 'Item For Sale';
     return (
       <div className="container">
-        <ScrollToTop header={header} />
+        <ScrollToTop header={header} theme={this.props.theme} handleTheme={this.props.handleTheme} />
         <div className="form-container-full text-center">
           <form onSubmit={this.handleSubmit}>
             <div className="row">
@@ -91,31 +98,31 @@ export default class CreateListingFormDetails extends React.Component {
               </div>
               <div className="column-half">
                 <div className="row row-form row-input-title">
-                    <input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
-                          required label="title" type="text" placeholder="Title">
-                    </input>
+                  <Input value={this.state.title} onChange={this.handleTitleChange} className="new-listing-form-style"
+                        required label="title" type="text" placeholder="Title">
+                  </Input>
                 </div>
                 <div className="row row-form">
                   <span className="dollar">
-                    <input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
+                    <Input value={this.state.price} onChange={this.handlePriceChange} className="new-listing-form-style"
                   type="number" min="0" max="999999" required placeholder="Price" />
                   </span>
                 </div>
                 <div className="row row-form">
-                  <select value={this.state.condition} onChange={this.handleSelectChange}
+                  <Input as="select" value={this.state.condition} onChange={this.handleSelectChange}
                       className="new-listing-form-style" required label="condition" placeholder="Condition">
                     <option value="Condition" disabled>Condition</option>
                     <option value="New">New</option>
                     <option value="Used - Like New">Used - Like New</option>
                     <option value="Used - Good">Used - Good</option>
                     <option value="Used - Fair">Used - Fair</option>
-                  </select>
+                  </Input>
                 </div>
                 <div className="row row-form row-description">
-                  <textarea value={this.state.description} onChange={this.handleDescriptionChange}
+                  <Input as="textarea" value={this.state.description} onChange={this.handleDescriptionChange}
                     className="new-listing-form-style" required label="description" type="text" rows="7"
                     placeholder="Description">
-                  </textarea>
+                  </Input>
                 </div>
               </div>
             </div>

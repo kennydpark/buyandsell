@@ -3,6 +3,13 @@ import Redirect from '../components/redirect';
 import NoListings from '../components/no-listings';
 import PageLoadingModal from '../components/page-loading-modal';
 import ScrollToTop from '../components/scroll-to-top';
+import styled from 'styled-components';
+
+const Card = styled.a`
+  background-color: ${props => props.theme.primary};
+  color: ${props => props.theme.fontColor};
+  transition: all .5s ease;
+`;
 
 export default class YourListings extends React.Component {
   constructor(props) {
@@ -16,7 +23,6 @@ export default class YourListings extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = '#F8F8F8';
     fetch('/api/user/listings', {
       method: 'GET',
       headers: {
@@ -30,7 +36,7 @@ export default class YourListings extends React.Component {
         if (listings.length === 0) {
           this.setState({ hasListings: false });
         } else {
-          this.setState({ listings });
+          this.setState({ listings: listings.reverse() });
         }
       });
   }
@@ -52,10 +58,10 @@ export default class YourListings extends React.Component {
     } else {
       return (
         <div className="container your-listings-container">
-          <ScrollToTop header={header} />
+          <ScrollToTop header={header} theme={this.props.theme} handleTheme={this.props.handleTheme} />
           <div className="row row-browse-all justify-center">
             {
-              this.state.listings.reverse().map(listing => (
+              this.state.listings.map(listing => (
                 <div key={listing.listingId}>
                   <Listing listing={listing} />
                 </div>
@@ -72,7 +78,7 @@ function Listing(props) {
   const { listingId, title, price, imageUrl, location } = props.listing;
   const href = `#your-listing-details?listingId=${listingId}`;
   return (
-    <a
+    <Card
       href={href}
       className="browse-all-listing">
       <img src={imageUrl} className="browse-all-image" alt={title} />
@@ -81,6 +87,6 @@ function Listing(props) {
         <p className="card-title">{title}</p>
         <p className="card-location">{location}</p>
       </div>
-    </a>
+    </Card>
   );
 }

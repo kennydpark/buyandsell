@@ -1,6 +1,10 @@
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
+const Input = styled.input`
+  color: ${props => props.theme.fontColor};
+  background-color: ${props => props.theme.inputBackground};
+`;
 export default class AuthForm extends React.Component {
   constructor(props) {
     super(props);
@@ -76,16 +80,10 @@ export default class AuthForm extends React.Component {
       ? 'Already have an account?'
       : 'Don\'t have an account?';
 
-    // const Form = styled.form`
-    //   color: ${props => props.theme.fontColor};
-    //   transition: all .5s ease;
-    // `;
-
     return (
       <form onSubmit={ this.handleSubmit }>
-      {/* <Form onSubmit={ this.handleSubmit }> */}
         <div className="front-input-row text-center">
-          <input
+          <Input
             required
             id="email"
             type="email"
@@ -95,7 +93,7 @@ export default class AuthForm extends React.Component {
             className="sign-in-form-style" />
         </div>
         <div className="front-input-row text-center">
-          <input
+          <Input
             required
             id="password"
             type="password"
@@ -120,7 +118,6 @@ export default class AuthForm extends React.Component {
             </a>
           </span>
         </div>
-      {/* </Form> */}
       </form>
     );
   }
