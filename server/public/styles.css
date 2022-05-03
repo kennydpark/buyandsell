@@ -435,7 +435,7 @@ input[type="file"] {
   }
 }
 
-/* browse-all, your-listings */
+/* browse-all, my-listings */
 
 .browse-all-listing {
   display: block;
@@ -542,7 +542,7 @@ input[type="file"] {
   color: #2978b5;
 }
 
-/* your-listing-details, bookmark-icon */
+/* my-listing-details, bookmark-icon */
 
 .row-details-body {
   flex-basis: calc(100% / 2);

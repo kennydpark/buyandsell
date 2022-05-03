@@ -146,11 +146,11 @@ export default class EditListing extends React.Component {
     if (this.state.listing.error) {
       return <NotFound />;
     }
-    const postUpdate = `your-listing-details?listingId=${this.props.listingId}`;
+    const postUpdate = `my-listing-details?listingId=${this.props.listingId}`;
     if (this.state.updated === true) {
       return <Redirect to={postUpdate} />;
     }
-    const href = `#your-listing-details?listingId=${this.props.listingId}`;
+    const href = `#my-listing-details?listingId=${this.props.listingId}`;
     return (
       <>
         <DeleteConfirm formActive={this.state.formActive}

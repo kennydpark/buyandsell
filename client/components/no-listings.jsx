@@ -9,7 +9,7 @@ const Notice = styled.p`
 
 export default class NoListings extends React.Component {
   render() {
-    const header = 'Your Listings';
+    const header = 'My Listings';
     return (
       <div className="container no-listings-container">
         <ScrollToTop header={header} />

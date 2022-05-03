@@ -21,6 +21,7 @@ class LoadError extends React.Component {
       modal = 'loading-modal-container loading-overlay';
       window = 'loading-modal-window text-center';
     }
+
     return (
       <div className={modal}>
         <div className={window}>

@@ -20,7 +20,7 @@ const BackButton = styled.a`
   transition: all .5s ease;
 `;
 
-export default class YourListingDetails extends React.Component {
+export default class MyListingDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,10 +64,10 @@ export default class YourListingDetails extends React.Component {
       <>
         <div className="details-container">
           <div className="row row-header justify-center">
-            <a href="#your-listings" className="page-header-anchor"><Header className="page-header-text">Your Listings</Header></a>
+            <a href="#my-listings" className="page-header-anchor"><Header className="page-header-text">My Listings</Header></a>
           </div>
           <div className="row row-back-button justify-left">
-            <BackButton href="#your-listings"><i className="fas fa-angle-left back-icon"></i></BackButton>
+            <BackButton href="#my-listings"><i className="fas fa-angle-left back-icon"></i></BackButton>
           </div>
           <div className="details-container-full text-center">
             <div className="row justify-center margin-auto">

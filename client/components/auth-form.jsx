@@ -5,6 +5,7 @@ const Input = styled.input`
   color: ${props => props.theme.fontColor};
   background-color: ${props => props.theme.inputBackground};
 `;
+
 export default class AuthForm extends React.Component {
   constructor(props) {
     super(props);

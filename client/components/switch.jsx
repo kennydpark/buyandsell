@@ -18,10 +18,10 @@ const Switch = props => {
   };
 
   return (
-      <label className="switch" >
-        <input type="checkbox" checked={checked} onClick={handleClick} readOnly/>
+    <label className="switch" >
+      <input type="checkbox" checked={checked} onClick={handleClick} readOnly/>
       <span onClick={props.handleTheme} className="slider" />
-      </label>
+    </label>
   );
 };
 
