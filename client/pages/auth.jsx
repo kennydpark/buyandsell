@@ -14,6 +14,7 @@ const BackButton = styled.a`
   color: ${props => props.theme.fontColor};
   transition: all .5s ease;
 `;
+
 export default class AuthPage extends React.Component {
 
   render() {

@@ -9,6 +9,7 @@ const Card = styled.a`
   color: ${props => props.theme.fontColor};
   transition: all 0.5s ease;
 `;
+
 export default class BrowseAll extends React.Component {
   constructor(props) {
     super(props);

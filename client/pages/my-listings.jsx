@@ -11,7 +11,7 @@ const Card = styled.a`
   transition: all .5s ease;
 `;
 
-export default class YourListings extends React.Component {
+export default class MyListings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +46,7 @@ export default class YourListings extends React.Component {
   }
 
   render() {
-    const header = 'Your Listings';
+    const header = 'My Listings';
     if (!this.props.user || !this.props.token) return <Redirect to="" />;
     if (this.state.loading) {
       return <PageLoadingModal
@@ -57,7 +57,7 @@ export default class YourListings extends React.Component {
       return <NoListings />;
     } else {
       return (
-        <div className="container your-listings-container">
+        <div className="container my-listings-container">
           <ScrollToTop header={header} theme={this.props.theme} handleTheme={this.props.handleTheme} />
           <div className="row row-browse-all justify-center">
             {
@@ -76,7 +76,7 @@ export default class YourListings extends React.Component {
 
 function Listing(props) {
   const { listingId, title, price, imageUrl, location } = props.listing;
-  const href = `#your-listing-details?listingId=${listingId}`;
+  const href = `#my-listing-details?listingId=${listingId}`;
   return (
     <Card
       href={href}

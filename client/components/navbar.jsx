@@ -19,7 +19,7 @@ const Anchor = styled.a`
   color: ${props => props.theme.fontColor};
 `;
 
-const ToggleIcon = styled.button`
+const ThemeMode = styled.button`
   cursor: default;
   height: 35px;
   width: 35px;
@@ -34,6 +34,7 @@ const ToggleIcon = styled.button`
   padding-top: 7px;
   margin-top: 24px;
 `;
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -77,7 +78,7 @@ class Navbar extends React.Component {
       overlay = 'navbar-overlay';
     }
 
-    const toggle = this.props.theme === 'dark' ? <HiMoon size={19} /> : <CgSun size={19} />;
+    const themeIcon = this.props.theme === 'dark' ? <HiMoon size={19} /> : <CgSun size={19} />;
 
     return (
       <>
@@ -116,13 +117,13 @@ class Navbar extends React.Component {
               </Anchor>
             </li>
             <li>
-              <Anchor onClick={this.handleClick} href="#your-listings">
+              <Anchor onClick={this.handleClick} href="#my-listings">
                 <div className='row navbar-row-full'>
                   <div className='navbar-column-icon'>
                     <i className='fas fa-tags navbar-page-icon'></i>
                   </div>
                   <div className='navbar-column-text'>
-                    <h1 className='navbar-page-anchor'>Your listings</h1>
+                    <h1 className='navbar-page-anchor'>My listings</h1>
                   </div>
                 </div>
               </Anchor>
@@ -166,9 +167,9 @@ class Navbar extends React.Component {
               }
             </li>
             <li className="navbar-theme-toggle">
-              <ToggleIcon>
-                {toggle}
-              </ToggleIcon>
+              <ThemeMode>
+                {themeIcon}
+              </ThemeMode>
               <Switch theme={this.props.theme} handleTheme={this.props.handleTheme} />
             </li>
           </ul>

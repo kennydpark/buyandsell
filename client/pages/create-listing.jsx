@@ -3,6 +3,7 @@ import CreateListingFormDetails from '../components/create-listing-form-details'
 import CreateListingFormLocation from '../components/create-listing-form-location';
 import CreateListingPublished from '../components/create-listing-published';
 import Redirect from '../components/redirect';
+
 export default class CreateListingFormParent extends React.Component {
   constructor(props) {
     super(props);

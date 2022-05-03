@@ -10,7 +10,7 @@ const Container = styled.div`
   transition: all .5s ease;
 `;
 
-const ToggleIcon = styled.button`
+const ThemeMode = styled.button`
   cursor: default;
   height: 35px;
   width: 35px;
@@ -25,6 +25,7 @@ const ToggleIcon = styled.button`
   padding-top: 7px;
   margin-top: 24px;
 `;
+
 export default class FrontPage extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +80,7 @@ export default class FrontPage extends React.Component {
       demoButton = 'demo-button demo-hidden';
     }
 
-    const toggle = this.props.theme === 'dark' ? <HiMoon size={19} /> : <CgSun size={19} />;
+    const themeIcon = this.props.theme === 'dark' ? <HiMoon size={19} /> : <CgSun size={19} />;
 
     return (
       <Container className="container">
@@ -102,9 +103,9 @@ export default class FrontPage extends React.Component {
           <a onClick={this.handleDemoSignIn} className={demoButton}>Demo</a>
         </div>
         <div className="text-center">
-          <ToggleIcon>
-            {toggle}
-          </ToggleIcon>
+          <ThemeMode>
+            {themeIcon}
+          </ThemeMode>
           <Switch theme={this.props.theme} handleTheme={this.props.handleTheme} />
         </div>
       </Container>

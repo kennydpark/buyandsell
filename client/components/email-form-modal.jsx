@@ -17,6 +17,7 @@ const EmailConfirmation = styled.div`
   color: ${props => props.theme.fontColor};
   background-color: ${props => props.theme.primary};
 `;
+
 class EmailForm extends React.Component {
   constructor(props) {
     super(props);
@@ -150,11 +151,8 @@ class EmailForm extends React.Component {
 
     return (
       <>
-        <LoadingModal loading={this.state.loading}
-          loadingClose={this.loadingClose} />
-        <LoadError
-          loadError={this.state.loadError}
-          closeAllModals={this.closeAllModals} />;
+        <LoadingModal loading={this.state.loading} loadingClose={this.loadingClose} />
+        <LoadError loadError={this.state.loadError} closeAllModals={this.closeAllModals} />;
         <div className={modal}>
           <EmailModal className={window}>
             <form onSubmit={this.handleSubmit}>

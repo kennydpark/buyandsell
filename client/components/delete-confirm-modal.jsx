@@ -83,7 +83,7 @@ class DeleteConfirm extends React.Component {
 
   render() {
     if (this.state.deleted === true) {
-      return <Redirect to="your-listings" />;
+      return <Redirect to="my-listings" />;
     }
     if (this.state.loading) {
       return <LoadingModal

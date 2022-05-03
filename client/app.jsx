@@ -9,8 +9,8 @@ import Navbar from './components/navbar';
 import PageContainer from './components/page-container';
 import BrowseAll from './pages/browse-all';
 import ListingDetails from './pages/listing-details';
-import YourListings from './pages/your-listings';
-import YourListingDetails from './pages/your-listing-details';
+import MyListings from './pages/my-listings';
+import MyListingDetails from './pages/my-listing-details';
 import EditListing from './pages/edit-listing';
 import SavedItems from './pages/saved-items';
 import CreateListingFormParent from './pages/create-listing';
@@ -97,15 +97,15 @@ export default class App extends React.Component {
         nav={this.state.nav}
         theme={this.state.theme}
         handleTheme={this.handleTheme} />;
-    } else if (route.path === 'your-listings') {
-      return <YourListings
+    } else if (route.path === 'my-listings') {
+      return <MyListings
         user={this.state.user}
         token={this.state.token}
         theme={this.state.theme}
         handleTheme={this.handleTheme} />;
-    } else if (route.path === 'your-listing-details') {
+    } else if (route.path === 'my-listing-details') {
       const listingId = route.params.get('listingId');
-      return <YourListingDetails
+      return <MyListingDetails
         user={this.state.user}
         token={this.state.token}
         listingId={listingId} />;
